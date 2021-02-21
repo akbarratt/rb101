@@ -25,7 +25,7 @@ def operation_to_message(op)
 end
 
 prompt("Welcome to Calculator! Enter your name:")
-name=''
+name = ''
 loop do
   name = Kernel.gets().chomp()
 
@@ -39,8 +39,7 @@ end
 prompt("Hi #{name}!")
 
 loop do # main loop
-
-  number1=''
+  number1 = ''
   loop do
     prompt("What's the first number?")
     number1 = Kernel.gets().chomp()
@@ -87,17 +86,17 @@ loop do # main loop
 
   prompt("#{operation_to_message(operator)} the two numbers...")
 
-    result = case operator
-              when "1"
-                number1.to_i() + number2.to_i()
-              when "2"
-                number1.to_i() - number2.to_i()
-              when "3"
-                number1.to_i() * number2.to_i()
-              when "4"
-                number1.to_f() / number2.to_f()
-              end
-    prompt("The result is #{result}")
+  result = case operator
+           when "1"
+             number1.to_i() + number2.to_i()
+           when "2"
+             number1.to_i() - number2.to_i()
+           when "3"
+             number1.to_i() * number2.to_i()
+           when "4"
+             number1.to_f() / number2.to_f()
+           end
+  prompt("The result is #{result}")
 
   prompt("Do you want to perform another calculation? (Y to calculate again)")
   answer = Kernel.gets().chomp()
