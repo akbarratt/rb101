@@ -1,59 +1,3 @@
-=begin
-START
-
-WHILE continue = true
-  GET total loan amount
-  SET total_loan_amt = total loan amount
-    IF total_loan_amt is valid float
-      continue
-    ELSE IF total_loan_amt is valid integer
-      convert to float
-    ELSE
-      "Please enter a valid number"
-  GET APR
-  SET apr = APR
-    IF apr is valid float
-      continue
-    ELSE IF total_loan_amt is valid integer
-      convert to float
-    ELSE
-      "Please enter a valid number"
-  GET years left on loan
-  SET loan_left_yrs = years left on loan
-    IF loan_left_years is valid integer
-      continue
-    ELSE
-      "Please type a whole number"
-  GET months left on loan
-  SET loan_left_mo = months left on loan
-    IF loan_left_mo is valid integer
-      continue
-    ELSE
-      "Please type a whole number"
-  SET loan_term = (loan_left_yrs * 12) + loan_left_mo
-  SET mo_int = APR / 12
-  SET mo_payment = loan_amt * (mo_int / (1 - (1 + mo_int)**(-loan_term)))
-
-  PRINT mo_int
-  PRINT loan_term [maybe combine this into one statement]
-  PRINT mo_payment
-  PRINT mo_payment / mo_int = amount of mo_payment that is interest.
-
-  PRINT "Would you like to enter another loan?"
-  GET continue = true/false
-    IF continue = true || false
-      next
-    ELSE
-      "please enter true or false"
-
-PRINT "Thanks for using the calculator"
-END
-
-NOTES: need to keep decimal to 2 places
-Not sure at which point to convert things to int/float?
-
-=end
-
 def prompt(message)
   Kernel.puts("=> #{message}")
 end
@@ -139,4 +83,4 @@ end
 
 prompt("Thank you for using the loan calculator!")
 
-# Rubocop passes aside from line length on 62 and 120.
+# Rubocop passes aside from line length on 6 and 64.
