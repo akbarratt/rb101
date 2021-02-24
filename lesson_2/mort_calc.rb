@@ -3,7 +3,7 @@ def prompt(message)
 end
 
 def valid_float?(input)
-  (input.to_f.to_s == input || input.to_i.to_s == input) && (input.to_f >= 1 || input.to_i >= 1)
+  input.to_f > 0 || input.to_i > 0
 end
 
 def valid_int?(input)
@@ -38,7 +38,7 @@ loop do
 
   loan_left_years = ''
   loop do
-    prompt("Enter the number of years remaining on your loan:")
+    prompt("Enter the number of years on your loan:")
     loan_left_years = gets.chomp
     if valid_int?(loan_left_years)
       break
@@ -49,7 +49,7 @@ loop do
 
   loan_left_mo = ''
   loop do
-    prompt("Enter the number of months remaining on your loan:")
+    prompt("Enter the number of months on your loan:")
     loan_left_mo = gets.chomp
     if valid_int?(loan_left_mo)
       break
@@ -61,7 +61,9 @@ loop do
   prompt("Calculating...")
   loan_term = (loan_left_years.to_i * 12) + loan_left_mo.to_i
   mo_int = (apr.to_f / 12).round(3)
-  mo_payment = total_loan_amt.to_f * ((mo_int / 100) / (1 - (1 + (mo_int / 100))**(-loan_term)))
+  mo_payment =
+    total_loan_amt.to_f *
+    ((mo_int / 100) / (1 - (1 + (mo_int / 100))**(-loan_term)))
   p mo_payment
   repayment_cost = mo_payment * loan_term
   total_interest = repayment_cost - total_loan_amt.to_f
@@ -82,5 +84,3 @@ loop do
 end
 
 prompt("Thank you for using the loan calculator!")
-
-# Rubocop passes aside from line length on 6 and 64.
