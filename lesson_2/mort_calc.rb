@@ -66,12 +66,14 @@ def valid_int?(input)
   input.to_i.to_s == input && input.to_i >= 0
 end
 
+prompt("Welcome to the loan calculator!")
+
 loop do
-  # GET total loan amount
   total_loan_amt = ''
   loop do
     prompt("Enter your total loan amount:")
     total_loan_amt = gets.chomp
+    # Right now this won't take any number less than 1.
     if valid_float?(total_loan_amt)
       break
     else
@@ -115,14 +117,18 @@ loop do
   prompt("Calculating...")
   loan_term = (loan_left_years.to_i * 12) + loan_left_mo.to_i
   mo_int = (apr.to_f / 12).round(3)
-  mo_payment = (total_loan_amt.to_f * (mo_int / (1 - (1 + mo_int)**(-loan_term)))).round(2)
-  prompt("You have #{loan_term.to_s} months")
-  
+  mo_payment = total_loan_amt.to_f * ((mo_int / 100) / (1 - (1 + (mo_int / 100))**(-loan_term)))
+  p mo_payment
+  repayment_cost = mo_payment * loan_term
+  total_interest = repayment_cost - total_loan_amt.to_f
+  # Results
   results = <<-MSG
   On your loan of $#{total_loan_amt} at #{apr}% APR over #{loan_left_years} year(s), #{loan_left_mo} month(s):
-  Payments: #{loan_term.to_s}
-  Monthly payments: $#{mo_payment}
-  Monthly interest: #{mo_int}%
+  Number of payments: #{loan_term}
+  Monthly payment: $#{mo_payment.round(2)}
+  Monthly interest rate: #{mo_int}%
+  Total cost of repayment: $#{repayment_cost.round(2)}
+  Total interest paid: $#{total_interest.round(2)}
   MSG
   prompt(results)
 
@@ -130,3 +136,7 @@ loop do
   answer = gets.chomp
   break unless answer.downcase().start_with?('y')
 end
+
+prompt("Thank you for using the loan calculator!")
+
+# Rubocop passes aside from line length on 62 and 120.
