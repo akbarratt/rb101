@@ -15,8 +15,10 @@ def display_result(player, computer)
 
   if player == computer
     prompt("It's a tie!")
+    return "computer win"
   elsif win_conditions[player].include?(computer)
     prompt("You win!")
+    return "player win"
   else
     prompt("The computer wins!")
   end
@@ -25,6 +27,8 @@ end
 prompt("Welcome to Rock, Paper, Scissors, Lizard, Spock!")
 
 loop do
+  player_score = 0
+  computer_score = 0
   choice = ''
   loop do
     prompt("Choose one: #{VALID_CHOICES.join(', ')}")
@@ -42,6 +46,10 @@ loop do
   prompt("You chose: #{choice}; Computer chose: #{computer_choice}")
 
   display_result(choice, computer_choice)
+  computer_score += 1 if "computer win"
+  player_score += 1 if "player win"
+  puts computer_score
+  puts player_score
 
   prompt("Do you want to play again?")
   answer = Kernel.gets().chomp()
