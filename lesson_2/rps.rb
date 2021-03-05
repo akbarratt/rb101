@@ -1,30 +1,35 @@
 VALID_CHOICES = %w(rock paper scissors lizard spock)
 
+WIN_CONDITIONS = {
+  'paper' => %w(rock spock),
+  'scissors' => %w(paper lizard),
+  'rock' => %w(scissors lizard),
+  'lizard' => %w(paper spock),
+  'spock' => %w(scissors rock)
+}
+
+WINNING_SCORE = 5
+
 def prompt(message)
   Kernel.puts("=> #{message}")
 end
 
-def display_result(player, computer)
-  win_conditions = {
-    'paper' => %w(rock spock),
-    'scissors' => %w(paper lizard),
-    'rock' => %w(scissors lizard),
-    'lizard' => %w(paper spock),
-    'spock' => %w(scissors rock)
-  }
+def win?(player, opponent)
+  WIN_CONDITIONS[player].include?(opponent)
+end
 
-  if player == computer
-    prompt("It's a tie!")
-    return "computer win"
-  elsif win_conditions[player].include?(computer)
-    prompt("You win!")
-    return "player win"
+def display_result(human, computer)
+  if win?(human, computer)
+    prompt("You won!")
+  elsif win?(computer, human)
+    prompt("The computer won!")
   else
-    prompt("The computer wins!")
+    prompt("It's a tie!")
   end
 end
 
 prompt("Welcome to Rock, Paper, Scissors, Lizard, Spock!")
+prompt("The first player to reach ")
 
 loop do
   player_score = 0
@@ -46,10 +51,10 @@ loop do
   prompt("You chose: #{choice}; Computer chose: #{computer_choice}")
 
   display_result(choice, computer_choice)
-  computer_score += 1 if "computer win"
-  player_score += 1 if "player win"
-  puts computer_score
-  puts player_score
+  # computer_score += 1 if "computer win"
+  # player_score += 1 if "player win"
+  # puts computer_score
+  # puts player_score
 
   prompt("Do you want to play again?")
   answer = Kernel.gets().chomp()
