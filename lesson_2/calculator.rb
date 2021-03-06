@@ -8,7 +8,7 @@ def prompt(message)
 end
 
 def valid_number?(num)
-  num.to_i() != 0
+  num.to_f() >= 0
 end
 
 def operation_to_message(op)
@@ -104,3 +104,7 @@ loop do # main loop
 end
 
 prompt("Thank you for using the calculator. Goodbye!")
+
+# Bonus feature: Allow calculator to take positive and negative integers.
+# Bonus feature: Is there a way to return only a whole number if there's no decimal?
+

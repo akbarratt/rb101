@@ -1,11 +1,20 @@
+# Notes: working on abbreviated choices
+
 VALID_CHOICES = %w(rock paper scissors lizard spock)
 
+ABBREVIATIONS = %w(r p sc l sp)
+
 WIN_CONDITIONS = {
-  'paper' => %w(rock spock),
-  'scissors' => %w(paper lizard),
-  'rock' => %w(scissors lizard),
-  'lizard' => %w(paper spock),
-  'spock' => %w(scissors rock)
+  'paper' => %w(rock spock r sp),
+  'scissors' => %w(paper lizard p l),
+  'rock' => %w(scissors lizard sc l),
+  'lizard' => %w(paper spock p sp),
+  'spock' => %w(scissors rock sc r),
+  'p' => %w(rock spock r sp),
+  'sc' => %w(paper lizard p l),
+  'r' => %w(scissors lizard sc l),
+  'l' => %w(paper spock p sp),
+  'sp' => %w(scissors rock sc r)
 }
 
 CHAMP_SCORE = 5
@@ -33,19 +42,19 @@ def display_score(player, opponent)
   prompt("Computer wins: #{opponent}")
 end
 
-prompt("Welcome to Rock, Paper, Scissors, Lizard, Spock!")
-prompt("The first player to reach #{CHAMP_SCORE} wins becomes GRAND CHAMPION!")
-
 loop do
+  system("clear")
+  prompt("Welcome to Rock, Paper, Scissors, Lizard, Spock!")
+  prompt("The first player to reach #{CHAMP_SCORE} wins becomes GRAND CHAMPION!")
   player_score = 0
   computer_score = 0
   loop do
     choice = ''
     loop do
-      prompt("Choose one: #{VALID_CHOICES.join(', ')}")
+      prompt("Choose one: #{VALID_CHOICES.join(', ')} (r p sc l sp)")
       choice = Kernel.gets().chomp()
 
-      if VALID_CHOICES.include?(choice)
+      if VALID_CHOICES.include?(choice) || ABBREVIATIONS.include?(choice)
         break
       else
         prompt("That's not a valid choice.")
