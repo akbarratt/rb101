@@ -33,51 +33,47 @@ def display_score(player, opponent)
   prompt("Computer wins: #{opponent}")
 end
 
-player_score = 0
-computer_score = 0
-
 prompt("Welcome to Rock, Paper, Scissors, Lizard, Spock!")
-prompt("The first player to reach #{CHAMP_SCORE} wins will be crowned GRAND CHAMPION!")
+prompt("The first player to reach #{CHAMP_SCORE} wins becomes GRAND CHAMPION!")
 
 loop do
-  choice = ''
+  player_score = 0
+  computer_score = 0
   loop do
-    prompt("Choose one: #{VALID_CHOICES.join(', ')}")
-    choice = Kernel.gets().chomp()
+    choice = ''
+    loop do
+      prompt("Choose one: #{VALID_CHOICES.join(', ')}")
+      choice = Kernel.gets().chomp()
 
-    if VALID_CHOICES.include?(choice)
+      if VALID_CHOICES.include?(choice)
+        break
+      else
+        prompt("That's not a valid choice.")
+      end
+    end
+
+    computer_choice = VALID_CHOICES.sample
+
+    prompt("You chose: #{choice}; Computer chose: #{computer_choice}")
+
+    display_match_result(choice, computer_choice)
+    player_score += 1 if win?(choice, computer_choice)
+    computer_score += 1 if win?(computer_choice, choice)
+    display_score(player_score, computer_score)
+
+    if player_score == CHAMP_SCORE
+      prompt("Congratulations! You are the GRAND CHAMPION!")
+      break
+    elsif computer_score == CHAMP_SCORE
+      prompt("Game over! The computer is the GRAND CHAMPION!")
       break
     else
-      prompt("That's not a valid choice.")
+      next
     end
   end
-
-  computer_choice = VALID_CHOICES.sample
-
-  prompt("You chose: #{choice}; Computer chose: #{computer_choice}")
-
-  display_match_result(choice, computer_choice)
-  player_score += 1 if win?(choice, computer_choice)
-  computer_score += 1 if win?(computer_choice, choice)
-  display_score(player_score, computer_score)
-
-  if player_score == CHAMP_SCORE
-    prompt("Congratulations! You are the GRAND CHAMPION!")
-    break
-  elsif computer_score == CHAMP_SCORE
-    prompt("Game over! The computer is the GRAND CHAMPION!")
-    break
-  else
-    next
-  end
-
-  # prompt("Do you want to play again?")
-  # answer = Kernel.gets().chomp()
-  # break unless answer.downcase().start_with?('y')
+  prompt("Do you want to play again?")
+  answer = Kernel.gets().chomp()
+  break unless answer.downcase().start_with?('y')
 end
 
 prompt("Thank you for playing. Goodbye!")
-
-
-# Notes: need to break and declare grand champion.
-# Need to create outer loop to repeat the WHOLE game, pull "continue" function to outer loop rather than inner loop.
