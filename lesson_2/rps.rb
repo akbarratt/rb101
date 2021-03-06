@@ -8,7 +8,7 @@ WIN_CONDITIONS = {
   'spock' => %w(scissors rock)
 }
 
-WINNING_SCORE = 5
+CHAMP_SCORE = 5
 
 def prompt(message)
   Kernel.puts("=> #{message}")
@@ -18,7 +18,7 @@ def win?(player, opponent)
   WIN_CONDITIONS[player].include?(opponent)
 end
 
-def display_result(human, computer)
+def display_match_result(human, computer)
   if win?(human, computer)
     prompt("You won!")
   elsif win?(computer, human)
@@ -28,12 +28,18 @@ def display_result(human, computer)
   end
 end
 
+def display_score(player, opponent)
+  prompt("Your wins: #{player}")
+  prompt("Computer wins: #{opponent}")
+end
+
+player_score = 0
+computer_score = 0
+
 prompt("Welcome to Rock, Paper, Scissors, Lizard, Spock!")
-prompt("The first player to reach ")
+prompt("The first player to reach #{CHAMP_SCORE} wins will be crowned GRAND CHAMPION!")
 
 loop do
-  player_score = 0
-  computer_score = 0
   choice = ''
   loop do
     prompt("Choose one: #{VALID_CHOICES.join(', ')}")
@@ -50,15 +56,28 @@ loop do
 
   prompt("You chose: #{choice}; Computer chose: #{computer_choice}")
 
-  display_result(choice, computer_choice)
-  # computer_score += 1 if "computer win"
-  # player_score += 1 if "player win"
-  # puts computer_score
-  # puts player_score
+  display_match_result(choice, computer_choice)
+  player_score += 1 if win?(choice, computer_choice)
+  computer_score += 1 if win?(computer_choice, choice)
+  display_score(player_score, computer_score)
 
-  prompt("Do you want to play again?")
-  answer = Kernel.gets().chomp()
-  break unless answer.downcase().start_with?('y')
+  if player_score == CHAMP_SCORE
+    prompt("Congratulations! You are the GRAND CHAMPION!")
+    break
+  elsif computer_score == CHAMP_SCORE
+    prompt("Game over! The computer is the GRAND CHAMPION!")
+    break
+  else
+    next
+  end
+
+  # prompt("Do you want to play again?")
+  # answer = Kernel.gets().chomp()
+  # break unless answer.downcase().start_with?('y')
 end
 
 prompt("Thank you for playing. Goodbye!")
+
+
+# Notes: need to break and declare grand champion.
+# Need to create outer loop to repeat the WHOLE game, pull "continue" function to outer loop rather than inner loop.
