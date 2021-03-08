@@ -3,12 +3,31 @@
 # perform the operation on the two numbers
 # output the result
 
+require 'yaml'
+MESSAGES = YAML.load_file('calc.yml')
+
 def prompt(message)
-  Kernel.puts("=> #{message}")
+  puts("=> #{message}")
 end
 
-def valid_number?(num)
-  num.to_f() >= 0
+def integer?(num)
+  num.to_i.to_s == num
+end
+
+def float?(num)
+  num.to_f.to_s == num
+end
+
+def valid_number?(input)
+  integer?(input) || float?(input)
+end
+
+def input_conversion(string)
+  if string.to_f % 1 == 0.0
+    string = string.to_i
+  else
+    string = string.to_f
+  end
 end
 
 def operation_to_message(op)
@@ -24,10 +43,18 @@ def operation_to_message(op)
   end
 end
 
+def display_result(output)
+  if output % 1 == 0.0
+    prompt("The result is #{output.to_i}")
+  else
+    prompt("The result is #{output}")
+  end
+end
+
 prompt("Welcome to Calculator! Enter your name:")
 name = ''
 loop do
-  name = Kernel.gets().chomp()
+  name = gets.chomp
 
   if name.empty?()
     prompt("Make sure to use a valid name.")
@@ -42,19 +69,22 @@ loop do # main loop
   number1 = ''
   loop do
     prompt("What's the first number?")
-    number1 = Kernel.gets().chomp()
+    number1 = gets.chomp
 
     if valid_number?(number1)
+      input_conversion(number1)
       break
     else
       prompt("Hmm... That doesn't look like a valid number.")
     end
+
+    input_conversion(number1)
   end
 
   number2 = ''
   loop do
     prompt("What's the second number?")
-    number2 = Kernel.gets().chomp()
+    number2 = gets.chomp
 
     if valid_number?(number2)
       break
@@ -71,11 +101,11 @@ loop do # main loop
     4) divide
   MSG
 
-  prompt(operator_prompt)
+  prompt(MESSAGES["operator"])
 
   operator = ''
   loop do
-    operator = Kernel.gets().chomp()
+    operator = gets.chomp
 
     if %w(1 2 3 4).include?(operator)
       break
@@ -84,27 +114,42 @@ loop do # main loop
     end
   end
 
+  # Conversion of user input to integer or float as appropriate.
+  if number1.to_f % 1 == 0.0
+    number1 = number1.to_i
+  else
+    number1 = number1.to_f
+  end
+
+  if number2.to_f % 1 == 0.0
+    number2 = number2.to_i
+  else
+    number2 = number2.to_f
+  end
+
   prompt("#{operation_to_message(operator)} the two numbers...")
 
   result = case operator
            when "1"
-             number1.to_i() + number2.to_i()
+             number1 + number2
            when "2"
-             number1.to_i() - number2.to_i()
+             number1 - number2
            when "3"
-             number1.to_i() * number2.to_i()
+             number1 * number2
            when "4"
-             number1.to_f() / number2.to_f()
-           end
-  prompt("The result is #{result}")
+             number1 / number2
+           end  
+
+  display_result(result)
 
   prompt("Do you want to perform another calculation? (Y to calculate again)")
-  answer = Kernel.gets().chomp()
-  break unless answer.downcase().start_with?('y')
+  answer = gets.chomp
+  break unless answer.downcase.start_with?('y')
 end
 
 prompt("Thank you for using the calculator. Goodbye!")
 
-# Bonus feature: Allow calculator to take positive and negative integers.
-# Bonus feature: Is there a way to return only a whole number if there's no decimal?
-
+# Extrapolate messages to YAML.
+# Internationalize.
+# More single-use methods.
+# Run rubocop.
