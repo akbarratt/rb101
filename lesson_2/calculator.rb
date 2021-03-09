@@ -22,14 +22,6 @@ def valid_number?(input)
   integer?(input) || float?(input)
 end
 
-def input_conversion(string)
-  if string.to_f % 1 == 0.0
-    string = string.to_i
-  else
-    string = string.to_f
-  end
-end
-
 def operation_to_message(op)
   case op
   when '1'
@@ -51,13 +43,13 @@ def display_result(output)
   end
 end
 
-prompt("Welcome to Calculator! Enter your name:")
+prompt(MESSAGES["welcome"])
 name = ''
 loop do
   name = gets.chomp
 
   if name.empty?()
-    prompt("Make sure to use a valid name.")
+    prompt(MESSAGES["valid_name"])
   else
     break
   end
@@ -68,14 +60,13 @@ prompt("Hi #{name}!")
 loop do # main loop
   number1 = ''
   loop do
-    prompt("What's the first number?")
+    prompt(MESSAGES["input1"])
     number1 = gets.chomp
 
     if valid_number?(number1)
-      input_conversion(number1)
       break
     else
-      prompt("Hmm... That doesn't look like a valid number.")
+      prompt(MESSAGES["invalid_number"])
     end
 
     input_conversion(number1)
@@ -83,23 +74,15 @@ loop do # main loop
 
   number2 = ''
   loop do
-    prompt("What's the second number?")
+    prompt(MESSAGES["input2"])
     number2 = gets.chomp
 
     if valid_number?(number2)
       break
     else
-      prompt("Hmm... That doesn't look like a valid number.")
+      prompt(MESSAGES["invalid_number"])
     end
   end
-
-  operator_prompt = <<-MSG
-    What operation would you like to perform?
-    1) add
-    2) subtract
-    3) multiply
-    4) divide
-  MSG
 
   prompt(MESSAGES["operator"])
 
@@ -110,22 +93,13 @@ loop do # main loop
     if %w(1 2 3 4).include?(operator)
       break
     else
-      prompt("Must choose 1, 2, 3 or 4")
+      prompt(MESSAGES["invalid_operator"])
     end
   end
 
-  # Conversion of user input to integer or float as appropriate.
-  if number1.to_f % 1 == 0.0
-    number1 = number1.to_i
-  else
-    number1 = number1.to_f
-  end
-
-  if number2.to_f % 1 == 0.0
-    number2 = number2.to_i
-  else
-    number2 = number2.to_f
-  end
+  # Conversion of user input to float.
+  number1 = number1.to_f
+  number2 = number2.to_f
 
   prompt("#{operation_to_message(operator)} the two numbers...")
 
@@ -137,17 +111,17 @@ loop do # main loop
            when "3"
              number1 * number2
            when "4"
-             number1 / number2
+             number1 / number2 # This needs to always be float division.
            end  
 
   display_result(result)
 
-  prompt("Do you want to perform another calculation? (Y to calculate again)")
+  prompt(MESSAGES["repeat"])
   answer = gets.chomp
   break unless answer.downcase.start_with?('y')
 end
 
-prompt("Thank you for using the calculator. Goodbye!")
+prompt("Thank you for using the calculator, #{name}. Goodbye!")
 
 # Extrapolate messages to YAML.
 # Internationalize.

@@ -4,4 +4,5 @@ input1: "What's the first number?"
 input2: "What's the second number?"
 invalid_number: "Hmm... That doesn't look like a valid number."
 operator: "What operation would you like to perform?\n1) add\n2) subtract\n3) multiply\n4) divide"
-
+invalid_operator: "Must choose 1, 2, 3 or 4"
+repeat: "Do you want to perform another calculation? (Y to calculate again)"
