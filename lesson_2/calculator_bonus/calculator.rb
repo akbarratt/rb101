@@ -16,7 +16,7 @@ def get_language
     else
       prompt(MESSAGES["language_error"])
     end
-    # Bug: I have to explicitly check for empty input or it returns an empty string. Running into explicit return.
+    # Bug: I have to explicitly check for empty input or it returns an empty string. Running into implicit return?
   end
 end
 
