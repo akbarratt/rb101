@@ -5,6 +5,7 @@
 
 require 'yaml'
 MESSAGES = YAML.load_file('calc.yml')
+VALID_LANGUAGES = %(en es fr)
 
 def prompt(message)
   puts("=> #{message}")
@@ -42,6 +43,8 @@ def display_result(output)
     prompt("The result is #{output}")
   end
 end
+
+prompt(MESSAGES["language"])
 
 prompt(MESSAGES["welcome"])
 name = ''
@@ -127,3 +130,4 @@ prompt("Thank you for using the calculator, #{name}. Goodbye!")
 # Internationalize.
 # More single-use methods.
 # Run rubocop.
+# Now that I've internationalized, the operation_to_message function is out of date. Could extrapolate to a hash? Can we squeeze this into the YAML file?
