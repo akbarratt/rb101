@@ -1,6 +1,9 @@
+
+language: "Hello! Type 'en' for English.\n¡Hola! Escriba 'es' para Español.\nBonjour! Tapez 'fr' pour le Français."
+
 en:
-  language: "Hello! Type 'en' for English.\n¡Hola! Escriba 'es' para Español.\nBonjour! Tapez 'fr' pour le Français."
-  welcome: "Welcome to Calculator!"
+  name_prompt: "Welcome to Calculator! Please type your name:"
+  welcome: "Hello, "
   valid_name: "Make sure to use a valid name."
   input1: "What's the first number?"
   input2: "What's the second number?"
@@ -14,11 +17,11 @@ en:
   numbers: "the two numbers..."
   result: "The result is: "
   repeat: "Do you want to perform another calculation? (Y to calculate again)"
-  goodbye: "Thank you for using the calculator. Goodbye!"
+  goodbye: ", thank you for using the calculator. Goodbye!"
 
 es:
-  language: "Hello! Type 'en' for English.\n¡Hola! Escriba 'es' para Español.\nBonjour! Tapez 'fr' pour le Français."
-  welcome: "¡Bienvenido a Calculadora!"
+  name_prompt: "¡Bienvenido a Calculadora! Por favor escriba su nombre:"
+  welcome: "Hola, "
   valid_name: "Asegúrate de usar un nombre válido."
   input1: "Cual es el primer numero?"
   input2: "¿Cuál es el segundo número?"
@@ -32,12 +35,13 @@ es:
   numbers: "los dos números..."
   result: "El resultado es: "
   repeat: "¿Quieres realizar otro cálculo? (Y para calcular de nuevo)" # I guess in Spanish it would be Si?
-  goodbye: "Gracias por usar la calculadora. ¡Adiós!"
+  goodbye: ", gracias por usar la calculadora. ¡Adiós!"
 
   # https://www.thoughtco.com/mathematical-terms-in-spanish-3079614
+  
 fr:
-  language: "Hello! Type 'en' for English.\n¡Hola! Escriba 'es' para Español.\nBonjour! Tapez 'fr' pour le Français."
-  welcome: "Bienvenue dans Calculator!"
+  name_prompt: "Bienvenue dans Calculator! Veuillez saisir votre nom:"
+  welcome: "Bonjour, "
   valid_name: "Assurez-vous d'utiliser un nom valide."
   input1: "Quel est le premier chiffre?"
   input2: "Quel est le deuxième chiffre?"
@@ -51,6 +55,6 @@ fr:
   numbers: "des deux nombres..."
   result: "Le résultat est: "
   repeat: "Voulez-vous effectuer un autre calcul? (Y pour calculer à nouveau)" # Would this be Oui...?
-  goodbye: "Merci d'utiliser la calculatrice. Au revoir!"
+  goodbye: ", merci d'utiliser la calculatrice. Au revoir!"
 
   #https://www.thoughtco.com/math-vocabulary-in-french-and-english-4083757

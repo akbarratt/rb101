@@ -23,46 +23,25 @@ def valid_number?(input)
   integer?(input) || float?(input)
 end
 
-def operation_to_message(op)
-  case op
-  when '1'
-    'Adding'
-  when '2'
-    'Subtracting'
-  when '3'
-    'Multiplying'
-  when '4'
-    'Dividing'
-  end
-end
-
-def display_result(output)
-  if output % 1 == 0.0
-    prompt(MESSAGES[language]["result"] + output.to_i.to_s)
-  else
-    prompt(MESSAGES[language]["result"] + output.to_s)
-  end
-end
-
-prompt(MESSAGES["en"]["language"])
+prompt(MESSAGES["language"])
 language = gets.chomp
 unless VALID_LANGUAGES.include?(language)
   language = "en"
 end
 
-prompt(MESSAGES[language]["welcome"])
-# name = ''
-# loop do
-#   name = gets.chomp
+prompt(MESSAGES[language]["name_prompt"])
+name = ''
+loop do
+  name = gets.chomp
 
-#   if name.empty?()
-#     prompt(MESSAGES[language]["valid_name"])
-#   else
-#     break
-#   end
-# end
+  if name.empty?()
+    prompt(MESSAGES[language]["valid_name"])
+  else
+    break
+  end
+end
 
-# prompt("Hi #{name}!")
+prompt(MESSAGES[language]["welcome"] + name + ".")
 
 loop do # main loop
   number1 = ''
@@ -121,6 +100,7 @@ loop do # main loop
              number1 / number2
            end
 
+  # Print result as integer or float, as appropriate.
   if result % 1 == 0.0
     prompt(MESSAGES[language]["result"] + result.to_i.to_s)
   else
@@ -132,12 +112,8 @@ loop do # main loop
   break unless answer.downcase.start_with?('y')
 end
 
-prompt(MESSAGES[language]["goodbye"])
+prompt(name + MESSAGES[language]["goodbye"])
 
-# Extrapolate messages to YAML.
-# Internationalize.
+
 # More single-use methods.
 # Run rubocop.
-# Now that I've internationalized, the operation_to_message function is out of date. Could extrapolate to a hash? Can we squeeze this into the YAML file?
-# I can use concatenation as long as everything involved is a string.
-# A nested hash with language as key, then number key, then value
