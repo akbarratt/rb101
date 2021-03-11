@@ -1,5 +1,6 @@
 
 language: "Hello! Type 'en' for English.\n¡Hola! Escriba 'es' para Español.\nBonjour! Tapez 'fr' pour le Français."
+language_error: "Please select a valid language.\nSeleccione un idioma válido.\nVeuillez sélectionner une langue valide."
 
 en:
   name_prompt: "Welcome to Calculator! Please type your name:"
