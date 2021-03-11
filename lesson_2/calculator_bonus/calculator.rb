@@ -6,6 +6,28 @@ def prompt(message)
   puts("=> #{message}")
 end
 
+def get_language
+  loop do
+    input = gets.chomp
+    if input.empty?
+      prompt(MESSAGES["language_error"])
+    elsif SUPPORTED_LANGUAGES.include?(input)
+      return input
+    else
+      prompt(MESSAGES["language_error"])
+    end
+    # Bug: I have to specifically check for empty input or it returns an empty string. Running into implicit return?
+  end
+end
+
+def get_name(lang)
+  loop do
+    input = gets.chomp
+    return input unless input.empty?
+    prompt(MESSAGES[lang]["valid_name"])
+  end
+end
+
 def integer?(num)
   num.to_i.to_s == num
 end
@@ -18,43 +40,46 @@ def valid_number?(input)
   integer?(input) || float?(input)
 end
 
+<<<<<<< HEAD
 system("clear")
 
 prompt(MESSAGES["language"])
 language = gets.chomp
 unless SUPPORTED_LANGUAGES.include?(language)
   language = "en"
+=======
+def get_number(lang)
+  loop do
+    input = gets.chomp
+    if valid_number?(input)
+      return input.to_f
+    else
+      prompt(MESSAGES[lang]["invalid_number"])
+    end
+  end
+>>>>>>> calc_dev
 end
 
+system("clear")
+
+prompt(MESSAGES["language"])
+language = get_language
+
+# Extrapolate into get name method
 prompt(MESSAGES[language]["name_prompt"])
-name = ''
-loop do
-  name = gets.chomp
-  break unless name.empty?
-  prompt(MESSAGES[language]["valid_name"])
-end
+name = get_name(language)
 
 prompt(MESSAGES[language]["welcome"] + name + ".")
 
 loop do # main loop
-  number1 = ''
-  loop do
-    prompt(MESSAGES[language]["input1"])
-    number1 = gets.chomp
-    break if valid_number?(number1)
-    prompt(MESSAGES[language]["invalid_number"])
-  end
-
-  number2 = ''
-  loop do
-    prompt(MESSAGES[language]["input2"])
-    number2 = gets.chomp
-    break if valid_number?(number2)
-    prompt(MESSAGES[language]["invalid_number"])
-  end
+  prompt(MESSAGES[language]["input1"])
+  number1 = get_number(language)
+  prompt(MESSAGES[language]["input2"])
+  number2 = get_number(language)
 
   prompt(MESSAGES[language]["operator"])
 
+  # Extrapolate into get operation method
   operator = ''
   loop do
     operator = gets.chomp
@@ -64,10 +89,7 @@ loop do # main loop
 
   prompt((MESSAGES[language][operator]) + (MESSAGES[language]["numbers"]))
 
-  # Conversion of user input to float.
-  number1 = number1.to_f
-  number2 = number2.to_f
-
+  # Extrapolate into perform operation method
   result = case operator
            when "1"
              number1 + number2
@@ -79,16 +101,25 @@ loop do # main loop
              number1 / number2
            end
 
-  # Print result as integer or float, as appropriate.
+  # Print result as integer or float, as appropriate. Extrapolate into display result method
   if result % 1 == 0.0
     prompt(MESSAGES[language]["result"] + result.to_i.to_s)
   else
     prompt(MESSAGES[language]["result"] + result.to_s)
   end
 
+  # Extrapolate into calculate again? method.
   prompt(MESSAGES[language]["repeat"])
   answer = gets.chomp
   break unless answer.downcase.start_with?('y')
 end
 
 prompt(name + MESSAGES[language]["goodbye"])
+
+# To Do:
+# Clear screen between calculations.
+# Disallow divide by 0.
+# Disallow input other than supported languages.
+# Disallow input other than y, yes, n, or no. (Other languages?)
+
+# To get around the scoping problem of LANGUAGES, other than by making it a constant (possible not best practice?) I would have to have the methods take a parameter of the language.
