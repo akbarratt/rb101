@@ -18,6 +18,8 @@ def valid_number?(input)
   integer?(input) || float?(input)
 end
 
+system("clear")
+
 prompt(MESSAGES["language"])
 language = gets.chomp
 unless SUPPORTED_LANGUAGES.include?(language)
