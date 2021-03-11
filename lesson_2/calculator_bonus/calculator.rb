@@ -1,11 +1,6 @@
-# ask the user for two numbers
-# ask the user for an operation to perform
-# perform the operation on the two numbers
-# output the result
-
 require 'yaml'
 MESSAGES = YAML.load_file('calc.yml')
-VALID_LANGUAGES = %(en es fr)
+SUPPORTED_LANGUAGES = %(en es fr)
 
 def prompt(message)
   puts("=> #{message}")
@@ -25,7 +20,7 @@ end
 
 prompt(MESSAGES["language"])
 language = gets.chomp
-unless VALID_LANGUAGES.include?(language)
+unless SUPPORTED_LANGUAGES.include?(language)
   language = "en"
 end
 
@@ -33,12 +28,8 @@ prompt(MESSAGES[language]["name_prompt"])
 name = ''
 loop do
   name = gets.chomp
-
-  if name.empty?()
-    prompt(MESSAGES[language]["valid_name"])
-  else
-    break
-  end
+  break unless name.empty?
+  prompt(MESSAGES[language]["valid_name"])
 end
 
 prompt(MESSAGES[language]["welcome"] + name + ".")
@@ -48,26 +39,16 @@ loop do # main loop
   loop do
     prompt(MESSAGES[language]["input1"])
     number1 = gets.chomp
-
-    if valid_number?(number1)
-      break
-    else
-      prompt(MESSAGES[language]["invalid_number"])
-    end
-
-    input_conversion(number1)
+    break if valid_number?(number1)
+    prompt(MESSAGES[language]["invalid_number"])
   end
 
   number2 = ''
   loop do
     prompt(MESSAGES[language]["input2"])
     number2 = gets.chomp
-
-    if valid_number?(number2)
-      break
-    else
-      prompt(MESSAGES[language]["invalid_number"])
-    end
+    break if valid_number?(number2)
+    prompt(MESSAGES[language]["invalid_number"])
   end
 
   prompt(MESSAGES[language]["operator"])
@@ -75,12 +56,8 @@ loop do # main loop
   operator = ''
   loop do
     operator = gets.chomp
-
-    if %w(1 2 3 4).include?(operator)
-      break
-    else
-      prompt(MESSAGES[language]["invalid_operator"])
-    end
+    break if %w(1 2 3 4).include?(operator)
+    prompt(MESSAGES[language]["invalid_operator"])
   end
 
   prompt((MESSAGES[language][operator]) + (MESSAGES[language]["numbers"]))
@@ -113,7 +90,3 @@ loop do # main loop
 end
 
 prompt(name + MESSAGES[language]["goodbye"])
-
-
-# More single-use methods.
-# Run rubocop.
