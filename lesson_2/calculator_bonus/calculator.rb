@@ -16,7 +16,7 @@ def get_language
     else
       prompt(MESSAGES["language_error"])
     end
-    # Bug: I have to explicitly check for empty input or it returns an empty string. Running into implicit return?
+    # Bug: I have to specifically check for empty input or it returns an empty string. Running into implicit return?
   end
 end
 
@@ -40,6 +40,17 @@ def valid_number?(input)
   integer?(input) || float?(input)
 end
 
+def get_number
+  loop do
+    input = gets.chomp
+    if valid_number?(input)
+      return input.to_f
+    else
+      prompt(MESSAGES[LANGUAGE]["invalid_number"])
+    end
+  end
+end
+
 system("clear")
 
 prompt(MESSAGES["language"])
@@ -51,23 +62,11 @@ name = get_name
 
 prompt(MESSAGES[LANGUAGE]["welcome"] + name + ".")
 
-# Redundant, so extrapolate into a get number method
 loop do # main loop
-  number1 = ''
-  loop do
-    prompt(MESSAGES[LANGUAGE]["input1"])
-    number1 = gets.chomp
-    break if valid_number?(number1)
-    prompt(MESSAGES[LANGUAGE]["invalid_number"])
-  end
-
-  number2 = ''
-  loop do
-    prompt(MESSAGES[LANGUAGE]["input2"])
-    number2 = gets.chomp
-    break if valid_number?(number2)
-    prompt(MESSAGES[LANGUAGE]["invalid_number"])
-  end
+  prompt(MESSAGES[LANGUAGE]["input1"])
+  number1 = get_number
+  prompt(MESSAGES[LANGUAGE]["input2"])
+  number2 = get_number
 
   prompt(MESSAGES[LANGUAGE]["operator"])
 
