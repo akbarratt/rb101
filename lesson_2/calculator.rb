@@ -38,38 +38,42 @@ end
 
 def display_result(output)
   if output % 1 == 0.0
-    prompt("The result is #{output.to_i}")
+    prompt(MESSAGES[language]["result"] + output.to_i.to_s)
   else
-    prompt("The result is #{output}")
+    prompt(MESSAGES[language]["result"] + output.to_s)
   end
 end
 
-prompt(MESSAGES["language"])
-
-prompt(MESSAGES["welcome"])
-name = ''
-loop do
-  name = gets.chomp
-
-  if name.empty?()
-    prompt(MESSAGES["valid_name"])
-  else
-    break
-  end
+prompt(MESSAGES["en"]["language"])
+language = gets.chomp
+unless VALID_LANGUAGES.include?(language)
+  language = "en"
 end
 
-prompt("Hi #{name}!")
+prompt(MESSAGES[language]["welcome"])
+# name = ''
+# loop do
+#   name = gets.chomp
+
+#   if name.empty?()
+#     prompt(MESSAGES[language]["valid_name"])
+#   else
+#     break
+#   end
+# end
+
+# prompt("Hi #{name}!")
 
 loop do # main loop
   number1 = ''
   loop do
-    prompt(MESSAGES["input1"])
+    prompt(MESSAGES[language]["input1"])
     number1 = gets.chomp
 
     if valid_number?(number1)
       break
     else
-      prompt(MESSAGES["invalid_number"])
+      prompt(MESSAGES[language]["invalid_number"])
     end
 
     input_conversion(number1)
@@ -77,17 +81,17 @@ loop do # main loop
 
   number2 = ''
   loop do
-    prompt(MESSAGES["input2"])
+    prompt(MESSAGES[language]["input2"])
     number2 = gets.chomp
 
     if valid_number?(number2)
       break
     else
-      prompt(MESSAGES["invalid_number"])
+      prompt(MESSAGES[language]["invalid_number"])
     end
   end
 
-  prompt(MESSAGES["operator"])
+  prompt(MESSAGES[language]["operator"])
 
   operator = ''
   loop do
@@ -96,15 +100,15 @@ loop do # main loop
     if %w(1 2 3 4).include?(operator)
       break
     else
-      prompt(MESSAGES["invalid_operator"])
+      prompt(MESSAGES[language]["invalid_operator"])
     end
   end
+
+  prompt((MESSAGES[language][operator]) + (MESSAGES[language]["numbers"]))
 
   # Conversion of user input to float.
   number1 = number1.to_f
   number2 = number2.to_f
-
-  prompt("#{operation_to_message(operator)} the two numbers...")
 
   result = case operator
            when "1"
@@ -114,20 +118,26 @@ loop do # main loop
            when "3"
              number1 * number2
            when "4"
-             number1 / number2 # This needs to always be float division.
-           end  
+             number1 / number2
+           end
 
-  display_result(result)
+  if result % 1 == 0.0
+    prompt(MESSAGES[language]["result"] + result.to_i.to_s)
+  else
+    prompt(MESSAGES[language]["result"] + result.to_s)
+  end
 
-  prompt(MESSAGES["repeat"])
+  prompt(MESSAGES[language]["repeat"])
   answer = gets.chomp
   break unless answer.downcase.start_with?('y')
 end
 
-prompt("Thank you for using the calculator, #{name}. Goodbye!")
+prompt(MESSAGES[language]["goodbye"])
 
 # Extrapolate messages to YAML.
 # Internationalize.
 # More single-use methods.
 # Run rubocop.
 # Now that I've internationalized, the operation_to_message function is out of date. Could extrapolate to a hash? Can we squeeze this into the YAML file?
+# I can use concatenation as long as everything involved is a string.
+# A nested hash with language as key, then number key, then value
