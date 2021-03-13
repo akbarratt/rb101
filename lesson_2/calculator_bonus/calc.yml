@@ -18,6 +18,7 @@ en:
   numbers: "the two numbers..."
   result: "The result is: "
   repeat: "Do you want to perform another calculation? (Y to calculate again)"
+  repeat_error: "You must enter 'yes' or 'no'."
   goodbye: ", thank you for using the calculator. Goodbye!"
 
 es:
@@ -36,6 +37,7 @@ es:
   numbers: "los dos números..."
   result: "El resultado es: "
   repeat: "¿Quieres realizar otro cálculo? (Y para calcular de nuevo)" # I guess in Spanish it would be Si?
+  repeat_error: Debe ingresar 'yes' (sí) o 'no' (no). 
   goodbye: ", gracias por usar la calculadora. ¡Adiós!"
 
   # https://www.thoughtco.com/mathematical-terms-in-spanish-3079614
@@ -56,6 +58,7 @@ fr:
   numbers: "des deux nombres..."
   result: "Le résultat est: "
   repeat: "Voulez-vous effectuer un autre calcul? (Y pour calculer à nouveau)" # Would this be Oui...?
+  repeat_error: "Vous devez entrer 'yes' (oui) ou 'no' (non)."
   goodbye: ", merci d'utiliser la calculatrice. Au revoir!"
 
   #https://www.thoughtco.com/math-vocabulary-in-french-and-english-4083757
