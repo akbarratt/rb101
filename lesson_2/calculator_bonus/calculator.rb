@@ -41,14 +41,6 @@ def valid_number?(input)
   integer?(input) || float?(input)
 end
 
-<<<<<<< HEAD
-system("clear")
-
-prompt(MESSAGES["language"])
-language = gets.chomp
-unless SUPPORTED_LANGUAGES.include?(language)
-  language = "en"
-=======
 def get_number(lang)
   loop do
     input = gets.chomp
@@ -58,7 +50,6 @@ def get_number(lang)
       prompt(MESSAGES[lang]["invalid_number"])
     end
   end
->>>>>>> calc_dev
 end
 
 def calculate_again?(lang)
