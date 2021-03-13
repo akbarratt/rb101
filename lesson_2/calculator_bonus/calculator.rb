@@ -75,9 +75,9 @@ language = get_language
 prompt(MESSAGES[language]["name_prompt"])
 name = get_name(language)
 
-prompt(MESSAGES[language]["welcome"] + name + ".")
-
 loop do # main loop
+  system("clear")
+  prompt(MESSAGES[language]["welcome"] + name + ".")
   prompt(MESSAGES[language]["input1"])
   number1 = get_number(language)
   prompt(MESSAGES[language]["input2"])
@@ -114,7 +114,6 @@ loop do # main loop
     prompt(MESSAGES[language]["result"] + result.to_s)
   end
 
-  # Extrapolate into calculate again? method.
   break if calculate_again?(language) == false
 end
 
