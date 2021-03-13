@@ -52,6 +52,21 @@ def get_number(lang)
   end
 end
 
+def calculate_again?(lang)
+  loop do
+    prompt(MESSAGES[lang]["repeat"])
+    answer = gets.chomp
+    if answer.downcase == "yes" || answer.downcase == "y"
+      return true
+    elsif answer.downcase == "no" || answer.downcase == "n"
+      return false
+    else
+      prompt(MESSAGES[lang]["repeat_error"])
+    end
+    # Bug: Need to add error message.
+  end
+end
+
 system("clear")
 
 prompt(MESSAGES["language"])
@@ -100,9 +115,7 @@ loop do # main loop
   end
 
   # Extrapolate into calculate again? method.
-  prompt(MESSAGES[language]["repeat"])
-  answer = gets.chomp
-  break unless answer.downcase.start_with?('y')
+  break if calculate_again?(language) == false
 end
 
 prompt(name + MESSAGES[language]["goodbye"])
