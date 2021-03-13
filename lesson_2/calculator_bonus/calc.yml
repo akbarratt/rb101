@@ -16,6 +16,7 @@ en:
   "3": "Multplying "
   "4": "Dividing "
   numbers: "the two numbers..."
+  divide_zero: "Error! Can't divide by zero."
   result: "The result is: "
   repeat: "Do you want to perform another calculation? (Y to calculate again)"
   repeat_error: "You must enter 'yes' or 'no'."
@@ -35,6 +36,7 @@ es:
   "3": "Multiplicar "
   "4": "Dividiendo "
   numbers: "los dos números..."
+  divide_zero: "¡Error! No se puede dividir por cero."
   result: "El resultado es: "
   repeat: "¿Quieres realizar otro cálculo? (Y para calcular de nuevo)" # I guess in Spanish it would be Si?
   repeat_error: Debe ingresar 'yes' (sí) o 'no' (no). 
@@ -56,6 +58,7 @@ fr:
   "3": "Multiplier "
   "4": "Diviser "
   numbers: "des deux nombres..."
+  divide_zero: "Erreur! Impossible de diviser par zéro."
   result: "Le résultat est: "
   repeat: "Voulez-vous effectuer un autre calcul? (Y pour calculer à nouveau)" # Would this be Oui...?
   repeat_error: "Vous devez entrer 'yes' (oui) ou 'no' (non)."
