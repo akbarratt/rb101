@@ -14,10 +14,12 @@ def get_language
     elsif SUPPORTED_LANGUAGES.include?(input)
       return input
     else
-      "Error! Can't divide by zero!"
+      prompt(MESSAGES["language_error"])
     end
-    # Bug: I have to specifically check for empty input or it returns an empty string. Running into implicit return?
-    # Debugging: This only seems to work when referencing the YAML file. When I replace with a puts, it works as expected.
+    # Bug: I have to specifically check for empty input or
+    # it returns an empty string. Running into implicit return?
+    # Debugging: This only seems to work when referencing the YAML file.
+    # When I replace with a puts, it works as expected.
   end
 end
 
@@ -82,7 +84,7 @@ def print_result(input, lang)
   if input % 1 == 0.0
     prompt(MESSAGES[lang]["result"] + input.to_i.to_s)
   else
-   prompt(MESSAGES[lang]["result"] + input.to_s)
+    prompt(MESSAGES[lang]["result"] + input.to_s)
   end
 end
 
