@@ -52,6 +52,15 @@ def get_number(lang)
   end
 end
 
+def get_operator(lang)
+  loop do
+    prompt(MESSAGES[lang]["operator"])
+    selection = gets.chomp
+    return selection if %w(1 2 3 4).include?(selection)
+    prompt(MESSAGES[lang]["invalid_operator"])
+  end
+end
+
 def calculate_again?(lang)
   loop do
     prompt(MESSAGES[lang]["repeat"])
@@ -83,15 +92,8 @@ loop do # main loop
   prompt(MESSAGES[language]["input2"])
   number2 = get_number(language)
 
-  prompt(MESSAGES[language]["operator"])
-
   # Extrapolate into get operator method
-  operator = ''
-  loop do
-    operator = gets.chomp
-    break if %w(1 2 3 4).include?(operator)
-    prompt(MESSAGES[language]["invalid_operator"])
-  end
+  operator = get_operator(language)
 
   prompt((MESSAGES[language][operator]) + (MESSAGES[language]["numbers"]))
 
