@@ -64,7 +64,6 @@ loop do
   mo_payment =
     total_loan_amt.to_f *
     ((mo_int / 100) / (1 - (1 + (mo_int / 100))**(-loan_term)))
-  p mo_payment
   repayment_cost = mo_payment * loan_term
   total_interest = repayment_cost - total_loan_amt.to_f
   # Results
@@ -84,3 +83,5 @@ loop do
 end
 
 prompt("Thank you for using the loan calculator!")
+
+# Years left needs to allow for 0, but years and months shouldn't both be zero. Needs an additonal validation. Maybe a nested method?
