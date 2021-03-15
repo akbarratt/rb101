@@ -10,7 +10,7 @@ def valid_int?(input)
   input.to_i.to_s == input && input.to_i >= 0
 end
 
-def get_loan_amt
+def get_loan_amount
   loop do
     prompt("Enter your total loan amount:")
     input = gets.chomp
@@ -48,9 +48,9 @@ end
 
 def valid_timespan?(years, months)
   if years <= 0 && months <= 0
-    return false
+    false
   else
-    return true
+    true
   end
 end
 
@@ -74,50 +74,63 @@ def convert_apr(float)
   (float / 12).round(3)
 end
 
-def calculate_payment
+def calculate_payment(total, mo_int, term)
+  total * ((mo_int / 100) / (1 - (1 + (mo_int / 100))**(-term)))
+end
 
+def calculate_repayment(payment, term)
+  payment * term
+end
+
+def calculate_total_interest(repayment, total)
+  repayment - total
+end
+
+def repeat?
+  loop do
+    prompt("Do you want to perform another calculation? (Y/N)")
+    answer = gets.chomp
+    if answer.downcase == "yes" || answer.downcase == "y"
+      return true
+    elsif answer.downcase == "no" || answer.downcase == "n"
+      return false
+    else
+      prompt("Invalid response. Please enter 'yes' or 'no'.")
+    end
+  end
 end
 
 prompt("Welcome to the loan calculator!")
 
-loop do
-  total_loan_amt = get_loan_amt
+loop do # main loop
+  total_loan_amount = get_loan_amount
   apr = get_apr
   timespan = get_timespan
   loan_left_years = timespan[0]
   loan_left_months = timespan[1]
 
   prompt("Calculating...")
-  # Some variable names have changed below
   loan_term = convert_timespan(timespan)
-  mo_int = convert_apr(apr)
-  # Stopped here
-  mo_payment =
-    total_loan_amt.to_f *
-    ((mo_int / 100) / (1 - (1 + (mo_int / 100))**(-loan_term)))
-  repayment_cost = mo_payment * loan_term
-  total_interest = repayment_cost - total_loan_amt.to_f
+  monthly_interest = convert_apr(apr)
+  monthly_payment =
+    calculate_payment(total_loan_amount, monthly_interest, loan_term)
+  repayment_cost = calculate_repayment(monthly_payment, loan_term)
+  total_interest = calculate_total_interest(repayment_cost, total_loan_amount)
   # Results
   results = <<-MSG
-  On your loan of $#{total_loan_amt} at #{apr}% APR over #{loan_left_years} year(s), #{loan_left_mo} month(s):
+  On your loan of $#{total_loan_amount} at #{apr}% APR over #{loan_left_years} year(s), #{loan_left_months} month(s):
   Number of payments: #{loan_term}
-  Monthly payment: $#{mo_payment.round(2)}
-  Monthly interest rate: #{mo_int}%
+  Monthly payment: $#{monthly_payment.round(2)}
+  Monthly interest rate: #{monthly_interest.round(3)}%
   Total cost of repayment: $#{repayment_cost.round(2)}
   Total interest paid: $#{total_interest.round(2)}
   MSG
   prompt(results)
 
-  prompt("Do you want to perform another calculation? (Y/N)")
-  answer = gets.chomp
-  break unless answer.downcase().start_with?('y')
+  break unless repeat?
 end
 
 prompt("Thank you for using the loan calculator!")
 
-# Years left needs to allow for 0, but years and months shouldn't both be zero. Needs an additonal validation. Maybe a nested method?
-
-# Not really sure when to convert input to ints/floats.
-# How to solve scoping issue on loan amount? Make it an array?
 # Might have some variable shadowing with get_timespan.
-
+# Total interest paid amount is always slightly wrong? I assume this is some quirk of the formula and not the code.
