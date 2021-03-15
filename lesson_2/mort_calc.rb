@@ -10,21 +10,30 @@ def valid_int?(input)
   input.to_i.to_s == input && input.to_i >= 0
 end
 
+def valid_timespan?(years, months)
+  if years <= 0 && months <= 0
+    return false
+  else
+    return true
+  end
+end
+
+def get_loan_amt
+  loop do
+    prompt("Enter your total loan amount:")
+    input = gets.chomp
+    # Right now this won't take any number less than 1.
+    # Is this still true? Haven't evaluated.
+    break if valid_float?(input)
+    prompt("Please enter a valid number.")
+  end
+end
+
 prompt("Welcome to the loan calculator!")
 
 loop do
-  total_loan_amt = ''
-  loop do
-    prompt("Enter your total loan amount:")
-    total_loan_amt = gets.chomp
-    # Right now this won't take any number less than 1.
-    if valid_float?(total_loan_amt)
-      break
-    else
-      prompt("Please enter a valid number.")
-    end
-  end
-
+  total_loan_amt = get_loan_amt
+  
   apr = ''
   loop do
     prompt("Enter your APR:")
