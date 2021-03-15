@@ -14,7 +14,7 @@ def get_loan_amt
   loop do
     prompt("Enter your total loan amount:")
     input = gets.chomp
-    return input if valid_float?(input)
+    return input.to_f if valid_float?(input)
     prompt("Please enter a valid number.")
   end
 end
@@ -23,7 +23,7 @@ def get_apr
   loop do
     prompt("Enter your APR:")
     input = gets.chomp
-    return input if valid_float?(input)
+    return input.to_f if valid_float?(input)
     prompt("Please enter a valid number.")
   end
 end
@@ -54,21 +54,44 @@ def valid_timespan?(years, months)
   end
 end
 
+def get_timespan
+  loop do
+    loan_left_years = get_loan_years
+    loan_left_months = get_loan_months
+    if valid_timespan?(loan_left_years, loan_left_months)
+      return loan_left_years, loan_left_months
+    else
+      prompt("Amount of time remaining on loan cannot be 0 years, 0 months.")
+    end
+  end
+end
+
+def convert_timespan(array)
+  (array[0] * 12) + array[1]
+end
+
+def convert_apr(float)
+  (float / 12).round(3)
+end
+
+def calculate_payment
+
+end
+
 prompt("Welcome to the loan calculator!")
 
 loop do
   total_loan_amt = get_loan_amt
   apr = get_apr
-  loop do
-    loan_left_years = get_loan_years
-    loan_left_months = get_loan_months
-    break if valid_timespan?(loan_left_years, loan_left_months)
-    prompt("Amount of time remaining on loan cannot be 0 years, 0 months.")
-  end
+  timespan = get_timespan
+  loan_left_years = timespan[0]
+  loan_left_months = timespan[1]
 
   prompt("Calculating...")
-  loan_term = (loan_left_years.to_i * 12) + loan_left_mo.to_i
-  mo_int = (apr.to_f / 12).round(3)
+  # Some variable names have changed below
+  loan_term = convert_timespan(timespan)
+  mo_int = convert_apr(apr)
+  # Stopped here
   mo_payment =
     total_loan_amt.to_f *
     ((mo_int / 100) / (1 - (1 + (mo_int / 100))**(-loan_term)))
@@ -95,3 +118,6 @@ prompt("Thank you for using the loan calculator!")
 # Years left needs to allow for 0, but years and months shouldn't both be zero. Needs an additonal validation. Maybe a nested method?
 
 # Not really sure when to convert input to ints/floats.
+# How to solve scoping issue on loan amount? Make it an array?
+# Might have some variable shadowing with get_timespan.
+
