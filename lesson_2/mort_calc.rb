@@ -91,7 +91,7 @@ def repeat?
     prompt("Do you want to perform another calculation? (Y/N)")
     answer = gets.chomp
     if answer.downcase == "yes" || answer.downcase == "y"
-      return true
+      return true # redundant returns?
     elsif answer.downcase == "no" || answer.downcase == "n"
       return false
     else
@@ -105,7 +105,8 @@ prompt("Welcome to the loan calculator!")
 loop do # main loop
   total_loan_amount = get_loan_amount
   apr = get_apr
-  timespan = get_timespan
+  timespan = get_timespan # multiple assignment here
+  # then refactor convert_timespan
   loan_left_years = timespan[0]
   loan_left_months = timespan[1]
 
@@ -133,4 +134,5 @@ end
 prompt("Thank you for using the loan calculator!")
 
 # Might have some variable shadowing with get_timespan.
+# Refactoring as in notes above
 # Total interest paid amount is always slightly wrong? I assume this is some quirk of the formula and not the code.
