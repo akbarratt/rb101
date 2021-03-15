@@ -10,6 +10,42 @@ def valid_int?(input)
   input.to_i.to_s == input && input.to_i >= 0
 end
 
+def get_loan_amt
+  loop do
+    prompt("Enter your total loan amount:")
+    input = gets.chomp
+    return input if valid_float?(input)
+    prompt("Please enter a valid number.")
+  end
+end
+
+def get_apr
+  loop do
+    prompt("Enter your APR:")
+    input = gets.chomp
+    return input if valid_float?(input)
+    prompt("Please enter a valid number.")
+  end
+end
+
+def get_loan_years
+  loop do
+    prompt("Enter the number of years on your loan:")
+    input = gets.chomp
+    return input.to_i if valid_int?(input)
+    prompt("Please enter a whole number.")
+  end
+end
+
+def get_loan_months
+  loop do
+    prompt("Enter the number of months on your loan:")
+    input = gets.chomp
+    return input.to_i if valid_int?(input)
+    prompt("Please enter a whole number.")
+  end
+end
+
 def valid_timespan?(years, months)
   if years <= 0 && months <= 0
     return false
@@ -18,53 +54,16 @@ def valid_timespan?(years, months)
   end
 end
 
-def get_loan_amt
-  loop do
-    prompt("Enter your total loan amount:")
-    input = gets.chomp
-    # Right now this won't take any number less than 1.
-    # Is this still true? Haven't evaluated.
-    break if valid_float?(input)
-    prompt("Please enter a valid number.")
-  end
-end
-
 prompt("Welcome to the loan calculator!")
 
 loop do
   total_loan_amt = get_loan_amt
-  
-  apr = ''
+  apr = get_apr
   loop do
-    prompt("Enter your APR:")
-    apr = gets.chomp
-    if valid_float?(apr)
-      break
-    else
-      prompt("Please enter a valid number.")
-    end
-  end
-
-  loan_left_years = ''
-  loop do
-    prompt("Enter the number of years on your loan:")
-    loan_left_years = gets.chomp
-    if valid_int?(loan_left_years)
-      break
-    else
-      prompt("Please enter a whole number.")
-    end
-  end
-
-  loan_left_mo = ''
-  loop do
-    prompt("Enter the number of months on your loan:")
-    loan_left_mo = gets.chomp
-    if valid_int?(loan_left_mo)
-      break
-    else
-      prompt("Please enter a whole number.")
-    end
+    loan_left_years = get_loan_years
+    loan_left_months = get_loan_months
+    break if valid_timespan?(loan_left_years, loan_left_months)
+    prompt("Amount of time remaining on loan cannot be 0 years, 0 months.")
   end
 
   prompt("Calculating...")
@@ -94,3 +93,5 @@ end
 prompt("Thank you for using the loan calculator!")
 
 # Years left needs to allow for 0, but years and months shouldn't both be zero. Needs an additonal validation. Maybe a nested method?
+
+# Not really sure when to convert input to ints/floats.
