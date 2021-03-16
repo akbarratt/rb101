@@ -86,6 +86,15 @@ def calculate_total_interest(repayment, total)
   repayment - total
 end
 
+def format_money(float)
+  money = '%.2f' % float
+  return money.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
+end
+
+def format_interest(float)
+  '%.3f' % float
+end
+
 def repeat?
   loop do
     prompt("Do you want to perform another calculation? (Y/N)")
@@ -119,12 +128,12 @@ loop do # main loop
   total_interest = calculate_total_interest(repayment_cost, total_loan_amount)
   # Results
   results = <<-MSG
-  On your loan of $#{total_loan_amount} at #{apr}% APR over #{loan_left_years} year(s), #{loan_left_months} month(s):
+  On your loan of $#{format_money(total_loan_amount)} at #{format_interest(apr)}% APR over #{loan_left_years} year(s), #{loan_left_months} month(s):
   Number of payments: #{loan_term}
-  Monthly payment: $#{monthly_payment.round(2)}
-  Monthly interest rate: #{monthly_interest.round(3)}%
-  Total cost of repayment: $#{repayment_cost.round(2)}
-  Total interest paid: $#{total_interest.round(2)}
+  Monthly payment: $#{format_money(monthly_payment)}
+  Monthly interest rate: #{format_interest(monthly_interest)}%
+  Total cost of repayment: $#{format_money(repayment_cost)}
+  Total interest paid: $#{format_money(total_interest)}
   MSG
   prompt(results)
 
