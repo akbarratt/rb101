@@ -137,3 +137,6 @@ loop do
 end
 
 prompt("Thank you for using the loan calculator!")
+
+# Months should not accept > 12 or < 0
+# APR should accept 0
