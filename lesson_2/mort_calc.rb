@@ -56,10 +56,10 @@ end
 
 def get_timespan
   loop do
-    loan_left_years = get_loan_years
-    loan_left_months = get_loan_months
-    if valid_timespan?(loan_left_years, loan_left_months)
-      return loan_left_years, loan_left_months
+    loan_years = get_loan_years
+    loan_months = get_loan_months
+    if valid_timespan?(loan_years, loan_months)
+      return loan_years, loan_months
     else
       prompt("Amount of time remaining on loan cannot be 0 years, 0 months.")
     end
@@ -71,7 +71,7 @@ def convert_timespan(years, months)
 end
 
 def convert_apr(float)
-  (float / 12).round(3)
+  float / 12
 end
 
 def calculate_payment(total, mo_int, term)
@@ -89,13 +89,14 @@ end
 # Note: I implemented the following 2 methods simply for the readability of the code reviewer.
 # I had to look up the regex, so it's not my original work.
 # Assumed it was probably outside the scope of this lesson but let me know if that's incorrect.
+# Source: https://stackoverflow.com/a/11466770
 def format_money(float)
-  money = '%.2f' % float
-  return money.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
+  money = format('%.2f', float)
+  money.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
 end
 
 def format_interest(float)
-  '%.3f' % float
+  format('%.3f', float)
 end
 
 def repeat?
@@ -103,7 +104,7 @@ def repeat?
     prompt("Do you want to perform another calculation? (Y/N)")
     answer = gets.chomp
     if answer.downcase == "yes" || answer.downcase == "y"
-      return true # redundant returns?
+      return true
     elsif answer.downcase == "no" || answer.downcase == "n"
       return false
     else
@@ -141,7 +142,3 @@ loop do # main loop
 end
 
 prompt("Thank you for using the loan calculator!")
-
-# Might have some variable shadowing with get_timespan.
-# Refactoring as in notes above
-# Total interest paid amount is sometimes slightly wrong? I assume this is some quirk of the formula and not the code. Or maybe how numbers work. Need to bug test.
