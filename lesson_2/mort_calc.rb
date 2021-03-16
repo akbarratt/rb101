@@ -86,12 +86,6 @@ def calculate_total_interest(repayment, total)
   repayment - total
 end
 
-# Note: The following 2 formatting methods were added for
-# readability for the code reviewer.
-# I had to look up the regex, so it's not my original work.
-# Assumed it was probably outside the scope of this lesson
-# but let me know if not.
-# Source: https://stackoverflow.com/a/11466770
 def format_money(float)
   money = format('%.2f', float)
   money.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
@@ -115,7 +109,7 @@ def repeat?
   end
 end
 
-loop do # main loop
+loop do
   system("clear")
   prompt("Welcome to the loan calculator!")
   total_loan_amount = get_loan_amount
@@ -129,7 +123,6 @@ loop do # main loop
     calculate_payment(total_loan_amount, monthly_interest, loan_term)
   repayment_cost = calculate_repayment(monthly_payment, loan_term)
   total_interest = calculate_total_interest(repayment_cost, total_loan_amount)
-  # Results
   results = <<-MSG
   On your loan of $#{format_money(total_loan_amount)} at #{format_interest(apr)}% APR over #{loan_left_years} year(s), #{loan_left_months} month(s):
   Number of payments: #{loan_term}
