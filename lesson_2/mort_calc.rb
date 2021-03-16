@@ -1,20 +1,28 @@
 def prompt(message)
-  Kernel.puts("=> #{message}")
+  puts "=> #{message}"
 end
 
-def valid_float?(input)
-  input.to_f > 0 || input.to_i > 0
+def valid_total?(string)
+  string.to_f > 0.0
 end
 
-def valid_int?(input)
-  input.to_i.to_s == input && input.to_i >= 0
+def valid_apr?(string)
+  string.to_f >= 0.0
+end
+
+def valid_years?(string)
+  string.to_i.to_s == string && string.to_i >= 0
+end
+
+def valid_months?(string)
+  string.to_i.to_s == string && (string.to_i >= 0 && string.to_i <= 11)
 end
 
 def get_loan_amount
   loop do
     prompt("Enter your total loan amount:")
     input = gets.chomp
-    return input.to_f if valid_float?(input)
+    return input.to_f if valid_total?(input)
     prompt("Please enter a valid number.")
   end
 end
@@ -23,7 +31,7 @@ def get_apr
   loop do
     prompt("Enter your APR:")
     input = gets.chomp
-    return input.to_f if valid_float?(input)
+    return input.to_f if valid_apr?(input)
     prompt("Please enter a valid number.")
   end
 end
@@ -32,7 +40,7 @@ def get_loan_years
   loop do
     prompt("Enter the number of years on your loan:")
     input = gets.chomp
-    return input.to_i if valid_int?(input)
+    return input.to_i if valid_years?(input)
     prompt("Please enter a whole number.")
   end
 end
@@ -41,8 +49,8 @@ def get_loan_months
   loop do
     prompt("Enter the number of months on your loan:")
     input = gets.chomp
-    return input.to_i if valid_int?(input)
-    prompt("Please enter a whole number.")
+    return input.to_i if valid_months?(input)
+    prompt("Please enter a whole number between 0 and 11.")
   end
 end
 
@@ -137,6 +145,3 @@ loop do
 end
 
 prompt("Thank you for using the loan calculator!")
-
-# Months should not accept > 12 or < 0
-# APR should accept 0
