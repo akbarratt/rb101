@@ -138,3 +138,4 @@ prompt("Thank you for using the loan calculator!")
 # Total interest paid amount is always slightly wrong? I assume this is some quirk of the formula and not the code.
 # Bug: When round(2) ends in zero, the second digit is not displayed. Really any float beyond the first zero isn't displayed.
 # Bug: No commas in currency output
+# Add clears
