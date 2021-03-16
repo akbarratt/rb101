@@ -136,3 +136,5 @@ prompt("Thank you for using the loan calculator!")
 # Might have some variable shadowing with get_timespan.
 # Refactoring as in notes above
 # Total interest paid amount is always slightly wrong? I assume this is some quirk of the formula and not the code.
+# Bug: When round(2) ends in zero, the second digit is not displayed. Really any float beyond the first zero isn't displayed.
+# Bug: No commas in currency output
