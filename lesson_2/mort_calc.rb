@@ -86,9 +86,11 @@ def calculate_total_interest(repayment, total)
   repayment - total
 end
 
-# Note: I implemented the following 2 methods simply for the readability of the code reviewer.
+# Note: The following 2 formatting methods were added for
+# readability for the code reviewer.
 # I had to look up the regex, so it's not my original work.
-# Assumed it was probably outside the scope of this lesson but let me know if that's incorrect.
+# Assumed it was probably outside the scope of this lesson
+# but let me know if not.
 # Source: https://stackoverflow.com/a/11466770
 def format_money(float)
   money = format('%.2f', float)
