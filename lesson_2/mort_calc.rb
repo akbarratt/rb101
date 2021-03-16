@@ -66,8 +66,8 @@ def get_timespan
   end
 end
 
-def convert_timespan(array)
-  (array[0] * 12) + array[1]
+def convert_timespan(years, months)
+  (years * 12) + months
 end
 
 def convert_apr(float)
@@ -86,6 +86,9 @@ def calculate_total_interest(repayment, total)
   repayment - total
 end
 
+# Note: I implemented the following 2 methods simply for the readability of the code reviewer.
+# I had to look up the regex, so it's not my original work.
+# Assumed it was probably outside the scope of this lesson but let me know if that's incorrect.
 def format_money(float)
   money = '%.2f' % float
   return money.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
@@ -109,18 +112,15 @@ def repeat?
   end
 end
 
-prompt("Welcome to the loan calculator!")
-
 loop do # main loop
+  system("clear")
+  prompt("Welcome to the loan calculator!")
   total_loan_amount = get_loan_amount
   apr = get_apr
-  timespan = get_timespan # multiple assignment here
-  # then refactor convert_timespan
-  loan_left_years = timespan[0]
-  loan_left_months = timespan[1]
+  loan_left_years, loan_left_months = get_timespan
 
   prompt("Calculating...")
-  loan_term = convert_timespan(timespan)
+  loan_term = convert_timespan(loan_left_years, loan_left_months)
   monthly_interest = convert_apr(apr)
   monthly_payment =
     calculate_payment(total_loan_amount, monthly_interest, loan_term)
@@ -144,7 +144,4 @@ prompt("Thank you for using the loan calculator!")
 
 # Might have some variable shadowing with get_timespan.
 # Refactoring as in notes above
-# Total interest paid amount is always slightly wrong? I assume this is some quirk of the formula and not the code.
-# Bug: When round(2) ends in zero, the second digit is not displayed. Really any float beyond the first zero isn't displayed.
-# Bug: No commas in currency output
-# Add clears
+# Total interest paid amount is sometimes slightly wrong? I assume this is some quirk of the formula and not the code. Or maybe how numbers work. Need to bug test.
