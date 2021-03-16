@@ -95,7 +95,7 @@ def calculate_total_interest(repayment, total)
 end
 
 def format_money(float)
-  money = format('%.2f', float)
+  format('%.2f', float)
 end
 
 def format_interest(float)
