@@ -96,7 +96,6 @@ end
 
 def format_money(float)
   money = format('%.2f', float)
-  money.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
 end
 
 def format_interest(float)
