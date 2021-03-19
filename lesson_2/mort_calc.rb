@@ -1,3 +1,6 @@
+require "pry"
+MONTHS_PER_YEAR = 12
+
 def prompt(message)
   puts "=> #{message}"
 end
@@ -15,7 +18,7 @@ def valid_years?(string)
 end
 
 def valid_months?(string)
-  string.to_i.to_s == string && (string.to_i >= 0 && string.to_i <= 11)
+  string.to_i.to_s == string && (string.to_i >= 0 && string.to_i <= (MONTHS_PER_YEAR - 1))
 end
 
 def get_loan_amount
@@ -50,16 +53,12 @@ def get_loan_months
     prompt("Enter the number of months on your loan:")
     input = gets.chomp
     return input.to_i if valid_months?(input)
-    prompt("Please enter a whole number between 0 and 11.")
+    prompt("Please enter a whole number between 0 and #{MONTHS_PER_YEAR - 1}.")
   end
 end
 
 def valid_timespan?(years, months)
-  if years <= 0 && months <= 0
-    false
-  else
-    true
-  end
+  !(years <= 0 && months <= 0)
 end
 
 def get_timespan
@@ -75,15 +74,20 @@ def get_timespan
 end
 
 def convert_timespan(years, months)
-  (years * 12) + months
+  (years * MONTHS_PER_YEAR) + months
 end
 
 def convert_apr(float)
-  float / 12
+  float / MONTHS_PER_YEAR
 end
 
 def calculate_payment(total, mo_int, term)
-  total * ((mo_int / 100) / (1 - (1 + (mo_int / 100))**(-term)))
+  payment = total * ((mo_int / 100) / (1 - (1 + (mo_int / 100))**(-term)))
+  if valid_total?(payment)
+    return payment
+  else
+    return 0
+  end
 end
 
 def calculate_repayment(payment, term)
@@ -91,7 +95,11 @@ def calculate_repayment(payment, term)
 end
 
 def calculate_total_interest(repayment, total)
-  repayment - total
+  if repayment <= 0
+    return 0
+  else
+    return repayment - total
+  end
 end
 
 def format_money(float)
@@ -124,12 +132,19 @@ loop do
   loan_left_years, loan_left_months = get_timespan
 
   prompt("Calculating...")
+
   loan_term = convert_timespan(loan_left_years, loan_left_months)
   monthly_interest = convert_apr(apr)
+  # This returns nil
+  # 
+  # binding.pry
   monthly_payment =
     calculate_payment(total_loan_amount, monthly_interest, loan_term)
+  # nil
   repayment_cost = calculate_repayment(monthly_payment, loan_term)
+  # nil
   total_interest = calculate_total_interest(repayment_cost, total_loan_amount)
+  binding.pry
   results = <<-MSG
   On your loan of $#{format_money(total_loan_amount)} at #{format_interest(apr)}% APR over #{loan_left_years} year(s), #{loan_left_months} month(s):
   Number of payments: #{loan_term}
@@ -144,3 +159,5 @@ loop do
 end
 
 prompt("Thank you for using the loan calculator!")
+
+# Note: For now I've implemented a workaround for the NaN issue that simply returns zeros but a minimum loan amount may be a more sensible solution.
