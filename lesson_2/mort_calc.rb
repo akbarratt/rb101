@@ -95,7 +95,11 @@ def calculate_repayment(payment, term)
 end
 
 def calculate_total_interest(repayment, total)
-  repayment - total
+  if repayment <= 0
+    return 0
+  else
+    return repayment - total
+  end
 end
 
 def format_money(float)
@@ -155,3 +159,5 @@ loop do
 end
 
 prompt("Thank you for using the loan calculator!")
+
+# Note: For now I've implemented a workaround for the NaN issue that simply returns zeros but a minimum loan amount may be a more sensible solution.
