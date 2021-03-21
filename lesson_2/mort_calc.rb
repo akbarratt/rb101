@@ -1,4 +1,3 @@
-require "pry"
 MONTHS_PER_YEAR = 12
 
 def prompt(message)
@@ -131,14 +130,9 @@ loop do
 
   loan_term = convert_timespan(loan_left_years, loan_left_months)
   monthly_interest = convert_apr(apr)
-  # This returns nil
-  # 
-  # binding.pry
   monthly_payment =
     calculate_payment(total_loan_amount, monthly_interest, loan_term)
-  # nil
   repayment_cost = calculate_repayment(monthly_payment, loan_term)
-  # nil
   total_interest = calculate_total_interest(repayment_cost, total_loan_amount)
   binding.pry
   results = <<-MSG
