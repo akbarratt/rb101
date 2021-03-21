@@ -81,11 +81,10 @@ def convert_apr(float)
 end
 
 def calculate_payment(total, mo_int, term)
-  payment = total * ((mo_int / 100) / (1 - (1 + (mo_int / 100))**(-term)))
-  if valid_total?(payment)
-    return payment
+  if mo_int == 0.0
+    total / term
   else
-    return 0
+    payment = total * ((mo_int / 100) / (1 - (1 + (mo_int / 100))**(-term)))
   end
 end
 
@@ -134,7 +133,6 @@ loop do
     calculate_payment(total_loan_amount, monthly_interest, loan_term)
   repayment_cost = calculate_repayment(monthly_payment, loan_term)
   total_interest = calculate_total_interest(repayment_cost, total_loan_amount)
-  binding.pry
   results = <<-MSG
   On your loan of $#{format_money(total_loan_amount)} at #{format_interest(apr)}% APR over #{loan_left_years} year(s), #{loan_left_months} month(s):
   Number of payments: #{loan_term}
