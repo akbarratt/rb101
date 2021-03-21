@@ -12,6 +12,18 @@ def is_odd?(int)
   int % 2 == 1
 end
 
+# Further exploration
+
+ODD = [1,3,5,7,9]
+
+def is_odd?(int)
+  if ODD.include?(int.abs.digits.last)
+    return true
+  else
+    return false
+  end
+end
+
 puts is_odd?(2)    # => false
 puts is_odd?(5)    # => true
 puts is_odd?(-17)  # => true
