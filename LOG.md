@@ -4,6 +4,15 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 41: Sunday March 28, 2021
+
+**Pomodoros Completed**: 0
+
+**Today's Progress**: Took a day off.
+
+**My Feelings:** Worked almost 14 hours this week, happy with my progress so far. Would like to get to 15-20 if possible.
+
+
 ### Day 40: Saturday March 27, 2021
 
 **Pomodoros Completed**: 7
