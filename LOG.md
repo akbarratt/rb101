@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 42: Monday March 29, 2021
+
+**Pomodoros Completed**: 5
+
+**Today's Progress**: Working through the PEDAC process.
+
+**My Feelings:** Mentally tough working through new concepts, trying to give myself the time and space to let it all breathe.
+
 ### Day 41: Sunday March 28, 2021
 
 **Pomodoros Completed**: 0
