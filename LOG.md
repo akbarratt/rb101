@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Days 43 & 44: Tuesday & Wednesday March 30-31, 2021
+
+**Pomodoros Completed**: 0
+
+**Today's Progress**: Days off.
+
+**My Feelings:** Knew I was taking a day off for a day trip on Wednesday but didn't properly account for how much prep work was going to be involved on Tuesday. Needed to sit down and put some more thought into making accomodations for myself.
+
 ### Day 42: Monday March 29, 2021
 
 **Pomodoros Completed**: 5
