@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 45: Thursday April 1, 2021
+
+**Pomodoros Completed**: 6
+
+**Today's Progress**: Finished RB101 4.5 "The PEDAC Problem Solving Process"
+
+**My Feelings:** This lesson was really time consuming and I was fighting fatigue from my first COVID vaccine shot, but I'm glad I finished. I definitely need some practice implementing PEDAC.
+
 ### Days 43 & 44: Tuesday & Wednesday March 30-31, 2021
 
 **Pomodoros Completed**: 0
