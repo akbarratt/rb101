@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 46: Thursday April 2, 2021
+
+**Pomodoros Completed**: 4
+
+**Today's Progress**: Reviewed Loops exercises.
+
+**My Feelings:** Pretty aggravated at how fatigued this vaccine has me feeling. I don't love heading into the weekend with a bunch of chores scheduled and behind in my coursework. Sigh.
+
 ### Day 45: Thursday April 1, 2021
 
 **Pomodoros Completed**: 6
