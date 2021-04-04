@@ -4,7 +4,15 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
-### Day 46: Thursday April 2, 2021
+### Day 47: Saturday April 3, 2021
+
+**Pomodoros Completed**: 6
+
+**Today's Progress**: Completed Easy 1 and began Easy 2 exercises in RB101.
+
+**My Feelings:** These are much easier since the last time I looked at them a few assignments ago, which is a relief. I'm getting the hang of PEDAC by practicing on smaller problems.
+
+### Day 46: Friday April 2, 2021
 
 **Pomodoros Completed**: 4
 
