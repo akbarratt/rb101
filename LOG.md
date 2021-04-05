@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 48: Saturday April 4, 2021
+
+**Pomodoros Completed**: 1
+
+**Today's Progress**: Input some Anki cards, checked my messages, and organized notes.
+
+**My Feelings:** Unexpectedly busy week. Just hit my minimum, though I was planning to do more. Will try to hit the ground running tomorrow.
+
 ### Day 47: Saturday April 3, 2021
 
 **Pomodoros Completed**: 6
