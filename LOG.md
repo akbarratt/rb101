@@ -4,7 +4,15 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
-### Day 48: Saturday April 4, 2021
+### Day 49: Monday April 5, 2021
+
+**Pomodoros Completed**: 3
+
+**Today's Progress**: Continued work on RB101 easy exercises.
+
+**My Feelings:** Got really stuck on Easy 2.8, the solution to which required a method I'm not familiar with. But now my brain really wants to solve it a different way. Will sleep on it.
+
+### Day 48: Sunday April 4, 2021
 
 **Pomodoros Completed**: 1
 
