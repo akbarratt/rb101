@@ -4,6 +4,22 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 51: Wednesday April 7, 2021
+
+**Pomodoros Completed**: 3
+
+**Today's Progress**: Began assignment on more collection methods.
+
+**My Feelings:** Didn't work as much as I wanted today. Life got in the way. Still adjusting to some major changes and trying to add new responsibilities without necessarily shifting priorities.
+
+### Day 50: Tuesday April 6, 2021
+
+**Pomodoros Completed**: 5
+
+**Today's Progress**: Finished assignment on collection methods.
+
+**My Feelings:** Really nuanced material here but I'm finding it really rewarding to understand the differences in things like return values for these methods.
+
 ### Day 49: Monday April 5, 2021
 
 **Pomodoros Completed**: 3
