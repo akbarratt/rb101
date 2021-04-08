@@ -6,11 +6,11 @@ I started this progress log partway through RB101. Newest entries first.
 
 ### Day 52: Thursday April 8, 2021
 
-**Pomodoros Completed**: 5
+**Pomodoros Completed**: 6
 
-**Today's Progress**: Working on Lesson 4's collection method assignments and practice problems.
+**Today's Progress**: Working on Lesson 4's collection method assignments and practice problems. Also did a quick crash course in Markdown, since that came up as a recommendation for exam prep in the chat.
 
-**My Feelings:** Feeling good. Things are starting to connect. I was proud of myself today for recognizing when a method was using short circuit evaluation before looking at the answer. I don't have everything memorized but I'm starting to understand what's happening and where to look for answers.
+**My Feelings:** Feeling good. Things are starting to connect. I was proud of myself today for recognizing when a method was using short circuit evaluation before looking at the answer. I'm not memorizing everything but I'm starting to understand what's happening and where to look for answers.
 
 
 ### Day 51: Wednesday April 7, 2021
