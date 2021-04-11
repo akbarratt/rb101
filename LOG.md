@@ -4,6 +4,22 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 54: Saturday April 10, 2021
+
+**Pomodoros Completed**: 2
+
+**Today's Progress**: Read a couple articles, worked on a problem that's been eluding me.
+
+**My Feelings:** I was really exhausted today and my day kinda got derailed which threw me off. Still over my minimum for the week, but would like to do more before the week is over.
+
+### Day 53: Friday April 9, 2021
+
+**Pomodoros Completed**: 5
+
+**Today's Progress**: Attended a meetup with the SPOT mods. 
+
+**My Feelings:** It was really great, I feel a lot more confident about (virtually) meeting up with other students now.
+
 ### Day 52: Thursday April 8, 2021
 
 **Pomodoros Completed**: 6
