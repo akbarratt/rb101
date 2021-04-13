@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 56: Saturday April 12, 2021
+
+**Pomodoros Completed**: 2
+
+**Today's Progress**: Worked on RB101 Exercises.
+
+**My Feelings:** I was hoping I had improved, but the Documentation exercises are still really hard for me. A little frustrated today since our internet was out most of the day due to electrician work.
+
 ### Day 55: Saturday April 11, 2021
 
 **Pomodoros Completed**: 3

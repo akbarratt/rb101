@@ -1,12 +1,24 @@
+# def calculate (operator, int)
+#   if operator == 's'
+#     sum = 0
+#     1.upto(int) { |num| sum += num}
+#     sum
+#   elsif operator == 'p'
+#     product = 1
+#     1.upto(int) { |num| product *= num }
+#     product
+#   else
+#     puts 'Error!'
+#   end
+# end
+
+# Further Exploration
+
 def calculate (operator, int)
   if operator == 's'
-    sum = 0
-    1.upto(int) { |num| sum += num}
-    sum
+    1.upto(int).inject(:+)
   elsif operator == 'p'
-    product = 1
-    1.upto(int) { |num| product *= num }
-    product
+    1.upto(int).inject(:*)
   else
     puts 'Error!'
   end
@@ -21,4 +33,3 @@ calculate(operator, number)
 
 puts "The sum of the integers between 1 and #{number} is #{calculate(operator, number)}."
 
-# Need to do Further Exploration
