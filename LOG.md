@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 58: Wednesday April 14, 2021
+
+**Pomodoros Completed**: 6
+
+**Today's Progress**: Listened to a few podcast episodes, worked on Lesson 4.11 problems.
+
+**My Feelings:** Well today included unexpected news of a COVID exposure and waiting in line for tests, so I tried to make the best of my time by continuing to catch up on the Launch School podcast. However, working on problems in the evening after a long day proved frustrating. Just felt like I couldn't arrive at the right answers. Will try again tomorrow.
+
 ### Day 57: Tuesday April 13, 2021
 
 **Pomodoros Completed**: 6
