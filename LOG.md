@@ -4,7 +4,15 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
-### Day 56: Saturday April 12, 2021
+### Day 57: Tuesday April 13, 2021
+
+**Pomodoros Completed**: 6
+
+**Today's Progress**: Reviewed how to read Ruby documentation, learned the difference between core and std-lib, finished some exercises, and puzzled on the return value of if statements
+
+**My Feelings:** In this program I've noticed that time flies when I'm confused as hell. I swear I spent an hour on how to read documentation today and most of it felt like spinning my wheels. But the information that's hardest won seems to be the most valuable, which I guess shouldn't be surprising. I felt like I discovered a new planet when I finally figured out std-lib is different than core and why I was having such a hard time finding the damn Date module.
+
+### Day 56: Monday April 12, 2021
 
 **Pomodoros Completed**: 2
 
@@ -12,7 +20,7 @@ I started this progress log partway through RB101. Newest entries first.
 
 **My Feelings:** I was hoping I had improved, but the Documentation exercises are still really hard for me. A little frustrated today since our internet was out most of the day due to electrician work.
 
-### Day 55: Saturday April 11, 2021
+### Day 55: Sunday April 11, 2021
 
 **Pomodoros Completed**: 3
 
