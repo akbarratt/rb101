@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 59: Thursday April 15, 2021
+
+**Pomodoros Completed**: 5
+
+**Today's Progress**: Reread the Lesson 2 articles on pass by reference vs. pass by value.
+
+**My Feelings:** Wasn't sure if this was going to be productive, but I actually do find I'm understanding better on a second pass. Or it's at least reinforcing that I understand more than I think, and picking up on more subtle details.
+
 ### Day 58: Wednesday April 14, 2021
 
 **Pomodoros Completed**: 6
