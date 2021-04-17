@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 60: Thursday April 16, 2021
+
+**Pomodoros Completed**: 5
+
+**Today's Progress**: Finished reviewing pass by reference vs. pass by value. Wrapped up RB101 Lesson 4.
+
+**My Feelings:** I'm officially 2 months into my LaunchSchool studies! I'm just wrapping up RB101 Lesson 4, so I feel I'm making pretty good progress considering I'm part time, though the temptation is strong to compare myself to others. The true measure is that I feel I'm reinforcing and growing my knowledge every day.
+
 ### Day 59: Thursday April 15, 2021
 
 **Pomodoros Completed**: 5
