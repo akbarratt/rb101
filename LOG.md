@@ -4,7 +4,15 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
-### Day 60: Thursday April 16, 2021
+### Day 61: Saturday April 17, 2021
+
+**Pomodoros Completed**: 5
+
+**Today's Progress**: Took the RB101 Lesson 4 quiz.
+
+**My Feelings:** I did much worse than I expected on the lesson 2 quiz, so this time aroudn I made sure I was 100% confident in my answers. Unfortunately, I still missed 4 questions even though I was confident I got 100%. Will need to make sure in the future to spend more time studying for and working on quizzes.
+
+### Day 60: Friday April 16, 2021
 
 **Pomodoros Completed**: 5
 
