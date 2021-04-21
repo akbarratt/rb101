@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 64: Tuesday April 20, 2021
+
+**Pomodoros Completed**: 7
+
+**Today's Progress**: Working on Documentation and Easy 3 problem sets, catching up on Anki card creation.
+
+**My Feelings:** I was hesistant to return to the documentation exercises because I did so poorly on the first few, but struggling on the last one actually helped me crack the whole thing wide open and the rest came easily to me. That's the power of MBL, BABY.
+
 ### Day 63: Monday April 19, 2021
 
 **Pomodoros Completed**: 0
