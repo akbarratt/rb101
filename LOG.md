@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 65: Wednesday April 21, 2021
+
+**Pomodoros Completed**: 5
+
+**Today's Progress**: Complete Easy 3 exercises.
+
+**My Feelings:** Work was slow-going today, but still learning a lot. COVID vaccine making me very tired and brain foggy.
+
 ### Day 64: Tuesday April 20, 2021
 
 **Pomodoros Completed**: 7
