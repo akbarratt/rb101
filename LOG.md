@@ -4,7 +4,7 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
-### Day 67: Fridaay April 23, 2021
+### Day 67: Friday April 23, 2021
 
 **Pomodoros Completed**: 0
 
