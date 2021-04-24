@@ -4,7 +4,15 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
-### Day 66: Wednesday April 22, 2021
+### Day 67: Fridaay April 23, 2021
+
+**Pomodoros Completed**: 0
+
+**Today's Progress**: N/A
+
+**My Feelings:** My partner's routine eye exam turned into emergency surgery. Needless to say... Did not work.
+
+### Day 66: Thursday April 22, 2021
 
 **Pomodoros Completed**: 6
 
