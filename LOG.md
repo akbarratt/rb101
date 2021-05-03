@@ -4,13 +4,16 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
-### Day 68: Saturday April 24, 2021
+### Day 68: Monday May 3, 2021
 
-**Pomodoros Completed**: 0
+**Pomodoros Completed**: 
 
-**Today's Progress**: N/A
+**Today's Progress**: 
 
-**My Feelings:** Trying to get things settled in at home.
+**My Feelings:**
+___
+Unofficial break (meaning I didn't unsubscribe) to care for my spouse from 4/23 - 5/2 (10 days). Mixed feelings about putting my studies on hold this early in the program. Will this break the seal, so to speak, for future breaks? Should I have tried harder to hit my minimum study times? But there's really no argument... I had no time or energy for anything else other than running the household and doctor appointments.
+___
 
 ### Day 67: Friday April 23, 2021
 
