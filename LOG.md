@@ -6,11 +6,11 @@ I started this progress log partway through RB101. Newest entries first.
 
 ### Day 68: Monday May 3, 2021
 
-**Pomodoros Completed**: 
+**Pomodoros Completed**: 2
 
-**Today's Progress**: 
+**Today's Progress**: Literally bug testing one exercise for an hour lol
 
-**My Feelings:**
+**My Feelings**: Most of today was spent on a doctor's appointment but did want to hop back in the saddle. Slow start. Hopeful for tomorrow.
 ___
 Unofficial break (meaning I didn't unsubscribe) to care for my spouse from 4/23 - 5/2 (10 days). Mixed feelings about putting my studies on hold this early in the program. Will this break the seal, so to speak, for future breaks? Should I have tried harder to hit my minimum study times? But there's really no argument... I had no time or energy for anything else other than running the household and doctor appointments.
 ___
