@@ -20,12 +20,7 @@
 #   end
 # end
 
-def running_total(array)
-  # sum = 0
-  array.inject([]) do |result, item|
-    result << result += item
-  end
-end
+# Cannot figure out how to do this with Enumerable#inject
 
 p running_total([2, 5, 13])
 
