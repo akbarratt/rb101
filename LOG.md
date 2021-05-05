@@ -6,7 +6,7 @@ I started this progress log partway through RB101. Newest entries first.
 
 ### Day 69: Tuesday May 4, 2021
 
-**Pomodoros Completed**: 3
+**Pomodoros Completed**: 4
 
 **Today's Progress**: Spent far too long trying to figure out how Enumerable#inject works.
 
