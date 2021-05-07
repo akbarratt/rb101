@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 71: Thursday May 6, 2021
+
+**Pomodoros Completed**: 7
+
+**Today's Progress**: Two exercises...again. Catching up on Anki still.
+
+**My Feelings**: I understand why Launch School advises against breaks because my brain feels like sludge. I think I hit just about bug possible in these Easy 4 exercises.
+
 ### Day 70: Wednesday May 5, 2021
 
 **Pomodoros Completed**: 2
