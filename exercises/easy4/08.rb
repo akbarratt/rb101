@@ -34,16 +34,17 @@ def string_to_integer(string)
   result
 end
 
-def string_to_signed_integer(string)
-  digits = string[1..-1] if NUMBERS.include?(string[0]) == false
+
+# def string_to_signed_integer(string)
+#   digits = string[1..-1] if NUMBERS.include?(string[0]) == false
 
 
-  case string[0]
-  when '-' then -string_to_integer(string[1..-1])
-  when '+' then string_to_integer(string[1..-1])
-  else          string_to_integer(string)
-  end
-end
+#   case string[0]
+#   when '-' then -string_to_integer(string[1..-1])
+#   when '+' then string_to_integer(string[1..-1])
+#   else          string_to_integer(string)
+#   end
+# end
 
 p string_to_signed_integer('4321') == 4321
 p string_to_signed_integer('-570') == -570
