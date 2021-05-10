@@ -4,6 +4,30 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 74: Sunday May 9, 2021
+
+**Pomodoros Completed**: 1
+
+**Today's Progress**: N/A
+
+**My Feelings**: It was a busy weekend of family obligations. Did break at a cafe to try to get some work done, which it turns out is very difficult to do when the seats are uncomfortable.
+
+### Day 73: Saturday May 8, 2021
+
+**Pomodoros Completed**: 0
+
+**Today's Progress**: N/A
+
+**My Feelings**: N/A
+
+### Day 72: Friday May 7, 2021
+
+**Pomodoros Completed**: 1
+
+**Today's Progress**: N/A
+
+**My Feelings**: N/A
+
 ### Day 71: Thursday May 6, 2021
 
 **Pomodoros Completed**: 7
