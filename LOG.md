@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 75: Monday May 10, 2021
+
+**Pomodoros Completed**: 6
+
+**Today's Progress**: Kept hitting walls on the Easy 4 exercises, moved on to begin Lesson 5.
+
+**My Feelings**: I was determined to get off to a good start this week so I'm not working from a deficit. It's amazing how much psychology is involved in my working process. It was also a relief to start a new lesson and find it covered the exact problems I was struggling with last week.
+
 ### Day 74: Sunday May 9, 2021
 
 **Pomodoros Completed**: 1
