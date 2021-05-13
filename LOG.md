@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 77: Wednesday May 12, 2021
+
+**Pomodoros Completed**: 7
+
+**Today's Progress**: Finished the blocks assignment in Lesson 5, attended a SPOT study group
+
+**My Feelings**: Today was my first SPOT meetup, and I found it really helpful. I need a lot of practice talking through my answers. Also feeling good that I have a clear plan of action through the end of this week and next week.
+
 ### Day 76: Tuesday May 11, 2021
 
 **Pomodoros Completed**: 5
