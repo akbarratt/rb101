@@ -4,6 +4,22 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 82: Monday May 17, 2021
+
+**Pomodoros Completed**: 6
+
+**Today's Progress**: Continue work on Lesson 5, starting the practice exercises
+
+**My Feelings**: Still not feeling my best, but a good output today.
+
+### Day 78-81: Thursday May 13, 2021 - Sunday May 16, 2021
+
+**Pomodoros Completed**: 2
+
+**Today's Progress**: Miscellaneous getting caught up
+
+**My Feelings**: Hit a patch of bad health and found it difficult to focus through the pain. Frustrating when I feel like my body won't cooperate with me but next week will be better.
+
 ### Day 77: Wednesday May 12, 2021
 
 **Pomodoros Completed**: 7
