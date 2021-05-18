@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 83: Tuesday May 18, 2021
+
+**Pomodoros Completed**: 6
+
+**Today's Progress**: Continue work on Lesson 5 practice problems
+
+**My Feelings**: I swear I spent 3 hours today trying to figure out Enumerable#inject (AGAIN), but was able to move on. I still feel good about my progress today regardless. I'm starting to get a momentum going and 6 poms is starting to feel like too soon to quit, so that's a good sign. Still think it's good to choose a quitting time in advance; I have a propensity to overwork if I'm not careful.
+
 ### Day 82: Monday May 17, 2021
 
 **Pomodoros Completed**: 6
