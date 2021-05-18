@@ -12,6 +12,10 @@ munsters = {
 #   end
 # end
 
-munsters.each_pair do |name, details|
-  puts "#{name} is a #{details["age"]}-year-old #{details["gender"]}."
-end
+# munsters.inject([])
+
+# end
+
+# munsters.each_pair do |name, details|
+#   puts "#{name} is a #{details["age"]}-year-old #{details["gender"]}."
+# end
