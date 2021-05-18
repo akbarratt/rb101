@@ -6,16 +6,6 @@ munsters = {
   "Marilyn" => { "age" => 23, "gender" => "female"}
 }
 
-# munsters.each do |inner_hash|
-#   inner_hash.each do |name|
-#     puts name
-#   end
-# end
-
-# munsters.inject([])
-
-# end
-
-# munsters.each_pair do |name, details|
-#   puts "#{name} is a #{details["age"]}-year-old #{details["gender"]}."
-# end
+munsters.each_pair do |name, details|
+  puts "#{name} is a #{details["age"]}-year-old #{details["gender"]}."
+end
