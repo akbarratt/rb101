@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 84: Wednesday May 19, 2021
+
+**Pomodoros Completed**: 6
+
+**Today's Progress**: Continue work on Lesson 5 practice problems
+
+**My Feelings**: Once again spent a full hour looking at one concept I didn't understand (problem 7) and reading through some forum posts but felt good digging in until I couldn't any more, then moving on. I have a good flow going this week.
+
 ### Day 83: Tuesday May 18, 2021
 
 **Pomodoros Completed**: 7
