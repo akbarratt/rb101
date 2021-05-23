@@ -4,13 +4,21 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 86: Friday May 21, 2021
+
+**Pomodoros Completed**: 1
+
+**Today's Progress**: Checking up on messages
+
+**My Feelings**: Why does the same thing happen to me every week...
+
 ### Day 85: Thursday May 20, 2021
 
 **Pomodoros Completed**: 1
 
 **Today's Progress**: Checking up on messages
 
-**My Feelings**: The schoo lyear is winding down and summer craziness is starting up. Could have managed my time better today.
+**My Feelings**: The school year is winding down and summer craziness is starting up. Could have managed my time better today.
 
 ### Day 84: Wednesday May 19, 2021
 
