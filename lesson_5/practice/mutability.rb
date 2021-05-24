@@ -61,6 +61,6 @@ p b # ["bananas", "blueberry"]
 
 # b[0] and arr[1][0] object_id are both still the same and the string stored at that place in memory has been mutated
 
-# In the example of a, the referent is the object itself. In example b, the referent is an array? Is this right?
+# In the example of a, the referent is the integer itself. In example b, the referent is an array object. Because array[1] and b point to the same array (container), the object at [0] changes for both, because the array being referenced is the same.
 
 # When we chain Array#[], we have to remember that each method call is being evaluated before the next is called. So arr[1][0] is actually calling [0] on the array referenced by b. They are the same object. That's why the reference changes.
