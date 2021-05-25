@@ -6,7 +6,7 @@ I started this progress log partway through RB101. Newest entries first.
 
 ### Day 89: Monday May 24, 2021
 
-**Pomodoros Completed**: 6
+**Pomodoros Completed**: 7
 
 **Today's Progress**: Complete Lesson 5 practice problems
 
