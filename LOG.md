@@ -4,6 +4,22 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 89: Monday May 24, 2021
+
+**Pomodoros Completed**: 6
+
+**Today's Progress**: Complete Lesson 5 practice problems
+
+**My Feelings**: It's Monday!
+
+### Day 87-88: Saturday May 22, 2021 - Sunday May 23, 2021
+
+**Pomodoros Completed**: 0
+
+**Today's Progress**: N/A
+
+**My Feelings**: Weeks like this I have to remind myself that I unexpectedly became a first time parent 2 weeks after starting Core... It's a miracle I can get done as much as I do in that context.
+
 ### Day 86: Friday May 21, 2021
 
 **Pomodoros Completed**: 1
