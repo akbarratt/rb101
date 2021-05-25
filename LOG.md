@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 90: Tuesday May 25, 2021
+
+**Pomodoros Completed**: 7
+
+**Today's Progress**: Complete Lesson 5 Quiz
+
+**My Feelings**: I got a 90% on the quiz, my highest quiz score yet! Proud of myself. I decided to just take my time no matter how long it took (5 hours off and on!). I did lose patience and give up too soon on the last question. Though I'm not sure it would have helped to spend much more time on it, this will definitely encourage me to take my time on preparations for the assessments.
+
 ### Day 89: Monday May 24, 2021
 
 **Pomodoros Completed**: 7
