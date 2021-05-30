@@ -4,6 +4,22 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 94: Saturday May 29, 2021
+
+**Pomodoros Completed**: 5
+
+**Today's Progress**: Attended a Meetup
+
+**My Feelings**: Good meetup, really helpful tips from other students on how to protect my working time.
+
+### Day 91-93: Wednesday May 26, 2021 - Friday May 28, 2021
+
+**Pomodoros Completed**: 0
+
+**Today's Progress**: N/A
+
+**My Feelings**: Time off for birthday.
+
 ### Day 90: Tuesday May 25, 2021
 
 **Pomodoros Completed**: 7
