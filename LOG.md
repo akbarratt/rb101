@@ -4,13 +4,21 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 97: Tuesday June 1, 2021
+
+**Pomodoros Completed**: 2
+
+**Today's Progress**: Note review.
+
+**My Feelings**: Started on a roll, then started having some pain. Ugh. Starting earlier in the day usually helps me avoid this.
+
 ### Day 95-96: Sunday May 30, 2021 - Monday May 31, 2021
 
 **Pomodoros Completed**: 0
 
 **Today's Progress**: N/A
 
-**My Feelings**: I'm starting to realize my work time is really beholden to my family's schedule. Could write a whole essay about how that intersects with traditional gender roles but I'll save it for the blog. Trying to figure out how to prioritize my own needs.
+**My Feelings**: Memorial Day holiday. I'm starting to realize my work time is really beholden to my family's schedule. Could write a whole essay about how that intersects with traditional gender roles but I'll save it for the blog. Trying to figure out how to prioritize my own needs.
 
 ### Day 94: Saturday May 29, 2021
 
