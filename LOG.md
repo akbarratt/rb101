@@ -4,7 +4,15 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
-### Day 98: Tuesday June 2, 2021
+### Day 99: Thursday June 3, 2021
+
+**Pomodoros Completed**: 7
+
+**Today's Progress**: Finish reviewing Lesson 5 notes, create new Anki cards, resume RB101 exercises at Easy 5
+
+**My Feelings**: Feeling good about the progress I'm making and the groove I'm in. Putting in the time and plugging away.
+
+### Day 98: Wednesday June 2, 2021
 
 **Pomodoros Completed**: 9
 
