@@ -6,7 +6,7 @@ I started this progress log partway through RB101. Newest entries first.
 
 ### Day 99: Thursday June 3, 2021
 
-**Pomodoros Completed**: 7
+**Pomodoros Completed**: 8
 
 **Today's Progress**: Finish reviewing Lesson 5 notes, create new Anki cards, resume RB101 exercises at Easy 5
 
