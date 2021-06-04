@@ -68,5 +68,10 @@ Notes on solution:
  - Also neglected to use CONSTS in my solution. As we know, any number whose significance is not immediately known should be saved into a variable or const (labeled).
  - Thought about using multiple methods in my solution but decided against it. That would have been the right call. Everything should be abstracted down to its smallest piece.
  - I still don't quite understand how Kernel#format works.
+ - Using divmod and multiple assignment would have been more straightforward here.
 
 =end
+
+# Further exploration
+# Problem 1
+# int % 1440
