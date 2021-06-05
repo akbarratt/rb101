@@ -7,11 +7,15 @@ def get_minutes(str)
 end
 
 def after_midnight(str)
-  MINUTES_AT_MIDNIGHT + get_minutes(str)
+  result = MINUTES_AT_MIDNIGHT + get_minutes(str)
+  return 0 if result == MINUTES_IN_DAY
+  result
 end
 
 def before_midnight(str)
-  MINUTES_IN_DAY - get_minutes(str)
+  result = MINUTES_IN_DAY - get_minutes(str)
+  return 0 if result == MINUTES_IN_DAY
+  result
 end
 
 p after_midnight('00:00') == 0
@@ -47,7 +51,6 @@ Convert the string into a singular integer representing minutes
 Reduce that number to the amount that will fit within a single day (% 1440?)
 Function after_midnight should add from 0
 Function before_midnight should subtract from 1440
-
-Bug in After Midnight.
+Need an edge case for if total == 1400 since that's functionally equivalent to 0.
 
 =end
