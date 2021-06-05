@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 100: Friday June 4, 2021
+
+**Pomodoros Completed**: 8
+
+**Today's Progress**: Worked on 3 exercises in Easy 5
+
+**My Feelings**: Only worked on a few exercises today but I'm taking more detailed notes and working out the concepts, so I feel it was fruitful nonetheless. Hard to believe it's been 100 days already. Not quite the pace I wanted to be on but I have to remind myself I'm part-time and still adjusting to the schedule.
+
 ### Day 99: Thursday June 3, 2021
 
 **Pomodoros Completed**: 8
