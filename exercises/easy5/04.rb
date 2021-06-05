@@ -10,9 +10,9 @@ def swap(string)
   split.join(' ')
 end
 
-p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'
-p swap('Abcde') == 'ebcdA'
-p swap('a') == 'a'
+# p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'
+# p swap('Abcde') == 'ebcdA'
+# p swap('a') == 'a'
 
 # Further Exploration
 def swap_first_last_characters(a, b)
@@ -22,11 +22,11 @@ end
 
 abcde = 'Abcde'
 p (abcde[0], abcde[-1] = swap_first_last_characters(abcde[0], abcde[-1]))
-p abcde
+p abcde == 'ebcdA'
 
-p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'
-p swap('Abcde') == 'ebcdA'
-p swap('a') == 'a'
+# p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'
+# p swap('Abcde') == 'ebcdA'
+# p swap('a') == 'a'
 
 # The above code would not work because we're not actually passing in the whole word as parameter to the function, only the characters. In addition, a data structure like the one returned will return an array unless multiple assignment is used. So the following code WOULD work:
 # word[0], word[-1] = swap_first_last_characters(word[0], word[-1])
