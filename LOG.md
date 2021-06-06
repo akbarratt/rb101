@@ -6,11 +6,11 @@ I started this progress log partway through RB101. Newest entries first.
 
 ### Day 101: Saturday June 5, 2021
 
-**Pomodoros Completed**: 3
+**Pomodoros Completed**: 4
 
 **Today's Progress**: Worked on 2 exercises in Easy 5
 
-**My Feelings**: Worked hard and finished early for the week. Will come back and review flashcards for the weekend. Feels like I could use a rest break to keep going.
+**My Feelings**: Worked hard and finished early for the week. Will come back and review flashcards for the weekend. Feels like I could use a rest break to keep going. Trying to proceed at a pace that's sustainable without wrecking my health. Frequent check-ins help.
 
 ### Day 100: Friday June 4, 2021
 
