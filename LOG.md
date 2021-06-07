@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 102: Sunday June 6, 2021
+
+**Pomodoros Completed**: 0
+
+**Today's Progress**: Anki review
+
+**My Feelings**: Day off. Worked ~14 hours this week.
+
 ### Day 101: Saturday June 5, 2021
 
 **Pomodoros Completed**: 4
