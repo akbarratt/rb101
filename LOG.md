@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 103: Monday June 7, 2021
+
+**Pomodoros Completed**: 8
+
+**Today's Progress**: 4-5 exercises in Easy 5
+
+**My Feelings**: I was worried today because I had a headache early. Managed to pull through. Trying to set myself up for success early this week.
+
 ### Day 102: Sunday June 6, 2021
 
 **Pomodoros Completed**: 0
