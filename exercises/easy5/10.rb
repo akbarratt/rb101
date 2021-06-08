@@ -1,13 +1,13 @@
 def print_in_box(input_string)
   box = ['+--+', '|  |', '|  |', '|  |', '+--+']
   counter = 0
-  while counter <= box.size
+  while counter < box.size
     if counter == 0 || counter == 4
-      box[counter][1] += '-' until box[counter].size >= input_string.size
+      box[counter][2] += '-' until box[counter].size >= input_string.size + 4
     elsif counter == 1 || counter == 3
-      box[counter][1] += ' ' until box[counter].size >= input_string.size
+      box[counter][2] += ' ' until box[counter].size >= input_string.size + 4
     else
-      box[counter].insert(0, input_string)
+      box[counter].insert(2, input_string)
     end
     counter += 1
   end
@@ -16,6 +16,8 @@ end
 
 print_in_box('')
 print_in_box('hello world')
+print_in_box('what is up?')
+print_in_box('The rain in Spain falls mainly on the plain.')
 
 =begin
 # Problem
