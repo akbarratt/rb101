@@ -3,7 +3,7 @@ def find_fibonacci_index_by_length(integer)
   int2 = 1
   current_num = 0
   index = 2
-  until current_num.digits.length == integer
+  until current_num.to_s.length == integer
     current_num = int1 + int2
     int1 = int2
     int2 = current_num
