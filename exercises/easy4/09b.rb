@@ -1,3 +1,20 @@
+NUMBERS = (0..9).zip('0'..'9').to_h
+
+def integer_to_string(integer)
+  digits = []
+  until integer <= 9
+    digits.unshift(integer % 10)
+    integer /= 10
+  end
+  digits.unshift(integer)
+  digits.map {|num| NUMBERS[num]}
+  digits.join
+end
+
+p integer_to_string(4321) == '4321'
+p integer_to_string(0) == '0'
+p integer_to_string(5000) == '5000'
+
 =begin
 # Problem
 Given an integer >= 0, return a string representation of that number without using to_s, String(), or Kernel#format.
@@ -24,19 +41,3 @@ Then map digits to the hash
 
 =end
 
-NUMBERS = (0..9).zip('0'..'9').to_h
-
-def integer_to_string(integer)
-  digits = []
-  until integer <= 9
-    digits.unshift(integer % 10)
-    integer /= 10
-  end
-  digits.unshift(integer)
-  digits.map {|num| NUMBERS[num]}
-  digits.join
-end
-
-p integer_to_string(4321) == '4321'
-p integer_to_string(0) == '0'
-p integer_to_string(5000) == '5000'
