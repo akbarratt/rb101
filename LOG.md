@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 106: Thursday June 10, 2021
+
+**Pomodoros Completed**: 7
+
+**Today's Progress**: Working on Easy 6.1-6.7
+
+**My Feelings**: Finished a bit early today. It definitely feels good  to hit the 12 hour mark before Friday! Especially considering I was a bit under par the last 2 days. 6 poms seems like a good minimum for me.
+
 ### Day 105: Wednesday June 9, 2021
 
 **Pomodoros Completed**: 7
