@@ -6,7 +6,7 @@ I started this progress log partway through RB101. Newest entries first.
 
 ### Day 105: Wednesday June 9, 2021
 
-**Pomodoros Completed**: 6
+**Pomodoros Completed**: 7
 
 **Today's Progress**: Finished Easy 4, just started Easy 6
 
