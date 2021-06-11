@@ -26,5 +26,35 @@ Determine input_array.length
     1st half index = array[0] - array[array.length/2 + 1]
     2nd half index = array[array.length - array/2] - array[array.length]
   else
-    1st half
+    1st half = array[0] - array[array.length/2 - 1]
+    2nd half = array[array.length/2] - array[array.length]
+  end
+  The problem with the previous line is zero indexing. This is becoming very cumbersome.
+  Result[0].replace(1st half)
+  Result[1].replace(2nd half)
+  Return result
+
+  Might we use Enumerable#partition for this?
 =end
+
+def determine_half(array)
+  if array.length.odd?
+    array.length/2 + 1
+  else
+    array.length/2
+  end
+end
+
+def halvsies(array)
+  result = [[],[]]
+  first_half = array[0..determine_half(array)]
+  second_half = array[determine_half(array)..array.length]
+  result[0].replace(first_half)
+  result[1].replace(second_half)
+  result
+end
+
+array1 = [0, 1, 2, 3, 4]
+array2 = [0, 1, 2, 3]
+p halvsies(array1)
+p halvsies(array2)
