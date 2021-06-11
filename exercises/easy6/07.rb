@@ -39,9 +39,9 @@ Determine input_array.length
 
 def determine_half(array)
   if array.length.odd?
-    array.length/2 + 1
-  else
     array.length/2
+  else
+    (array.length/2) - 1
   end
 end
 
