@@ -48,13 +48,13 @@ end
 def halvsies(array)
   result = [[],[]]
   first_half = array[0..determine_half(array)]
-  second_half = array[determine_half(array)..array.length]
+  second_half = array[(determine_half(array) + 1)..array.length-1]
   result[0].replace(first_half)
   result[1].replace(second_half)
   result
 end
 
-array1 = [0, 1, 2, 3, 4]
-array2 = [0, 1, 2, 3]
-p halvsies(array1)
-p halvsies(array2)
+p halvsies([1, 2, 3, 4]) == [[1, 2], [3, 4]]
+p halvsies([1, 5, 2, 4, 3]) == [[1, 5, 2], [4, 3]]
+p halvsies([5]) == [[5], []]
+p halvsies([]) == [[], []]
