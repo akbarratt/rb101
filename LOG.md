@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 107: Friday June 11, 2021
+
+**Pomodoros Completed**: 4
+
+**Today's Progress**: Working on Easy 6.7 & 6.8
+
+**My Feelings**: I had a hell of a time wrangling Array#slice and its various syntax variations today! Feel like I learned a bit about debugging but could use a more solid understanding. Definitely not at assessment level yet. Putting in the time though.
+
 ### Day 106: Thursday June 10, 2021
 
 **Pomodoros Completed**: 7
