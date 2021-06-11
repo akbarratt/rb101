@@ -58,3 +58,6 @@ p halvsies([1, 2, 3, 4]) == [[1, 2], [3, 4]]
 p halvsies([1, 5, 2, 4, 3]) == [[1, 5, 2], [4, 3]]
 p halvsies([5]) == [[5], []]
 p halvsies([]) == [[], []]
+
+# Further exploration:
+# Dividing by 2.0 will return a float, and calling Float#ceil will result in an integer. To get 5/2 = 3, we need to return 5/2.0 = 2.5.ceil = 3.
