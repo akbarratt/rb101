@@ -12,17 +12,16 @@ def dms(input)
     float = float.floor.to_s
     float.size == 1 ? float.prepend('0') : float
   end
-  # CANNOT figure out the formatting here...
-  %?#{degrees}#{DEGREE}#{minutes}'#{seconds}#{DOUBLE_QUOTE}?
+  %(#{degrees}#{DEGREE}#{minutes}'#{seconds}\")
 end
 
 
-p dms(30) # == %(30°00'00")
-p dms(76.73) #== %(76°43'48")
-p dms(254.6) #== %(254°36'00")
-p dms(93.034773) #== %(93°02'05")
-p dms(0) #== %(0°00'00")
-p dms(360) #== %(360°00'00") || dms(360) == %(0°00'00")
+p dms(30) == %(30°00'00")
+p dms(76.73) == %(76°43'48")
+p dms(254.6) == %(254°36'00")
+p dms(93.034773) == %(93°02'05")
+p dms(0) == %(0°00'00")
+p dms(360) == %(360°00'00") || dms(360) == %(0°00'00")
 
 =begin
 # Problem
