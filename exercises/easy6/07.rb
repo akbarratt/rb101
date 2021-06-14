@@ -1,3 +1,25 @@
+def determine_half(array)
+  if array.length.odd?
+    array.length/2
+  else
+    (array.length/2) - 1
+  end
+end
+
+def halvsies(array)
+  result = [[],[]]
+  first_half = array[0..determine_half(array)]
+  second_half = array[(determine_half(array) + 1)..array.length-1]
+  result[0].replace(first_half)
+  result[1].replace(second_half)
+  result
+end
+
+p halvsies([1, 2, 3, 4]) == [[1, 2], [3, 4]]
+p halvsies([1, 5, 2, 4, 3]) == [[1, 5, 2], [4, 3]]
+p halvsies([5]) == [[5], []]
+p halvsies([]) == [[], []]
+
 =begin
 # Problem
 Given an array, return a nested array consisting of the two halves of the original array.
@@ -36,28 +58,6 @@ Determine input_array.length
 
   Might we use Enumerable#partition for this?
 =end
-
-def determine_half(array)
-  if array.length.odd?
-    array.length/2
-  else
-    (array.length/2) - 1
-  end
-end
-
-def halvsies(array)
-  result = [[],[]]
-  first_half = array[0..determine_half(array)]
-  second_half = array[(determine_half(array) + 1)..array.length-1]
-  result[0].replace(first_half)
-  result[1].replace(second_half)
-  result
-end
-
-p halvsies([1, 2, 3, 4]) == [[1, 2], [3, 4]]
-p halvsies([1, 5, 2, 4, 3]) == [[1, 5, 2], [4, 3]]
-p halvsies([5]) == [[5], []]
-p halvsies([]) == [[], []]
 
 # Further exploration:
 # Dividing by 2.0 will return a float, and calling Float#ceil will result in an integer. To get 5/2 = 3, we need to return 5/2.0 = 2.5.ceil = 3.

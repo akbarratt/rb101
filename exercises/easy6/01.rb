@@ -1,3 +1,29 @@
+DEGREE = "\xC2\xB0"
+DOUBLE_QUOTE = '"'
+MINUTES_IN_DEGREE = 60
+SECONDS_IN_MINUTE = 60
+
+def dms(input)
+  input = input.to_f
+  degrees = input.floor
+  minutes = (input - degrees) * MINUTES_IN_DEGREE
+  seconds = (minutes - minutes.floor) * SECONDS_IN_MINUTE
+  minutes, seconds = [minutes, seconds].map do |float|
+    float = float.floor.to_s
+    float.size == 1 ? float.prepend('0') : float
+  end
+  # CANNOT figure out the formatting here...
+  %?#{degrees}#{DEGREE}#{minutes}'#{seconds}#{DOUBLE_QUOTE}?
+end
+
+
+p dms(30) # == %(30°00'00")
+p dms(76.73) #== %(76°43'48")
+p dms(254.6) #== %(254°36'00")
+p dms(93.034773) #== %(93°02'05")
+p dms(0) #== %(0°00'00")
+p dms(360) #== %(360°00'00") || dms(360) == %(0°00'00")
+
 =begin
 # Problem
 Given a floating point number, return a string representation of that number as a precise measure.
@@ -45,29 +71,3 @@ result.map |float|
 Output interpolated string: "[degrees]DEGREE[minutes]'[seconds]""
 
 =end
-
-DEGREE = "\xC2\xB0"
-DOUBLE_QUOTE = '"'
-MINUTES_IN_DEGREE = 60
-SECONDS_IN_MINUTE = 60
-
-def dms(input)
-  input = input.to_f
-  degrees = input.floor
-  minutes = (input - degrees) * MINUTES_IN_DEGREE
-  seconds = (minutes - minutes.floor) * SECONDS_IN_MINUTE
-  minutes, seconds = [minutes, seconds].map do |float|
-    float = float.floor.to_s
-    float.size == 1 ? float.prepend('0') : float
-  end
-  # CANNOT figure out the formatting here...
-  %?#{degrees}#{DEGREE}#{minutes}'#{seconds}#{DOUBLE_QUOTE}?
-end
-
-
-p dms(30) # == %(30°00'00")
-p dms(76.73) #== %(76°43'48")
-p dms(254.6) #== %(254°36'00")
-p dms(93.034773) #== %(93°02'05")
-p dms(0) #== %(0°00'00")
-p dms(360) #== %(360°00'00") || dms(360) == %(0°00'00")
