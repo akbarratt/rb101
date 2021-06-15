@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 110: Monday June 14, 2021
+
+**Pomodoros Completed**: 7
+
+**Today's Progress**: Finished up the Easy 6 exercises, watched a video and took notes, made some new Anki cards.
+
+**My Feelings**: I'm tired! It was very rainy today, as can be expected of a Florida summer. Glad we only lost power once and I didn't lose any work.
+
 ### Day 109: Sunday June 13, 2021
 
 **Pomodoros Completed**: 0
