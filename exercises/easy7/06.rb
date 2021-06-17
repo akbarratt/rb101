@@ -7,11 +7,10 @@ def staggered_case(string)
     if ALPHABET.include?(char)
       if capitalize == true
         result << char.upcase
-        capitalize = !capitalize
       else
         result << char.downcase
-        capitalize = !capitalize
       end
+      capitalize = !capitalize
     else
       result << char
     end
