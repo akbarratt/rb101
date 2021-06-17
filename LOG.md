@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 112: Wednesday June 16, 2021
+
+**Pomodoros Completed**: 7
+
+**Today's Progress**: Started Easy 7 exercises and completed most.
+
+**My Feelings**: I'm feeling encouraged by how easily these exercise solutions are coming to me. I still have a long ways to go but I'm starting to feel more confident with the PEDAC process.
+
 ### Day 111: Tuesday June 15, 2021
 
 **Pomodoros Completed**: 0
