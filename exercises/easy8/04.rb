@@ -1,21 +1,22 @@
 def leading_substrings(string)
-  # results = []
-  # index = 0
-  # until index == string.size
-  #   substring = string[0..index]
-  #   results << substring
-  #   index += 1
-  # end
-  # results
-  p string.chars.combination.to_a
+  results = []
+  1.upto(string.size) do |num|
+    results << string.chars.combination(num).to_a
+  end
+  p results.map do |subarray|
+    subarray.map do |substring|
+      substring.flatten
+    end
+  end
+  # Not sure why this is returning an enumerator.
 end
 
-leading_substrings('abc')
+leading_substrings('abcde')
 
 =begin
 # Problem
-Given a string, return every possible substring of that string.
+We could use Array#combination for Integer#upto(array.size) times with an incrementing index number.
 
-Can we use Array#permutation or similar here?
+
 
 =end
