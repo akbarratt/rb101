@@ -1,22 +1,20 @@
+# def word_cap(string)
+#   result = string.split.map do |word|
+#     word.capitalize
+#   end
+#   result.join(' ')
+# end
+
+UPCASE_CONVERT = ('a'..'z').to_a.zip('A'..'Z').to_h
+
 def word_cap(string)
   result = string.split.map do |word|
-    word.capitalize
+    word.downcase
+    UPCASE_CONVERT.has_key?(word[0]) ? word[0] = UPCASE_CONVERT[word[0]] : word
+    word
   end
   result.join(' ')
 end
-
-# UPCASE_CONVERT = ('a'..'z').to_a.zip('A'..'Z').to_h
-
-# def word_cap(string)
-#   result = string.split.map do |word|
-#     word[0] = UPCASE_CONVERT[word[0]] if UPCASE_CONVERT.has_key?(word[0])
-#     counter = 1
-#     until counter == word.chars.size
-#       word[counter].downcase
-#       counter += 1
-#     end
-#   end
-# end
 
 p word_cap('four score and seven') #== 'Four Score And Seven'
 p word_cap('the javaScript language') #== 'The Javascript Language'
