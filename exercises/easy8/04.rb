@@ -1,14 +1,26 @@
 def leading_substrings(string)
   results = []
-  1.upto(string.size) do |num|
-    results << string.chars.combination(num).to_a
+  index = 0
+  until index == string.size
+    substring = string[0..index]
+    results << substring
+    index += 1
   end
-  results.map do |subarray|
-    subarray.map! do |substring|
-      substring.join
-    end
-  end
-  results.flatten.sort
+  results
 end
 
-p leading_substrings('abcde')
+def substrings(string)
+  results = []
+  string.chars.each_index do |index|
+    results << leading_substrings(string[index..-1])
+  end
+  results.flatten
+end
+
+p substrings('abcde') == [
+  'a', 'ab', 'abc', 'abcd', 'abcde',
+  'b', 'bc', 'bcd', 'bcde',
+  'c', 'cd', 'cde',
+  'd', 'de',
+  'e'
+]
