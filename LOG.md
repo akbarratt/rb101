@@ -4,7 +4,15 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
-### Day 114: Thursday June 18, 2021
+### Day 115: Saturday June 19, 2021
+
+**Pomodoros Completed**: 3
+
+**Today's Progress**: Easy 8.4
+
+**My Feelings**: For some reason I really got stuck on this exercise. I think it's because I was very confident in my solution, but did not go through PEDAC and also did not carefully review the exercise criteria. Some day I will lern this lesson and it will stick.
+
+### Day 114: Friday June 18, 2021
 
 **Pomodoros Completed**: 2
 
