@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 116: Sunday June 20, 2021
+
+**Pomodoros Completed**: 2
+
+**Today's Progress**: Podcast
+
+**My Feelings**: Listened to the Q&A podcast. Gave me some inspiration for the coming week.
+
 ### Day 115: Saturday June 19, 2021
 
 **Pomodoros Completed**: 3
