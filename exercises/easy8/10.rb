@@ -21,6 +21,4 @@ First, break the string down into an array of its characters
     return the character in the string that has the index of length/2
   If the size is even
     return the character that has the index of length/2 and the next character
-
-
 =end
