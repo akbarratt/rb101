@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 117: Monday June 21, 2021
+
+**Pomodoros Completed**: 7
+
+**Today's Progress**: Formulating Anki cards, synthesizing concepts, Easy 8 practice problems (5-9)
+
+**My Feelings**: Today was chaotic so I'm honestly impressed I was able to get this much done without getting completely derailed.
+
 ### Day 116: Sunday June 20, 2021
 
 **Pomodoros Completed**: 2
