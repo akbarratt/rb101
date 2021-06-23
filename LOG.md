@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 118: Tuesday June 22, 2021
+
+**Pomodoros Completed**: 8
+
+**Today's Progress**: Finished Easy 8 exercises, started Lesson 6, and attended an Advanced PEDAC study session
+
+**My Feelings**: I have once again impressed myself by how much work I was able to do even though I had quite a bit of pain today. I'm not overdoing it, just managing my time better. Victory!
+
 ### Day 117: Monday June 21, 2021
 
 **Pomodoros Completed**: 7
