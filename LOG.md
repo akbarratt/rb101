@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 121: Friday June 25, 2021
+
+**Pomodoros Completed**: 5
+
+**Today's Progress**: Started the Tic Tac Toe walk-through, fixed some Anki cards, finished the exercise from PEDAC group this week
+
+**My Feelings**: Quite tired today! A little tough to focus. Need to prioritize rest this weekend or I'm not gonna have any brainspace next week.
+
 ### Day 120: Thursday June 24, 2021
 
 **Pomodoros Completed**: 3
