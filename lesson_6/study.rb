@@ -53,7 +53,7 @@ Determine whether both starting number and size are >= 0 and integer
     Until the size of the array results is equal to the given size
       Determine whether current number is a palindrome
         Convert the integer into a string
-        If the string read the same as the reverse, it is a palindrome
+        If the string reads the same as the reverse, and it's greater than 10, it is a palindrome
       If current number is a palindrome
         Push current number to results array
         Increment the current number by 1
@@ -66,3 +66,32 @@ Did not account for single numbers not being valid palindromes.
 Used Ruby specific syntax (maybe).
 =end
 
+def palindrome(starting_num, size)
+  return "Not valid" unless valid?(starting_num) && valid?(size)
+  results = []
+  current_num = starting_num
+  until results.size == size
+    results << current_num if palindrome?(current_num)
+    current_num += 1
+  end
+  results
+end
+
+
+def palindrome?(int)
+  (int.to_s == int.to_s.reverse) && int >= 10
+end
+
+def valid?(int)
+  int.is_a?(Integer) && int >= 0
+end
+
+p palindrome(6,4) == [11,22,33,44]
+p palindrome(75,1) == [77]
+p palindrome(101,2) == [101,111]
+p palindrome(20,0) == []
+p palindrome(0,4) == [11,22,33,44]
+p palindrome("ACCDDCCA",3) == "Not valid"
+p palindrome(773,"1551") == "Not valid"
+p palindrome(-4505,15) == "Not valid"
+p palindrome(4505,-15) == "Not valid"
