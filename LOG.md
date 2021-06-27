@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 122: Saturday June 26, 2021
+
+**Pomodoros Completed**: 2
+
+**Today's Progress**: Continued Tic Tac Toe
+
+**My Feelings**: Wanted to do more today but family needs took precedence. Gotta start thinking of weekends as bonus time and try to cram my work hours into Mon-Thurs primarily.
+
 ### Day 121: Friday June 25, 2021
 
 **Pomodoros Completed**: 5
