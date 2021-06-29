@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 124: Sunday June 28, 2021
+
+**Pomodoros Completed**: 10
+
+**Today's Progress**: Finished up the main Tic Tac Toe tutorial, started reviewing bonus features, and tackled a Medium 1 problem in a study session with Mike.
+
+**My Feelings**: I worked a lot today! I had my first 1-on-1 study group with another student today. It defintely helped me identify some areas I need improvement in, primarily talking through problems aloud and sticking to PEDAC. Overall really helpful.
+
 ### Day 123: Saturday June 27, 2021
 
 **Pomodoros Completed**: 0
