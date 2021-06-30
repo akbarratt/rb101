@@ -4,7 +4,15 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
-### Day 124: Sunday June 28, 2021
+### Day 125: Tuesday June 29, 2021
+
+**Pomodoros Completed**: 2
+
+**Today's Progress**: Refactored Medium 1.1 which I worked on yesterday
+
+**My Feelings**: Very busy day including a friend's birthday party, so not much work. I'm finding that irregularities in my schedule M-Th tend to throw me off the most. One event can kind of be managed, but 2 or more is difficult. Something to keep in mind.
+
+### Day 124: Monday June 28, 2021
 
 **Pomodoros Completed**: 10
 
@@ -12,7 +20,7 @@ I started this progress log partway through RB101. Newest entries first.
 
 **My Feelings**: I worked a lot today! I had my first 1-on-1 study group with another student today. It defintely helped me identify some areas I need improvement in, primarily talking through problems aloud and sticking to PEDAC. Overall really helpful.
 
-### Day 123: Saturday June 27, 2021
+### Day 123: Sunday June 27, 2021
 
 **Pomodoros Completed**: 0
 
