@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 126: Wednesday June 30, 2021
+
+**Pomodoros Completed**: 1
+
+**Today's Progress**: Anki review
+
+**My Feelings**: Second full day of appointments. What was that I said about being more protective of my schedule again??
+
 ### Day 125: Tuesday June 29, 2021
 
 **Pomodoros Completed**: 2
