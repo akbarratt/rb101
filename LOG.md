@@ -4,13 +4,21 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 127: Thursday July 1, 2021
+
+**Pomodoros Completed**: 7
+
+**Today's Progress**: A bit of replying on Slack, mostly starting PEDAC on TTT bonus features.
+
+**My Feelings**: First day of July and even though I've been making a lot of improvements lately and I can tell I'm progressing at a consistent pace, it's hard not to be a little frustrated. I started the paid program in mid-February, so it's been over 4 months since I started. Still a little hard to judge my pace. Gotta stay committed to the process...
+
 ### Day 126: Wednesday June 30, 2021
 
 **Pomodoros Completed**: 1
 
 **Today's Progress**: Anki review
 
-**My Feelings**: Second full day of appointments. What was that I said about being more protective of my schedule again??
+**My Feelings**: Second full day of appointments. What was that I said about being more protective of my schedule again?
 
 ### Day 125: Tuesday June 29, 2021
 
