@@ -1,3 +1,8 @@
+# Problem: Set up game
+Prior to the game beginning, the player should enter their name and 
+
+
+___
 # Problem: Graphical display of open squares
 
 # Example:
@@ -9,26 +14,7 @@
 |_|5|6|
 |7|8|_|
 
-___
-# Problem: Coin toss
-Prompt user to choose heads or tails
 
-# Example:
-=> Choose heads or tails:
-=> Flipping coin...
-=> Tails. Player goes first.
-player1 = player
-player2 = computer
-
-# Algorithm
-Initialize const COIN = ['heads', 'tails']
-At last step of game set up, prompt user to select heads or tails and save into variable user_coin
-Validate input
-  Is the input text 'heads' or 'tails'?
-  If not, is it 'h' or 't'?
-  If not, is it '1' or '2'?
-If invalid, assign a choice for the user.
-If 
 
 
 ___
@@ -134,3 +120,24 @@ If array size is 1 or less, return array.
 If array size is 2, return array[0] + word + array[1]
 Else, separate array into variables array and final item
 Return array joined by "[separator][space]" concatenated with "[space][word][space][final item]"
+
+___
+# Problem: Coin toss
+Prompt user to choose heads or tails
+
+# Example:
+=> Choose heads or tails:
+=> Flipping coin...
+=> Tails. Player goes first.
+player1 = player
+player2 = computer
+
+# Algorithm
+Initialize const COIN = ['heads', 'tails']
+At last step of game set up, prompt user to select heads or tails and save into variable user_coin
+Validate input
+  Is the input text 'heads' or 'tails'?
+  If not, is it 'h' or 't'?
+  If not, is it '1' or '2'?
+If invalid, assign a choice for the user.
+If 
