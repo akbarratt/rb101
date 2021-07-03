@@ -1,44 +1,3 @@
-# Problem: joinor method
-Write a method that separates array items with a comma. The last item should also be separated by a word. 
-
-Implicit requirements: this will take an array argument and optional arguments for separator and final word. (See examples below.) Default separator is ', ' and default word is "or". 
-
-May need to be a nested array, such as using splat to separate the front characters of the arrary from the final. On nested_array[0], join(separator ) should be run, then the evaluated results should be called with join(word)
-
-Note: I feel this method could possibly be improved by requiring the user to provide only a separator and not the space that follows.
-
-# Examples
-joinor([1, 2])                   # => "1 or 2"
-joinor([1, 2, 3])                # => "1, 2, or 3"
-joinor([1, 2, 3], '; ')          # => "1; 2; or 3"
-joinor([1, 2, 3], ', ', 'and')   # => "1, 2, and 3"
-
-Implied:
-joinor([1])                      # => "1"
-joinor([])                       # => "" ??
-
-[1, 2].join(', ') + 'or 3'
-*array, last = [1, 2, 3]
-  => array = [1, 2]
-  => last = 3 
-  array.join("#{separator} ") + " #{word} #{last}"
-
-# Data structures
-Inputs: array, optional strings
-Output: string
-
-I think this will require a new array in order to insert the word.
-
-# Algorithm
-Given an array, separator, and 
-If array size is 1 or less, return array.
-If array size is 2, return array[0] + word + array[1]
-Else, separate array into variables array and final item
-Return array joined by "[separator][space]" concatenated with "[space][word][space][final item]"
-
-
-
-___
 # Problem: Graphical display of open squares
 
 # Example:
@@ -52,6 +11,7 @@ ___
 
 ___
 # Problem: Coin toss
+Prompt user to choose heads or tails
 
 # Example:
 => Choose heads or tails:
@@ -60,6 +20,15 @@ ___
 player1 = player
 player2 = computer
 
+# Algorithm
+Initialize const COIN = ['heads', 'tails']
+At last step of game set up, prompt user to select heads or tails and save into variable user_coin
+Validate input
+  Is the input text 'heads' or 'tails'?
+  If not, is it 'h' or 't'?
+  If not, is it '1' or '2'?
+If invalid, assign a choice for the user.
+If 
 
 
 ___
@@ -122,3 +91,46 @@ Rather than checking the board after each piece, we could simplify the loop, run
     - alternate_player method (I don't like this var name because "alternate" could be read two ways)
 
 # Problem: Decide which player goes first, initially based on coin toss, then based on who won the last round
+
+
+
+___
+COMPLETED
+___
+# Problem: joinor method
+Write a method that separates array items with a comma. The last item should also be separated by a word. 
+
+Implicit requirements: this will take an array argument and optional arguments for separator and final word. (See examples below.) Default separator is ', ' and default word is "or". 
+
+May need to be a nested array, such as using splat to separate the front characters of the arrary from the final. On nested_array[0], join(separator ) should be run, then the evaluated results should be called with join(word)
+
+Note: I feel this method could possibly be improved by requiring the user to provide only a separator and not the space that follows.
+
+# Examples
+joinor([1, 2])                   # => "1 or 2"
+joinor([1, 2, 3])                # => "1, 2, or 3"
+joinor([1, 2, 3], '; ')          # => "1; 2; or 3"
+joinor([1, 2, 3], ', ', 'and')   # => "1, 2, and 3"
+
+Implied:
+joinor([1])                      # => "1"
+joinor([])                       # => "" ??
+
+[1, 2].join(', ') + 'or 3'
+*array, last = [1, 2, 3]
+  => array = [1, 2]
+  => last = 3 
+  array.join("#{separator} ") + " #{word} #{last}"
+
+# Data structures
+Inputs: array, optional strings
+Output: string
+
+I think this will require a new array in order to insert the word.
+
+# Algorithm
+Given an array, separator, and 
+If array size is 1 or less, return array.
+If array size is 2, return array[0] + word + array[1]
+Else, separate array into variables array and final item
+Return array joined by "[separator][space]" concatenated with "[space][word][space][final item]"
