@@ -1,12 +1,11 @@
-### Flowchart: https://lucid.app/lucidchart/invitations/accept/inv_251883ec-426c-4f03-901b-0c6bf284fe33?viewport_loc=50%2C194%2C2231%2C1094%2C0_0
-
-I ran out of fucking free items................
-
 # Problem: joinor method
+Write a method that separates array items with a comma. The last item should also be separated by a word. 
 
 Implicit requirements: this will take an array argument and optional arguments for separator and final word. (See examples below.) Default separator is ', ' and default word is "or". 
 
 May need to be a nested array, such as using splat to separate the front characters of the arrary from the final. On nested_array[0], join(separator ) should be run, then the evaluated results should be called with join(word)
+
+Note: I feel this method could possibly be improved by requiring the user to provide only a separator and not the space that follows.
 
 # Examples
 joinor([1, 2])                   # => "1 or 2"
@@ -14,11 +13,29 @@ joinor([1, 2, 3])                # => "1, 2, or 3"
 joinor([1, 2, 3], '; ')          # => "1; 2; or 3"
 joinor([1, 2, 3], ', ', 'and')   # => "1, 2, and 3"
 
-Note: I feel this method could possibly be improved by requiring the user to provide only a separator and not the space that follows.
+Implied:
+joinor([1])                      # => "1"
+joinor([])                       # => "" ??
+
+[1, 2].join(', ') + 'or 3'
+*array, last = [1, 2, 3]
+  => array = [1, 2]
+  => last = 3 
+  array.join("#{separator} ") + " #{word} #{last}"
 
 # Data structures
 Inputs: array, optional strings
 Output: string
+
+I think this will require a new array in order to insert the word.
+
+# Algorithm
+Given an array, separator, and 
+If array size is 1 or less, return array.
+If array size is 2, return array[0] + word + array[1]
+Else, separate array into variables array and final item
+Return array joined by "[separator][space]" concatenated with "[space][word][space][final item]"
+
 
 
 ___
