@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 128: Friday July 2, 2021
+
+**Pomodoros Completed**: 9
+
+**Today's Progress**: Completed flowchart for Tic Tac Toe, completed and implemented `joinor` method, working on PEDAC for other bonus features.
+
+**My Feelings**: I actually didn't mean to work this much but the flowchart work was time-consuming and yet seemed to move quickly. That really helped me get the algorithm sorted in my brain, although there are some areas where processes could be broken down into their own flowcharts. Will reassess that need as I get to those parts.
+
 ### Day 127: Thursday July 1, 2021
 
 **Pomodoros Completed**: 7
