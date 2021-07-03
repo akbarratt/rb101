@@ -29,12 +29,45 @@ def coin_toss
   coin_results = COIN.sample
   prompt "It's #{coin_results}!"
   if user_coin == coin_results
-    prompt "You go first, #PLAYERNAME." # placeholder
+    prompt "You go first, #{user[:name]}."
     # set player to have first turn
   else
     prompt "The computer goes first."
-    #set computer to have first turn
+    # set computer to have first turn
   end
 end
 
-coin_toss
+
+
+tokens = ['X', 'O']
+user = {
+  name: '',
+  token: '',
+  wins: 0,
+  turns: 0
+}
+com = {
+  name: '',
+  token: '',
+  wins: 0,
+  turns: 0
+}
+
+def initialize_game(user, com, tokens)
+  prompt 'Welcome to Tic Tac Toe!'
+  prompt 'Please enter your name:'
+  user[:name] = gets.chomp # if valid, else loop
+  unless tokens.include?(user[:name][0].upcase)
+    tokens << user[:name][0].upcase
+  end
+  loop do
+    prompt "Select a token: #{joinor(tokens)}."
+    user[:token] = gets.chomp
+    break if tokens.include?(user[:token].upcase)
+    prompt "Invalid input."
+  end
+  # assign com token method here
+  coin_toss
+end
+
+initialize_game(user, tokens)
