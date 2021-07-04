@@ -14,7 +14,7 @@ def joinor(array, delimiter = ',', word = 'or')
   end
 end
 
-def coin_toss
+def coin_toss(user, com)
   prompt 'We will toss a coin to determine who plays first.'
   prompt "Choose a side, #{joinor(COIN)}."
   user_coin = gets.chomp.upcase
@@ -66,8 +66,20 @@ def initialize_game(user, com, tokens)
     break if tokens.include?(user[:token].upcase)
     prompt "Invalid input."
   end
-  # assign com token method here
-  coin_toss
+  choose_com_token(user, com, tokens)
+  prompt "#{com[:token]}"
+  # coin_toss(user, com)
 end
 
-initialize_game(user, tokens)
+def choose_com_token(user, com, tokens)
+  if user[:token] == tokens[2]
+    com[:token] = 'C'
+  elsif user[:token] == 'X'
+    com[:token] = 'O'
+  else
+    com[:token] = 'X'
+  end
+end
+
+initialize_game(user, com, tokens)
+
