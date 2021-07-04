@@ -4,7 +4,15 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
-### Day 129: Saturdy July 3, 2021
+### Day 130: Sunday July 4, 2021
+
+**Pomodoros Completed**: 1
+
+**Today's Progress**: Brainstorming new methods.
+
+**My Feelings**: A headache took me out most of the morning and now I've got a party to go to. About 20 minutes shy of my weekly goal, so that's very annoying.
+
+### Day 129: Saturday July 3, 2021
 
 **Pomodoros Completed**: 4
 
