@@ -68,14 +68,19 @@ Rather than checking the board after each piece, we could simplify the loop, run
 
   ## Sub-problem: place_piece! method
     - see above
-    - need to combine current two methods under one unified method.
+    - need to combine current two methods under one unified method depending on the value of current_player
 
   ## Sub-problem: how to set, determine, and change the current_player
     - alternate_player method (I don't like this var name because "alternate" could be read two ways)
 
+
 # Problem: Decide which player goes first, initially based on coin toss, then based on who won the last round
+Coin toss could set a key first_turn to true, then subsequent games 
 
+Variable current_player should, on game initialization, be assigned to whichever player has the first_turn key set to true. Then current_player would alternate as described in the documentation. When a winner was determined, the winner's key would be set to true, and the other players reset. This seems like it would take a rather complicated method.
 
+  ## Sub-problem: Determine winner
+  Current method
 
 ___
 COMPLETED
