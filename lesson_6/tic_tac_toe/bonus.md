@@ -1,6 +1,3 @@
-# Problem: Set up game
-Prior to the game beginning, the player should enter their name and 
-
 
 ___
 # Problem: Graphical display of open squares
