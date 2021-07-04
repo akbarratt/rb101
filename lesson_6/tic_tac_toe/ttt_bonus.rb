@@ -6,6 +6,7 @@ WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # rows
 INITIAL_MARKER = ' '
 PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
+COIN = ['HEADS', 'TAILS']
 
 def prompt(msg)
   puts "=> #{msg}"
@@ -21,14 +22,91 @@ def joinor(array, delimiter = ',', word = 'or')
   end
 end
 
+def initialize_game(user, com)
+  tokens = ['X', 'O']
+  prompt 'Welcome to Tic Tac Toe!'
+  prompt 'Please enter your name:'
+  user[:name] = gets.chomp # if valid, else loop
+  unless tokens.include?(user[:name][0].upcase)
+    tokens << user[:name][0].upcase
+  end
+  loop do
+    prompt "Select a token: #{joinor(tokens)}."
+    user[:token] = gets.chomp
+    break if tokens.include?(user[:token].upcase)
+    prompt "Invalid input."
+  end
+  choose_com_token(user, com, tokens)
+  coin_toss(user, com)
+end
+
+def choose_com_token(user, com, tokens)
+  if user[:token] == tokens[2]
+    com[:token] = 'C'
+  elsif user[:token] == 'X'
+    com[:token] = 'O'
+  else
+    com[:token] = 'X'
+  end
+end
+
+def coin_toss(user, com)
+  prompt 'We will toss a coin to determine who plays first.'
+  prompt "Choose a side, #{joinor(COIN)}."
+  user_coin = gets.chomp.upcase
+  unless COIN.include?(user_coin)
+    prompt 'Invalid response. Assigning a side...'
+    sleep(1)
+    user_coin = COIN.sample
+  end
+  prompt "You have chosen #{user_coin}."
+  prompt "Tossing coin..."
+  sleep(1)
+  coin_results = COIN.sample
+  prompt "It's #{coin_results}!"
+  if user_coin == coin_results
+    prompt "You go first, #{user[:name]}."
+    # set player to have first turn
+  else
+    prompt "The computer goes first."
+    # set computer to have first turn
+  end
+end
+
+def game_loop(user, com)
+  loop do
+    board = initialize_board
+    loop do
+      display_board(board, user, com)
+  
+      player_places_piece!(board, user, com)
+      break if someone_won?(board, user, com) || board_full?(board)
+  
+      computer_places_piece!(board, com)
+      break if someone_won?(board, user, com) || board_full?(board)
+    end
+  
+    display_board(board, user, com)
+  
+    if someone_won?(board, user, com)
+      prompt "#{detect_winner(board, user, com)} won!"
+    else
+      prompt "It's a tie!"
+    end
+    prompt "Play again? (y or n)"
+    answer = gets.chomp
+    break unless answer.downcase.start_with?('y')
+  end
+end
+
 def empty_squares(brd)
   brd.keys.select { |num| brd[num] == INITIAL_MARKER }
 end
 
 # rubocop:disable Metrics/AbcSize
-def display_board(brd)
+def display_board(brd, user, com)
   system 'clear'
-  puts "You're #{PLAYER_MARKER}. Computer is #{COMPUTER_MARKER}."
+  puts "You're #{user[:token]}. Computer is #{com[:token]}."
   puts ""
   puts "     |     |"
   puts "  #{brd[1]}  |  #{brd[2]}  |  #{brd[3]}"
@@ -51,7 +129,7 @@ def initialize_board
   new_board
 end
 
-def player_places_piece!(brd)
+def player_places_piece!(brd, user, com)
   square = ''
   loop do
     prompt "Choose a square (#{joinor(empty_squares(brd))})"
@@ -59,55 +137,47 @@ def player_places_piece!(brd)
     break if empty_squares(brd).include?(square)
     prompt "Sorry, that's not a valid choice"
   end
-  brd[square] = PLAYER_MARKER
+  brd[square] = user[:token]
 end
 
-def computer_places_piece!(brd)
+def computer_places_piece!(brd, com)
   square = empty_squares(brd).sample
-  brd[square] = COMPUTER_MARKER
+  brd[square] = com[:token]
 end
 
 def board_full?(brd)
   empty_squares(brd).empty?
 end
 
-def someone_won?(brd)
-  !!detect_winner(brd)
+def someone_won?(brd, user, com)
+  !!detect_winner(brd, user, com)
 end
 
-def detect_winner(brd)
+def detect_winner(brd, user, com)
   WINNING_LINES.each do |line|
-    if brd.values_at(*line).count(PLAYER_MARKER) == 3
-      return 'Player'
-    elsif brd.values_at(*line).count(COMPUTER_MARKER) == 3
+    if brd.values_at(*line).count(user[:token]) == 3
+      return "#{user[:name]}"
+    elsif brd.values_at(*line).count(com[:token]) == 3
       return 'Computer'
     end
   end
   nil
 end
 
-loop do
-  board = initialize_board
-  loop do
-    display_board(board)
+user = {
+  name: '',
+  token: '',
+  wins: 0,
+  turns: 0
+}
+com = {
+  name: '',
+  token: '',
+  wins: 0,
+  turns: 0
+}
 
-    player_places_piece!(board)
-    break if someone_won?(board) || board_full?(board)
-
-    computer_places_piece!(board)
-    break if someone_won?(board) || board_full?(board)
-  end
-
-  display_board(board)
-
-  if someone_won?(board)
-    prompt "#{detect_winner(board)} won!"
-  else
-    prompt "It's a tie!"
-  end
-  prompt "Play again? (y or n)"
-  answer = gets.chomp
-  break unless answer.downcase.start_with?('y')
-end
+initialize_game(user, com)
+game_loop(user, com)
 
 prompt "Thanks for playing Tic Tac Toe! Good bye!"
