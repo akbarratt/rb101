@@ -14,7 +14,7 @@ end
 
 def joinor(array, delimiter = ',', word = 'or')
   case array.size
-  when 0..1 then return array.join
+  when 0..1 then array.join
   when 2 then array.join(" #{word} ")
   else
     *list_items, final_item = array
@@ -30,23 +30,25 @@ def initialize_game(user, com)
   unless tokens.include?(user[:name][0].upcase)
     tokens << user[:name][0].upcase
   end
+  choose_user_token(user, tokens)
+  choose_com_token(user, com, tokens)
+  coin_toss(user, com)
+end
+
+def choose_user_token(user, tokens)
   loop do
     prompt "Select a token: #{joinor(tokens)}."
     user[:token] = gets.chomp
     break if tokens.include?(user[:token].upcase)
     prompt "Invalid input."
   end
-  choose_com_token(user, com, tokens)
-  coin_toss(user, com)
 end
 
 def choose_com_token(user, com, tokens)
-  if user[:token] == tokens[2]
-    com[:token] = 'C'
-  elsif user[:token] == 'X'
-    com[:token] = 'O'
-  else
-    com[:token] = 'X'
+  case user[:token]
+  when tokens[2] then com[:token] = 'C'
+  when 'X' then com[:token] = 'O'
+  else com[:token] = 'X'
   end
 end
 
