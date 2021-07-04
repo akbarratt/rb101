@@ -1,18 +1,17 @@
 COIN = ['HEADS', 'TAILS']
 
-def prompt(msg)
-  puts "=> #{msg}"
-end
-
-def joinor(array, delimiter = ',', word = 'or')
-  case array.size
-  when 0..1 then return array.join
-  when 2 then array.join(" #{word} ")
-  else
-    *list_items, final_item = array
-    list_items.join("#{delimiter} ") + "#{delimiter} #{word} #{final_item}"
-  end
-end
+user = {
+  name: '',
+  token: '',
+  wins: 0,
+  turns: 0
+}
+com = {
+  name: '',
+  token: '',
+  wins: 0,
+  turns: 0
+}
 
 def coin_toss(user, com)
   prompt 'We will toss a coin to determine who plays first.'
@@ -36,50 +35,3 @@ def coin_toss(user, com)
     # set computer to have first turn
   end
 end
-
-
-
-tokens = ['X', 'O']
-user = {
-  name: '',
-  token: '',
-  wins: 0,
-  turns: 0
-}
-com = {
-  name: '',
-  token: '',
-  wins: 0,
-  turns: 0
-}
-
-def initialize_game(user, com, tokens)
-  prompt 'Welcome to Tic Tac Toe!'
-  prompt 'Please enter your name:'
-  user[:name] = gets.chomp # if valid, else loop
-  unless tokens.include?(user[:name][0].upcase)
-    tokens << user[:name][0].upcase
-  end
-  loop do
-    prompt "Select a token: #{joinor(tokens)}."
-    user[:token] = gets.chomp
-    break if tokens.include?(user[:token].upcase)
-    prompt "Invalid input."
-  end
-  choose_com_token(user, com, tokens)
-  prompt "#{com[:token]}"
-  # coin_toss(user, com)
-end
-
-def choose_com_token(user, com, tokens)
-  if user[:token] == tokens[2]
-    com[:token] = 'C'
-  elsif user[:token] == 'X'
-    com[:token] = 'O'
-  else
-    com[:token] = 'X'
-  end
-end
-
-initialize_game(user, com, tokens)
-
