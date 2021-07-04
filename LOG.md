@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 129: Saturdy July 3, 2021
+
+**Pomodoros Completed**: 4
+
+**Today's Progress**: Writing new functions and refactoring on TTT Bonus Features.
+
+**My Feelings**: I only had a little bit to do today but it was hard to get going on it. I find this is typically the case after I overwork. Gotta be more careful.
+
 ### Day 128: Friday July 2, 2021
 
 **Pomodoros Completed**: 9
