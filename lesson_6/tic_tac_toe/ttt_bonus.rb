@@ -80,16 +80,12 @@ def game_loop(user, com)
     board = initialize_board
     loop do
       display_board(board, user, com)
-  
       player_places_piece!(board, user, com)
       break if someone_won?(board, user, com) || board_full?(board)
-  
       computer_places_piece!(board, com)
       break if someone_won?(board, user, com) || board_full?(board)
     end
-  
     display_board(board, user, com)
-  
     if someone_won?(board, user, com)
       prompt "#{detect_winner(board, user, com)} won!"
     else
@@ -131,7 +127,7 @@ def initialize_board
   new_board
 end
 
-def player_places_piece!(brd, user, com)
+def player_places_piece!(brd, user)
   square = ''
   loop do
     prompt "Choose a square (#{joinor(empty_squares(brd))})"
