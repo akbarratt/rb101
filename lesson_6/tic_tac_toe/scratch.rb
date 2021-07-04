@@ -13,6 +13,8 @@ com = {
   turns: 0
 }
 
+
+
 def coin_toss(user, com)
   prompt 'We will toss a coin to determine who plays first.'
   prompt "Choose a side, #{joinor(COIN)}."
