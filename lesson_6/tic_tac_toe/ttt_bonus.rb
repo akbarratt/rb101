@@ -177,5 +177,6 @@ com = {
 
 initialize_game(user, com)
 game_loop(user, com)
+# Check for grand champion here, unless grand_champion?
 
 prompt "Thanks for playing Tic Tac Toe! Good bye!"
