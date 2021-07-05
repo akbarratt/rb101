@@ -48,8 +48,9 @@ end
 
 someone_won?(board, user, com) || board_full?(board)
 if someone_won?(board, user, com)
-  prompt "#{detect_winner(board, user, com)} won!"
-  binding.pry
+  prompt "#{detect_winner(board, user, com)[:name]} won!"
+  detect_winner(board, user, com)[:wins] +=1
+  prompt "#{detect_winner(board, user, com)[:name]} has won #{detect_winner(board, user, com)[:wins]} time(s)!"
 else
   prompt "It's a tie!"
 end
