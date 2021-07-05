@@ -81,6 +81,7 @@ Variable current_player should, on game initialization, be assigned to whichever
 
   ## Sub-problem: Determine winner
   Current method
+  Problem: Every time we call "determine winner" we add +1 to the winner's record. So the tallying of score will need to be its own method that only gets called once. Like increment_wins. But this is another good reason for "determine winner" to return the user object
 
 Game over?
   If no game ending condition, keep looping
@@ -96,7 +97,14 @@ Game over?
 Check for grand champion
   If none, continue game
   If computer or user wins > 5, end game and declare grand champion
-  
+
+
+
+___
+BUGS
+___
+Name validation accepts an empty string. Need better validation.
+
 
 ___
 COMPLETED
