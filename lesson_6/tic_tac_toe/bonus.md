@@ -82,6 +82,22 @@ Variable current_player should, on game initialization, be assigned to whichever
   ## Sub-problem: Determine winner
   Current method
 
+Game over?
+  If no game ending condition, keep looping
+  Check for tie
+  Check for winner
+    Check player token
+    Check computer token
+  If winner,
+    Increment winner
+    Change current player to winner
+    Break
+
+Check for grand champion
+  If none, continue game
+  If computer or user wins > 5, end game and declare grand champion
+  
+
 ___
 COMPLETED
 ___
