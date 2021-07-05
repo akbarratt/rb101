@@ -87,7 +87,11 @@ def game_loop(user, com)
     end
     display_board(board, user, com)
     if someone_won?(board, user, com)
-      prompt "#{detect_winner(board, user, com)[:name]} won!"
+      winner = detect_winner(board, user, com)
+      prompt "#{winner[:name]} won!"
+      winner[:wins] +=1
+      prompt "#{winner[:name]} has won #{winner[:wins]} time(s)!"
+      # current_player = winner
     else
       prompt "It's a tie!"
     end
