@@ -20,7 +20,7 @@ def joinor(array, delimiter = ',', word = 'or')
   end
 end
 
-def initialize_game(user, com)
+def initialize_game(current_player, user, com)
   tokens = ['X', 'O']
   prompt 'Welcome to Tic Tac Toe!'
   prompt 'Please enter your name:'
@@ -30,7 +30,7 @@ def initialize_game(user, com)
   end
   choose_user_token(user, tokens)
   choose_com_token(user, com, tokens)
-  coin_toss(user, com)
+  coin_toss(current_player, user, com)
 end
 
 def choose_user_token(user, tokens)
@@ -48,29 +48,28 @@ def choose_com_token(user, com, tokens)
   when 'X' then com[:token] = 'O'
   else com[:token] = 'X'
   end
+  # Bug: need to add computer selection if user token is 'C'
 end
 
-def coin_toss(user, com)
+def coin_toss(current_player, user, com)
   prompt 'We will toss a coin to determine who plays first.'
   prompt "Choose a side, #{joinor(COIN)}."
   user_coin = gets.chomp.upcase
-  unless COIN.include?(user_coin)
-    prompt 'Invalid response. Assigning a side...'
-    sleep(1)
-    user_coin = COIN.sample
-  end
+  invalid_coin(user_coin) unless COIN.include?(user_coin)
   prompt "You have chosen #{user_coin}."
   prompt "Tossing coin..."
   sleep(1)
   coin_results = COIN.sample
   prompt "It's #{coin_results}!"
-  if user_coin == coin_results
-    prompt "You go first, #{user[:name]}."
-    # set player to have first turn
-  else
-    prompt "The computer goes first."
-    # set computer to have first turn
-  end
+  current_player = (user_coin == coin_results) ? user : com
+  prompt "#{current_player[:name]} will go first."
+  sleep(1)
+end
+
+def invalid_coin(user_coin)
+  prompt 'Invalid response. Assigning a side...'
+  sleep(1)
+  user_coin = COIN.sample
 end
 
 def game_loop(current_player, user, com)
@@ -185,14 +184,14 @@ user = {
   wins: 0,
 }
 com = {
-  name: '',
+  name: 'Computer',
   token: '',
   wins: 0,
 }
 
-current_player = user
+current_player = 
 
-initialize_game(user, com)
+initialize_game(current_player, user, com)
 game_loop(current_player, user, com)
 # Check for grand champion here, unless grand_champion?
 
