@@ -73,16 +73,10 @@ def coin_toss(user, com)
   end
 end
 
-def game_loop(user, com)
+def game_loop(current_player, user, com)
   loop do
     board = initialize_board
-    loop do
-      display_board(board, user, com)
-      player_places_piece!(board, user)
-      break if someone_won?(board, user, com) || board_full?(board)
-      computer_places_piece!(board, com)
-      break if someone_won?(board, user, com) || board_full?(board)
-    end
+    turn_loop(current_player, board, user, com)
     display_board(board, user, com)
     if someone_won?(board, user, com)
       winner = detect_winner(board, user, com)
@@ -96,6 +90,15 @@ def game_loop(user, com)
     prompt "Play again? (y or n)"
     answer = gets.chomp
     break unless answer.downcase.start_with?('y')
+  end
+end
+
+def turn_loop(current_player, brd, user, com)
+  loop do
+    display_board(brd, user, com)
+    place_piece!(current_player, brd, user, com)
+    current_player = alternate_player(current_player, user, com)
+    break if someone_won?(brd, user, com) || board_full?(brd)
   end
 end
 
@@ -129,7 +132,15 @@ def initialize_board
   new_board
 end
 
-def player_places_piece!(brd, user)
+def place_piece!(current_player, board, user, com)
+  if current_player == user
+    user_places_piece!(board, user)
+  else
+    computer_places_piece!(board, com)
+  end
+end
+
+def user_places_piece!(brd, user)
   square = ''
   loop do
     prompt "Choose a square (#{joinor(empty_squares(brd))})"
@@ -143,6 +154,10 @@ end
 def computer_places_piece!(brd, com)
   square = empty_squares(brd).sample
   brd[square] = com[:token]
+end
+
+def alternate_player(current_player, user, com)
+  current_player == user ? current_player = com : current_player = user
 end
 
 def board_full?(brd)
@@ -175,10 +190,10 @@ com = {
   wins: 0,
 }
 
-current_player = 
+current_player = user
 
 initialize_game(user, com)
-game_loop(user, com)
+game_loop(current_player, user, com)
 # Check for grand champion here, unless grand_champion?
 
 prompt "Thanks for playing Tic Tac Toe! Good bye!"
