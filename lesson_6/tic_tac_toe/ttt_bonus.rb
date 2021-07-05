@@ -80,14 +80,14 @@ def game_loop(user, com)
     board = initialize_board
     loop do
       display_board(board, user, com)
-      player_places_piece!(board, user, com)
+      player_places_piece!(board, user)
       break if someone_won?(board, user, com) || board_full?(board)
       computer_places_piece!(board, com)
       break if someone_won?(board, user, com) || board_full?(board)
     end
     display_board(board, user, com)
     if someone_won?(board, user, com)
-      prompt "#{detect_winner(board, user, com)} won!"
+      prompt "#{detect_winner(board, user, com)[:name]} won!"
     else
       prompt "It's a tie!"
     end
@@ -154,9 +154,9 @@ end
 def detect_winner(brd, user, com)
   WINNING_LINES.each do |line|
     if brd.values_at(*line).count(user[:token]) == 3
-      return "#{user[:name]}"
+      return user
     elsif brd.values_at(*line).count(com[:token]) == 3
-      return 'Computer'
+      return com
     end
   end
   nil
@@ -166,13 +166,11 @@ user = {
   name: '',
   token: '',
   wins: 0,
-  turns: 0
 }
 com = {
   name: '',
   token: '',
   wins: 0,
-  turns: 0
 }
 
 initialize_game(user, com)
