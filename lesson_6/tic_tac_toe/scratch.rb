@@ -21,9 +21,9 @@ com = {
   turns: 0
 }
 
-board = {1=>"X",
-2=>"X",
-3=>"X",
+board = {1=>" ",
+2=>" ",
+3=>" ",
 4=>" ",
 5=>" ",
 6=>" ",
@@ -31,29 +31,65 @@ board = {1=>"X",
 8=>" ",
 9=>" "}
 
-def someone_won?(brd, user, com)
-  true
+current_player = user
+
+def display_board(brd, user, com)
+  system 'clear'
+  puts "You're #{user[:token]}. Computer is #{com[:token]}."
+  puts ""
+  puts "     |     |"
+  puts "  #{brd[1]}  |  #{brd[2]}  |  #{brd[3]}"
+  puts "     |     |"
+  puts "-----|-----|-----"
+  puts "     |     |"
+  puts "  #{brd[4]}  |  #{brd[5]}  |  #{brd[6]}"
+  puts "     |     |"
+  puts "-----|-----|-----"
+  puts "     |     |"
+  puts "  #{brd[7]}  |  #{brd[8]}  |  #{brd[9]}"
+  puts "     |     |"
+  puts ""
 end
 
-def detect_winner(brd, user, com)
-  WINNING_LINES.each do |line|
-    if brd.values_at(*line).count(user[:token]) == 3
-      return user
-    elsif brd.values_at(*line).count(com[:token]) == 3
-      return com
-    end
+def user_places_piece!(brd, user)
+  square = ''
+  loop do
+    prompt "Choose a square (#{joinor(empty_squares(brd))})"
+    square = gets.chomp.to_i
+    break if empty_squares(brd).include?(square)
+    prompt "Sorry, that's not a valid choice"
   end
-  nil
+  brd[square] = user[:token]
 end
 
-someone_won?(board, user, com) || board_full?(board)
-if someone_won?(board, user, com)
-  prompt "#{detect_winner(board, user, com)[:name]} won!"
-  detect_winner(board, user, com)[:wins] +=1
-  prompt "#{detect_winner(board, user, com)[:name]} has won #{detect_winner(board, user, com)[:wins]} time(s)!"
-else
-  prompt "It's a tie!"
+def place_piece!(current_player, board, user, com)
+  if current_player == user
+    user_places_piece!(board, user)
+  else
+    computer_places_piece!(board, com)
+  end
 end
+
+def computer_places_piece!(brd, com)
+  square = empty_squares(brd).sample
+  brd[square] = com[:token]
+end
+
+def alternate_player(current_player, user, com)
+  current_player == user ? current_player = com : current_player = user
+end
+
+def turn_loop(current_player, user, com)
+  loop do
+    display_board(board, user, com)
+    place piece!(current_player, board, user, com)
+    current_player = alternate_player(current_player, user, com)
+    break if someone_won?(board, user, com) || board_full?(board)
+  end
+end
+
+puts current_player
+puts alternate_player(current_player, user, com)
 
 
 # def coin_toss(user, com)
