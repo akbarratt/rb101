@@ -55,7 +55,11 @@ def coin_toss(current_player, user, com)
   prompt 'We will toss a coin to determine who plays first.'
   prompt "Choose a side, #{joinor(COIN)}."
   user_coin = gets.chomp.upcase
-  invalid_coin(user_coin) unless COIN.include?(user_coin)
+  unless COIN.include?(user_coin)
+    prompt 'Invalid response. Assigning a side...'
+    sleep(1)
+    user_coin = COIN.sample
+  end
   prompt "You have chosen #{user_coin}."
   prompt "Tossing coin..."
   sleep(1)
@@ -64,12 +68,6 @@ def coin_toss(current_player, user, com)
   current_player = (user_coin == coin_results) ? user : com
   prompt "#{current_player[:name]} will go first."
   sleep(1)
-end
-
-def invalid_coin(user_coin)
-  prompt 'Invalid response. Assigning a side...'
-  sleep(1)
-  user_coin = COIN.sample
 end
 
 def game_loop(current_player, user, com)
