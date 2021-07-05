@@ -6,11 +6,11 @@ I started this progress log partway through RB101. Newest entries first.
 
 ### Day 130: Sunday July 4, 2021
 
-**Pomodoros Completed**: 1
+**Pomodoros Completed**: 2
 
 **Today's Progress**: Brainstorming new methods.
 
-**My Feelings**: A headache took me out most of the morning and now I've got a party to go to. About 20 minutes shy of my weekly goal, so that's very annoying.
+**My Feelings**: A headache took me out most of the morning and now I've got a party to go to. Managed to hit my 15 hour quota just barely. Yay me!
 
 ### Day 129: Saturday July 3, 2021
 
