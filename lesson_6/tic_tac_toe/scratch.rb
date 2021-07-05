@@ -37,3 +37,17 @@ def coin_toss(user, com)
     # set computer to have first turn
   end
 end
+
+# def grand_champion?
+#   !!check_for_grand_champion(user, com)
+# end
+
+# def check_for_grand_champion(user, com)
+#   if user[:wins] == 5
+#     prompt "#{user[:name]} is the Grand Champion!"
+#   elsif com[:wins] == 5
+#     prompt "Computer is the Grand Champion!"
+#   end
+#   nil
+# end
+
