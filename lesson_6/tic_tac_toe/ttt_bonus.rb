@@ -87,14 +87,8 @@ def gameplay_loop(current_player, user, com)
     board = initialize_board
     turn_loop(current_player, board, user, com)
     display_board(board, user, com)
-    if someone_won?(board, user, com)
-      winner = detect_winner(board, user, com)
-      display_winner(winner)
-      increment_winner(winner)
-      current_player = winner
-    else
-      prompt "It's a tie!"
-    end
+    game_over(board, user, com)
+    current_player = detect_winner(board, user, com) if someone_won?(board, user, com)
     # prompt "Play again? (y or n)"
     # answer = gets.chomp
     sleep(1)
@@ -122,6 +116,16 @@ end
 
 def game_over?(brd, user, com)
   someone_won?(brd, user, com) || board_full?(brd)
+end
+
+def game_over(brd, user, com)
+  if someone_won?(brd, user, com)
+    winner = detect_winner(brd, user, com)
+    display_winner(winner)
+    increment_winner(winner)
+  else
+    prompt "It's a tie!"
+  end
 end
 
 def empty_squares(brd)
