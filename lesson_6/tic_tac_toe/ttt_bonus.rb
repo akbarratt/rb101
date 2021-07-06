@@ -1,4 +1,5 @@
 require 'pry'
+require 'pry-byebug'
 
 WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # rows
                 [[1, 4, 7], [2, 5, 8], [3, 6, 9]] + # columns
@@ -30,7 +31,9 @@ def initialize_game(current_player, user, com)
   end
   choose_user_token(user, tokens)
   choose_com_token(user, com, tokens)
-  coin_toss(current_player, user, com)
+  # current_player = coin_toss(user, com)
+  # prompt "#{current_player[:name]} will go first."
+  # sleep(1)
 end
 
 def choose_user_token(user, tokens)
@@ -51,26 +54,32 @@ def choose_com_token(user, com, tokens)
   # Bug: need to add computer selection if user token is 'C'
 end
 
-def coin_toss(current_player, user, com)
+def coin_toss(user, com)
+  user_coin = ''
   prompt 'We will toss a coin to determine who plays first.'
   prompt "Choose a side, #{joinor(COIN)}."
-  user_coin = gets.chomp.upcase
-  unless COIN.include?(user_coin)
-    prompt 'Invalid response. Assigning a side...'
-    sleep(1)
-    user_coin = COIN.sample
-  end
+  user_coin = choose_side(user_coin)
   prompt "You have chosen #{user_coin}."
   prompt "Tossing coin..."
-  sleep(1)
   coin_results = COIN.sample
-  prompt "It's #{coin_results}!"
-  current_player = (user_coin == coin_results) ? user : com
-  prompt "#{current_player[:name]} will go first."
   sleep(1)
+  prompt "It's #{coin_results}!"
+  winner = (user_coin == coin_results) ? user : 
+  "#{winner[:name]} goes first."
+  sleep(1)
+  winner
+end
+
+def choose_side(user_coin)
+  loop do
+    user_coin = gets.chomp.upcase
+    return user_coin if COIN.include?(user_coin)
+    prompt 'Invalid response.'
+  end
 end
 
 def game_loop(current_player, user, com)
+  current_player = coin_toss(user, com)
   loop do
     board = initialize_board
     turn_loop(current_player, board, user, com)
@@ -80,7 +89,7 @@ def game_loop(current_player, user, com)
       prompt "#{winner[:name]} won!"
       winner[:wins] +=1
       prompt "#{winner[:name]} has won #{winner[:wins]} time(s)!"
-      # current_player = winner
+      current_player = winner
     else
       prompt "It's a tie!"
     end
