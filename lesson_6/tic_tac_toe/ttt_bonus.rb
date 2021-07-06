@@ -84,9 +84,8 @@ def game_loop(user, com)
     display_board(board, user, com)
     if someone_won?(board, user, com)
       winner = detect_winner(board, user, com)
-      prompt "#{winner[:name]} won!"
-      winner[:wins] +=1
-      prompt "#{winner[:name]} has won #{winner[:wins]} time(s)!"
+      display_winner(winner)
+      increment_winner(winner)
       current_player = winner
     else
       prompt "It's a tie!"
@@ -97,13 +96,26 @@ def game_loop(user, com)
   end
 end
 
+def display_winner(winner)
+  prompt "#{winner[:name]} won!"
+end
+
+def increment_winner(winner)
+  winner[:wins] +=1
+  prompt "#{winner[:name]} has won #{winner[:wins]} time(s)!"
+end
+
 def turn_loop(current_player, brd, user, com)
   loop do
     display_board(brd, user, com)
     place_piece!(current_player, brd, user, com)
     current_player = alternate_player(current_player, user, com)
-    break if someone_won?(brd, user, com) || board_full?(brd)
+    break if game_over?(brd, user, com)
   end
+end
+
+def game_over?(brd, user, com)
+  someone_won?(brd, user, com) || board_full?(brd)
 end
 
 def empty_squares(brd)
