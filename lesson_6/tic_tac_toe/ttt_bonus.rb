@@ -89,6 +89,7 @@ def gameplay_loop(current_player, user, com)
     display_board(board, user, com)
     game_over(board, user, com)
     current_player = detect_winner(board, user, com) if someone_won?(board, user, com)
+    # Maybe this can be fixed if current player is moved to within the player hashes?
     # prompt "Play again? (y or n)"
     # answer = gets.chomp
     sleep(1)
