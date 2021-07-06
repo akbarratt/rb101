@@ -79,7 +79,7 @@ def play_game(user, com)
   initialize_game(user, com)
   current_player = coin_toss(user, com)
   gameplay_loop(current_player, user, com)
-  # Check grand champion?
+  prompt "#{detect_champion(user, com)[:name]} is the Grand Champion!"
 end
 
 def gameplay_loop(current_player, user, com)
@@ -95,9 +95,10 @@ def gameplay_loop(current_player, user, com)
     else
       prompt "It's a tie!"
     end
-    prompt "Play again? (y or n)"
-    answer = gets.chomp
-    break unless answer.downcase.start_with?('y')
+    # prompt "Play again? (y or n)"
+    # answer = gets.chomp
+    sleep(1)
+    break if grand_champion?(user, com)
   end
 end
 
@@ -200,6 +201,20 @@ def detect_winner(brd, user, com)
   nil
 end
 
+def grand_champion?(user, com)
+  !!detect_champion(user, com)
+end
+
+def detect_champion(user, com)
+  if user[:wins] == 5
+    user
+  elsif com[:wins] == 5
+    com
+  else
+    nil
+  end
+end
+
 user = {
   name: '',
   token: '',
@@ -212,6 +227,5 @@ com = {
 }
 
 play_game(user, com)
-# Check for grand champion here, unless grand_champion?
 
 prompt "Thanks for playing Tic Tac Toe! Good bye!"
