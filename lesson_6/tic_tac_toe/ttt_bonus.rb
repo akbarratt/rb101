@@ -21,7 +21,7 @@ def joinor(array, delimiter = ',', word = 'or')
   end
 end
 
-def initialize_game(current_player, user, com)
+def initialize_game(user, com)
   tokens = ['X', 'O']
   prompt 'Welcome to Tic Tac Toe!'
   prompt 'Please enter your name:'
@@ -31,9 +31,6 @@ def initialize_game(current_player, user, com)
   end
   choose_user_token(user, tokens)
   choose_com_token(user, com, tokens)
-  # current_player = coin_toss(user, com)
-  # prompt "#{current_player[:name]} will go first."
-  # sleep(1)
 end
 
 def choose_user_token(user, tokens)
@@ -64,8 +61,8 @@ def coin_toss(user, com)
   coin_results = COIN.sample
   sleep(1)
   prompt "It's #{coin_results}!"
-  winner = (user_coin == coin_results) ? user : 
-  "#{winner[:name]} goes first."
+  winner = (user_coin == coin_results) ? user : com
+  prompt "#{winner[:name]} goes first."
   sleep(1)
   winner
 end
@@ -78,7 +75,8 @@ def choose_side(user_coin)
   end
 end
 
-def game_loop(current_player, user, com)
+def game_loop(user, com)
+  initialize_game(user, com)
   current_player = coin_toss(user, com)
   loop do
     board = initialize_board
@@ -196,10 +194,7 @@ com = {
   wins: 0,
 }
 
-current_player = 
-
-initialize_game(current_player, user, com)
-game_loop(current_player, user, com)
+game_loop(user, com)
 # Check for grand champion here, unless grand_champion?
 
 prompt "Thanks for playing Tic Tac Toe! Good bye!"
