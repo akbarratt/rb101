@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 131: Monday July 5, 2021
+
+**Pomodoros Completed**: 7
+
+**Today's Progress**: Building new TTT bonus features, refactoring, testing, researching and fixing a conflict between `pry` and `pry-byebug`, struggling with local variable scope, creating diagrams of new methods.
+
+**My Feelings**: This is tough work! I'm a little apprehensive about 21 at this rate. I did realize I went kinda off script building some of these new features and may end up having to remove things before I turn in the assignment. Someday I will learn to read the criteria more carefully before starting...
+
 ### Day 130: Sunday July 4, 2021
 
 **Pomodoros Completed**: 2
