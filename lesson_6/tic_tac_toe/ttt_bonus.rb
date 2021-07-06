@@ -75,9 +75,14 @@ def choose_side(user_coin)
   end
 end
 
-def game_loop(user, com)
+def play_game(user, com)
   initialize_game(user, com)
   current_player = coin_toss(user, com)
+  gameplay_loop(current_player, user, com)
+  # Check grand champion?
+end
+
+def gameplay_loop(current_player, user, com)
   loop do
     board = initialize_board
     turn_loop(current_player, board, user, com)
@@ -206,7 +211,7 @@ com = {
   wins: 0,
 }
 
-game_loop(user, com)
+play_game(user, com)
 # Check for grand champion here, unless grand_champion?
 
 prompt "Thanks for playing Tic Tac Toe! Good bye!"
