@@ -22,6 +22,7 @@ def joinor(array, delimiter = ',', word = 'or')
 end
 
 def play_game(user, com)
+  user[:wins], com[:wins] = [0, 0]
   current_player = coin_toss(user, com)
   gameplay_loop(current_player, user, com)
   prompt "#{detect_champion(user, com)[:name]} is the Grand Champion!"
@@ -60,7 +61,6 @@ end
 def coin_toss(user, com)
   user_coin = ''
   prompt 'We will toss a coin to determine who plays first.'
-  prompt "Choose a side, #{joinor(COIN)}."
   user_coin = choose_side(user_coin)
   prompt "You have chosen #{user_coin}."
   prompt "Tossing coin..."
@@ -75,6 +75,7 @@ end
 
 def choose_side(user_coin)
   loop do
+    prompt "Choose a side, #{joinor(COIN)}."
     user_coin = gets.chomp.upcase
     return user_coin if COIN.include?(user_coin)
     prompt 'Invalid response.'
@@ -175,12 +176,13 @@ def someone_won?(brd, user, com)
 end
 
 def game_over(brd, user, com)
-  display_board(brd, user, com)
   if someone_won?(brd, user, com)
     winner = detect_winner(brd, user, com)
-    display_winner(winner)
     increment_winner(winner)
+    display_board(brd, user, com)
+    display_winner(winner)
   else
+    display_board(brd, user, com)
     prompt "It's a tie!"
   end
 end
@@ -219,6 +221,15 @@ def detect_champion(user, com)
   end
 end
 
+def play_again?
+  # loop do
+  #   prompt "Would you like to play again, #{user[:name]}? (y/n)"
+  #   answer = gets.chomp
+  #   break if answer == 'n'
+  # end
+  true
+end
+
 user = {
   name: '',
   token: '',
@@ -230,8 +241,9 @@ com = {
   wins: 0,
 }
 
-# until play_again? = false
 initialize_game(user, com)
-play_game(user, com)
+until play_again? == false
+  play_game(user, com)
+end
 
 prompt "Thanks for playing Tic Tac Toe! Good bye!"
