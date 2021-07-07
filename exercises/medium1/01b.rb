@@ -1,6 +1,4 @@
 # Refactoring from 01.rb
-# I think the type should be detected within the method itself
-# The detection methods are extraneous.
 
 def rotate(data_structure)
   return rotate_array(data_structure) if data_structure.is_a?(Array)
