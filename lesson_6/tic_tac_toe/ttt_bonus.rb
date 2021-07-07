@@ -88,8 +88,8 @@ def gameplay_loop(current_player, user, com)
     turn_loop(current_player, board, user, com)
     game_over(board, user, com)
     current_player = detect_winner(board, user, com) if someone_won?(board, user, com)
-    sleep(1)
     break if grand_champion?(user, com)
+    sleep(1) # Replace with press key to continue
   end
 end
 
@@ -111,7 +111,10 @@ end
 # rubocop:disable Metrics/AbcSize
 def display_board(brd, user, com)
   system 'clear'
-  puts "You're #{user[:token]}. Computer is #{com[:token]}."
+  prompt "#{user[:name]} is \"#{user[:token]}\" with #{user[:wins]} win(s). #{com[:name]} is \"#{com[:token]}\" with #{com[:wins]} win(s)."
+  prompt "First to 5 wins is the Grand Champion!"
+  # Prompt rules first to 5 winds
+  # Prompt current wins for 
   puts ""
   puts "     |     |"
   puts "  #{brd[1]}  |  #{brd[2]}  |  #{brd[3]}"
@@ -173,7 +176,7 @@ def someone_won?(brd, user, com)
 end
 
 def game_over(brd, user, com)
-  display_board(board, user, com)
+  display_board(brd, user, com)
   if someone_won?(brd, user, com)
     winner = detect_winner(brd, user, com)
     display_winner(winner)
@@ -200,7 +203,7 @@ end
 
 def increment_winner(winner)
   winner[:wins] +=1
-  prompt "#{winner[:name]} has won #{winner[:wins]} time(s)!"
+  prompt "#{winner[:name]} has won #{winner[:wins]} time(s)!" # could improve this to use time/times
 end
 
 def grand_champion?(user, com)
