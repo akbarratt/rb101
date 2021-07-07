@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 132: Tuesday July 6, 2021
+
+**Pomodoros Completed**: 8
+
+**Today's Progress**: Continuing to refactor and improve TTT bonus features, also tackled Medium 1.6 in study group.
+
+**My Feelings**: A lot of mentally taxing labor today but I feel it's paying off. Studying with other students definitely helps me focus on communicating the concepts more coherently.
+
 ### Day 131: Monday July 5, 2021
 
 **Pomodoros Completed**: 7
