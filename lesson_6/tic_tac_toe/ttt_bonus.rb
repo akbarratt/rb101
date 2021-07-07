@@ -29,18 +29,30 @@ def play_game(user, com)
 end
 
 def initialize_game(user, com)
-  tokens = ['X', 'O']
   prompt 'Welcome to Tic Tac Toe!'
-  prompt 'Please enter your name:'
-  user[:name] = gets.chomp # if valid, else loop
+  user[:name] = get_user_name
+  tokens = generate_tokens(user)
+  choose_user_token(user, tokens)
+  choose_com_token(user, com)
+end
+
+def get_user_name
+  name = ''
+  loop do
+    prompt 'Please enter your name:'
+    name = gets.chomp
+    break unless name.empty?
+  end
+  name
+end
+
+def generate_tokens(user)
+  tokens = ['X', 'O']
   unless tokens.include?(user[:name][0].upcase)
     tokens << user[:name][0].upcase
   end
-  choose_user_token(user, tokens)
-  choose_com_token(user, com, tokens)
+  tokens
 end
-
-# Revise review token behavior; possibly redundant.
 
 def choose_user_token(user, tokens)
   loop do
@@ -51,13 +63,14 @@ def choose_user_token(user, tokens)
   end
 end
 
-def choose_com_token(user, com, tokens)
-  case user[:token]
-  when tokens[2] then com[:token] = 'C'
-  when 'X' then com[:token] = 'O'
-  else com[:token] = 'X'
+def choose_com_token(user, com)
+  if user[:token] == 'C' || user[:token] == 'O'
+    com[:token] = 'X'
+  elsif user[:token] == 'X'
+    com[:token] = 'O'
+  else
+    com[:token] = 'C'
   end
-  # Bug: need to add computer selection if user token is 'C'
 end
 
 def coin_toss(user, com)
