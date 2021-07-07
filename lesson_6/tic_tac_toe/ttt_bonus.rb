@@ -22,7 +22,6 @@ def joinor(array, delimiter = ',', word = 'or')
 end
 
 def play_game(user, com)
-  initialize_game(user, com)
   current_player = coin_toss(user, com)
   gameplay_loop(current_player, user, com)
   prompt "#{detect_champion(user, com)[:name]} is the Grand Champion!"
@@ -232,6 +231,7 @@ com = {
 }
 
 # until play_again? = false
+initialize_game(user, com)
 play_game(user, com)
 
 prompt "Thanks for playing Tic Tac Toe! Good bye!"
