@@ -159,11 +159,11 @@ def initialize_board
   new_board
 end
 
-def place_piece!(current_player, board, user, com)
+def place_piece!(current_player, brd, user, com)
   if current_player == user
-    user_places_piece!(board, user)
+    user_places_piece!(brd, user)
   else
-    computer_places_piece!(board, com)
+    computer_places_piece!(brd, com)
   end
 end
 
@@ -224,11 +224,13 @@ user = {
   name: '',
   token: '',
   wins: 0,
+  turn?: false
 }
 com = {
   name: 'Computer',
   token: '',
   wins: 0,
+  turn?: false
 }
 
 play_game(user, com)
