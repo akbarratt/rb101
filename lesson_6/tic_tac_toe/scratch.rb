@@ -4,4 +4,6 @@ def press_enter_continue
 end
 
 press_enter_continue
-"you have continued"
+puts "You have continued."
+press_any_key
+puts "You have continued, again."
