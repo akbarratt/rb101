@@ -27,13 +27,13 @@ end
 def initialize_game(user, com)
   system 'clear'
   prompt 'Welcome to Tic Tac Toe!'
-  user[:name] = get_user_name
+  user[:name] = set_user_name
   tokens = generate_tokens(user)
   choose_user_token(user, tokens)
-  com[:token] = choose_com_token(user, com)
+  com[:token] = choose_com_token(user)
 end
 
-def get_user_name
+def set_user_name
   name = ''
   loop do
     prompt 'Please enter your name:'
@@ -60,7 +60,7 @@ def choose_user_token(user, tokens)
   end
 end
 
-def choose_com_token(user, com)
+def choose_com_token(user)
   if user[:token] == 'C' || user[:token] == 'O'
     'X'
   elsif user[:token] == 'X'
@@ -72,7 +72,8 @@ end
 
 def play_game(user, com)
   system 'clear'
-  user[:wins], com[:wins] = [0, 0]
+  user[:wins] = 0
+  com[:wins] = 0
   current_player = coin_toss(user, com)
   gameplay_loop(current_player, user, com)
   prompt "#{detect_champion(user, com)[:name]} is the Grand Champion!"
@@ -86,7 +87,7 @@ def coin_toss(user, com)
   sleep(1)
   coin_results = COIN.sample
   prompt "It's #{coin_results}!"
-  winner = (user_coin == coin_results) ? user : com
+  winner = user_coin == coin_results ? user : com
   prompt "#{winner[:name]} goes first."
   sleep(1)
   winner
@@ -106,7 +107,8 @@ def gameplay_loop(current_player, user, com)
     board = initialize_board
     turn_loop(current_player, board, user, com)
     game_over(board, user, com)
-    current_player = detect_winner(board, user, com) if someone_won?(board, user, com)
+    current_player = detect_winner(board, user, com) if
+      someone_won?(board, user, com)
     break if grand_champion?(user, com)
     sleep(1) # Replace with press key to continue
   end
@@ -127,10 +129,11 @@ def turn_loop(current_player, brd, user, com)
   end
 end
 
-# rubocop:disable Metrics/AbcSize
+# rubocop:disable Metrics/MethodLength, Metrics/AbcSize
 def display_board(brd, user, com)
   system 'clear'
-  prompt "#{user[:name]} is \"#{user[:token]}\" with #{user[:wins]} win(s). #{com[:name]} is \"#{com[:token]}\" with #{com[:wins]} win(s)."
+  prompt "#{user[:name]} is \"#{user[:token]}\" with #{user[:wins]} win(s)."
+  prompt "#{com[:name]} is \"#{com[:token]}\" with #{com[:wins]} win(s)."
   prompt "First to 5 wins is the Grand Champion!"
   puts ""
   puts "     |     |"
@@ -146,7 +149,7 @@ def display_board(brd, user, com)
   puts "     |     |"
   puts ""
 end
-# rubocop:enable Metrics/AbcSize
+# rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
 def empty_squares(brd)
   brd.keys.select { |num| brd[num] == INITIAL_MARKER }
@@ -177,7 +180,7 @@ def computer_places_piece!(brd, com)
 end
 
 def alternate_player(current_player, user, com)
-  current_player == user ? current_player = com : current_player = user
+  current_player == user ? com : user
 end
 
 def game_over?(brd, user, com)
@@ -221,7 +224,7 @@ end
 
 def increment_winner(winner)
   winner[:wins] += 1
-  prompt "#{winner[:name]} has won #{winner[:wins]} time(s)!" # could improve this to use time/times
+  prompt "#{winner[:name]} has won #{winner[:wins]} time(s)!"
 end
 
 def grand_champion?(user, com)
@@ -233,14 +236,13 @@ def detect_champion(user, com)
     user
   elsif com[:wins] == GRAND_CHAMPION_SCORE
     com
-  else
-    nil
   end
 end
 
 def play_again(user)
-  answer = 
-  prompt "Would you like to play again, #{user[:name]}? #{joinor(PLAY_AGAIN_VALUES)}?"
+  answer = ''
+  prompt "Would you like to play again, #{user[:name]}?"
+  prompt "#{joinor(PLAY_AGAIN_VALUES)}?"
   loop do
     answer = gets.chomp.upcase
     break if PLAY_AGAIN_VALUES.include?(answer)
@@ -252,12 +254,12 @@ end
 user = {
   name: '',
   token: '',
-  wins: 0,
+  wins: 0
 }
 com = {
   name: 'Computer',
   token: '',
-  wins: 0,
+  wins: 0
 }
 
 initialize_game(user, com)
