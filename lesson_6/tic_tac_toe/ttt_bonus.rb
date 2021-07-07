@@ -4,8 +4,11 @@ require 'pry-byebug'
 WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # rows
                 [[1, 4, 7], [2, 5, 8], [3, 6, 9]] + # columns
                 [[1, 5, 9], [3, 5, 7]] # diagonals
+LINE_SCORE = 3
 INITIAL_MARKER = ' '
 COIN = ['HEADS', 'TAILS']
+GRAND_CHAMPION_SCORE = 5
+PLAY_AGAIN_VALUES = ['YES', 'NO']
 
 def prompt(msg)
   puts "=> #{msg}"
@@ -21,19 +24,13 @@ def joinor(array, delimiter = ',', word = 'or')
   end
 end
 
-def play_game(user, com)
-  user[:wins], com[:wins] = [0, 0]
-  current_player = coin_toss(user, com)
-  gameplay_loop(current_player, user, com)
-  prompt "#{detect_champion(user, com)[:name]} is the Grand Champion!"
-end
-
 def initialize_game(user, com)
+  system 'clear'
   prompt 'Welcome to Tic Tac Toe!'
   user[:name] = get_user_name
   tokens = generate_tokens(user)
   choose_user_token(user, tokens)
-  choose_com_token(user, com)
+  com[:token] = choose_com_token(user, com)
 end
 
 def get_user_name
@@ -65,22 +62,29 @@ end
 
 def choose_com_token(user, com)
   if user[:token] == 'C' || user[:token] == 'O'
-    com[:token] = 'X'
+    'X'
   elsif user[:token] == 'X'
-    com[:token] = 'O'
+    'O'
   else
-    com[:token] = 'C'
+    'C'
   end
 end
 
+def play_game(user, com)
+  system 'clear'
+  user[:wins], com[:wins] = [0, 0]
+  current_player = coin_toss(user, com)
+  gameplay_loop(current_player, user, com)
+  prompt "#{detect_champion(user, com)[:name]} is the Grand Champion!"
+end
+
 def coin_toss(user, com)
-  user_coin = ''
   prompt 'We will toss a coin to determine who plays first.'
   user_coin = choose_side(user_coin)
   prompt "You have chosen #{user_coin}."
   prompt "Tossing coin..."
-  coin_results = COIN.sample
   sleep(1)
+  coin_results = COIN.sample
   prompt "It's #{coin_results}!"
   winner = (user_coin == coin_results) ? user : com
   prompt "#{winner[:name]} goes first."
@@ -128,8 +132,6 @@ def display_board(brd, user, com)
   system 'clear'
   prompt "#{user[:name]} is \"#{user[:token]}\" with #{user[:wins]} win(s). #{com[:name]} is \"#{com[:token]}\" with #{com[:wins]} win(s)."
   prompt "First to 5 wins is the Grand Champion!"
-  # Prompt rules first to 5 winds
-  # Prompt current wins for 
   puts ""
   puts "     |     |"
   puts "  #{brd[1]}  |  #{brd[2]}  |  #{brd[3]}"
@@ -161,10 +163,10 @@ end
 def user_places_piece!(brd, user)
   square = ''
   loop do
-    prompt "Choose a square (#{joinor(empty_squares(brd))})"
+    prompt "Choose a square: #{joinor(empty_squares(brd))}"
     square = gets.chomp.to_i
     break if empty_squares(brd).include?(square)
-    prompt "Sorry, that's not a valid choice"
+    prompt "Sorry, that's not a valid choice."
   end
   brd[square] = user[:token]
 end
@@ -204,9 +206,9 @@ end
 
 def detect_winner(brd, user, com)
   WINNING_LINES.each do |line|
-    if brd.values_at(*line).count(user[:token]) == 3
+    if brd.values_at(*line).count(user[:token]) == LINE_SCORE
       return user
-    elsif brd.values_at(*line).count(com[:token]) == 3
+    elsif brd.values_at(*line).count(com[:token]) == LINE_SCORE
       return com
     end
   end
@@ -218,7 +220,7 @@ def display_winner(winner)
 end
 
 def increment_winner(winner)
-  winner[:wins] +=1
+  winner[:wins] += 1
   prompt "#{winner[:name]} has won #{winner[:wins]} time(s)!" # could improve this to use time/times
 end
 
@@ -227,23 +229,25 @@ def grand_champion?(user, com)
 end
 
 def detect_champion(user, com)
-  if user[:wins] == 5
+  if user[:wins] == GRAND_CHAMPION_SCORE
     user
-  elsif com[:wins] == 5
+  elsif com[:wins] == GRAND_CHAMPION_SCORE
     com
   else
     nil
   end
 end
 
-def play_again?(user)
+def play_again(user)
+  answer = 
+  prompt "Would you like to play again, #{user[:name]}? #{joinor(PLAY_AGAIN_VALUES)}?"
   loop do
-    prompt "Would you like to play again, #{user[:name]}? (y/n)"
-    answer = gets.chomp
-    return answer == 'y' ? true : false
-    # add validation
+    answer = gets.chomp.upcase
+    break if PLAY_AGAIN_VALUES.include?(answer)
+    prompt "Invalid response. Please select #{joinor(PLAY_AGAIN_VALUES)}."
   end
-end # struggling with this validation and loop, review video
+  answer
+end
 
 user = {
   name: '',
@@ -259,7 +263,7 @@ com = {
 initialize_game(user, com)
 loop do
   play_game(user, com)
-  break if play_again?(user) == false
+  break if play_again(user) == 'NO'
 end
 
 prompt "Thanks for playing Tic Tac Toe! Good bye!"
