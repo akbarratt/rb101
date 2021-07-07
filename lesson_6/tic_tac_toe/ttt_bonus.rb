@@ -21,6 +21,13 @@ def joinor(array, delimiter = ',', word = 'or')
   end
 end
 
+def play_game(user, com)
+  initialize_game(user, com)
+  current_player = coin_toss(user, com)
+  gameplay_loop(current_player, user, com)
+  prompt "#{detect_champion(user, com)[:name]} is the Grand Champion!"
+end
+
 def initialize_game(user, com)
   tokens = ['X', 'O']
   prompt 'Welcome to Tic Tac Toe!'
@@ -75,35 +82,21 @@ def choose_side(user_coin)
   end
 end
 
-def play_game(user, com)
-  initialize_game(user, com)
-  current_player = coin_toss(user, com)
-  gameplay_loop(current_player, user, com)
-  prompt "#{detect_champion(user, com)[:name]} is the Grand Champion!"
-end
-
 def gameplay_loop(current_player, user, com)
   loop do
     board = initialize_board
     turn_loop(current_player, board, user, com)
-    display_board(board, user, com)
     game_over(board, user, com)
     current_player = detect_winner(board, user, com) if someone_won?(board, user, com)
-    # Maybe this can be fixed if current player is moved to within the player hashes?
-    # prompt "Play again? (y or n)"
-    # answer = gets.chomp
     sleep(1)
     break if grand_champion?(user, com)
   end
 end
 
-def display_winner(winner)
-  prompt "#{winner[:name]} won!"
-end
-
-def increment_winner(winner)
-  winner[:wins] +=1
-  prompt "#{winner[:name]} has won #{winner[:wins]} time(s)!"
+def initialize_board
+  new_board = {}
+  (1..9).each { |num| new_board[num] = INITIAL_MARKER }
+  new_board
 end
 
 def turn_loop(current_player, brd, user, com)
@@ -113,24 +106,6 @@ def turn_loop(current_player, brd, user, com)
     current_player = alternate_player(current_player, user, com)
     break if game_over?(brd, user, com)
   end
-end
-
-def game_over?(brd, user, com)
-  someone_won?(brd, user, com) || board_full?(brd)
-end
-
-def game_over(brd, user, com)
-  if someone_won?(brd, user, com)
-    winner = detect_winner(brd, user, com)
-    display_winner(winner)
-    increment_winner(winner)
-  else
-    prompt "It's a tie!"
-  end
-end
-
-def empty_squares(brd)
-  brd.keys.select { |num| brd[num] == INITIAL_MARKER }
 end
 
 # rubocop:disable Metrics/AbcSize
@@ -153,10 +128,8 @@ def display_board(brd, user, com)
 end
 # rubocop:enable Metrics/AbcSize
 
-def initialize_board
-  new_board = {}
-  (1..9).each { |num| new_board[num] = INITIAL_MARKER }
-  new_board
+def empty_squares(brd)
+  brd.keys.select { |num| brd[num] == INITIAL_MARKER }
 end
 
 def place_piece!(current_player, brd, user, com)
@@ -187,12 +160,27 @@ def alternate_player(current_player, user, com)
   current_player == user ? current_player = com : current_player = user
 end
 
+def game_over?(brd, user, com)
+  someone_won?(brd, user, com) || board_full?(brd)
+end
+
 def board_full?(brd)
   empty_squares(brd).empty?
 end
 
 def someone_won?(brd, user, com)
   !!detect_winner(brd, user, com)
+end
+
+def game_over(brd, user, com)
+  display_board(board, user, com)
+  if someone_won?(brd, user, com)
+    winner = detect_winner(brd, user, com)
+    display_winner(winner)
+    increment_winner(winner)
+  else
+    prompt "It's a tie!"
+  end
 end
 
 def detect_winner(brd, user, com)
@@ -204,6 +192,15 @@ def detect_winner(brd, user, com)
     end
   end
   nil
+end
+
+def display_winner(winner)
+  prompt "#{winner[:name]} won!"
+end
+
+def increment_winner(winner)
+  winner[:wins] +=1
+  prompt "#{winner[:name]} has won #{winner[:wins]} time(s)!"
 end
 
 def grand_champion?(user, com)
@@ -224,15 +221,14 @@ user = {
   name: '',
   token: '',
   wins: 0,
-  turn?: false
 }
 com = {
   name: 'Computer',
   token: '',
   wins: 0,
-  turn?: false
 }
 
+# until play_again? = false
 play_game(user, com)
 
 prompt "Thanks for playing Tic Tac Toe! Good bye!"
