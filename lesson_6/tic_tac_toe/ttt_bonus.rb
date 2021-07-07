@@ -40,11 +40,13 @@ def initialize_game(user, com)
   choose_com_token(user, com, tokens)
 end
 
+# Revise review token behavior; possibly redundant.
+
 def choose_user_token(user, tokens)
   loop do
     prompt "Select a token: #{joinor(tokens)}."
-    user[:token] = gets.chomp
-    break if tokens.include?(user[:token].upcase)
+    user[:token] = gets.chomp.upcase
+    break if tokens.include?(user[:token])
     prompt "Invalid input."
   end
 end
@@ -221,14 +223,14 @@ def detect_champion(user, com)
   end
 end
 
-def play_again?
-  # loop do
-  #   prompt "Would you like to play again, #{user[:name]}? (y/n)"
-  #   answer = gets.chomp
-  #   break if answer == 'n'
-  # end
-  true
-end
+def play_again?(user)
+  loop do
+    prompt "Would you like to play again, #{user[:name]}? (y/n)"
+    answer = gets.chomp
+    return answer == 'y' ? true : false
+    # add validation
+  end
+end # struggling with this validation and loop, review video
 
 user = {
   name: '',
@@ -242,8 +244,9 @@ com = {
 }
 
 initialize_game(user, com)
-until play_again? == false
+loop do
   play_game(user, com)
+  break if play_again?(user) == false
 end
 
 prompt "Thanks for playing Tic Tac Toe! Good bye!"
