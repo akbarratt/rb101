@@ -1,102 +1,25 @@
-
 ___
-# Problem: Graphical display of open squares
-
-# Example:
-|1|2|3|
-|4|5|6|
-|7|8|9|
-
-|1|2|_|
-|_|5|6|
-|7|8|_|
-
-
-
-
+IN PROGRESS
 ___
-# Problem: Allow player to choose marker (and choose computer marker)
+# Problem: Improve computer AI
+Design the following improvements to the computer AI and implement them in order:
+  - Choose winning square
+  - Defend against opponent wins
+  - Pick square 5 if available
+  - Choose a square at random
 
-Implicit requirements:
-- Computer token should not equal player token.
-- Computer should choose from a limited set of tokens.
-- Should player also be limited?
+  ## Sub-problem: choose winning square
+  When any winning line consists of 2 computer tokens, the computer should place_piece in the third space.
 
-# Example:
-=> Choose any single character as a token (for example "X"):
-"hi"
-=> Invalid token. Please enter a single character:
-"X"
-=> Player is X; Computer is O
+  ## Sub-problem: defend square
+  When any winning line consists of 2 player tokens, the computer should place_piece in the third space (could be consolodated with above? imminent_win?)
 
-# Algorithm:
-- Set a const to an array of choices ("X", "O", "C", "2") (maybe...?)
+  This could become difficult because we iterate through the winning lines in order. What if there are multiples? What if there is a conflict? I suppose the computer should still prioritize moving if it can win.
 
-
-  ## Sub-problem: Choose computer token
-    - If user[:token] is alphanumeric
-      - Computer chooses "C"
-        - Unless player[:token] == "C"
-          - Then choose "X"
-    - If user chooses "X"
-      - Computer chooses "O" (or vice versa)
-      (These two need to be combined; second should go first)
-
-___
-# Problem: Continue game
-
-Should change "play again" to "continue playing?"
-Could allow player to choose at which point in the loop to return to? Is this even possible? Should token selection etc be outside the loop instead?
-
-___
-# Problem: Improve gameplay loop
-Rather than checking the board after each piece, we could simplify the loop, running a method that chooses a piece for either player, based on a variable indicating who is the current player.
-
-# Algorithm
-- Display board
-- Current player place piece
-  - Check for current player (how?)
-  - Run method for human player or computer player
-    - If current_player[:name] == "Computer"
-      - Run computer_turn
-    - Else
-      - Run player_turn
-  - Change current player (how?)
-  - Check win && check tie
-    - Break if win or tie
-    - Else loop again
-
-  ## Sub-problem: place_piece! method
-    - see above
-    - need to combine current two methods under one unified method depending on the value of current_player
-
-  ## Sub-problem: how to set, determine, and change the current_player
-    - alternate_player method (I don't like this var name because "alternate" could be read two ways)
+  ## Sub-problem: pick square 5 if available
+  If there are no imminent wins in any of the winning lines AND the center square is empty, the computer should place its piece in that square.
 
 
-# Problem: Decide which player goes first, initially based on coin toss, then based on who won the last round
-Coin toss could set a key first_turn to true, then subsequent games 
-
-Variable current_player should, on game initialization, be assigned to whichever player has the first_turn key set to true. Then current_player would alternate as described in the documentation. When a winner was determined, the winner's key would be set to true, and the other players reset. This seems like it would take a rather complicated method.
-
-  ## Sub-problem: Determine winner
-  Current method
-  Problem: Every time we call "determine winner" we add +1 to the winner's record. So the tallying of score will need to be its own method that only gets called once. Like increment_wins. But this is another good reason for "determine winner" to return the user object
-
-Game over?
-  If no game ending condition, keep looping
-  Check for tie
-  Check for winner
-    Check player token
-    Check computer token
-  If winner,
-    Increment winner
-    Change current player to winner
-    Break
-
-Check for grand champion
-  If none, continue game
-  If computer or user wins > 5, end game and declare grand champion
 
 
 
@@ -167,3 +90,99 @@ Validate input
   If not, is it '1' or '2'?
 If invalid, assign a choice for the user.
 If 
+
+___
+# Problem: Allow player to choose marker (and choose computer marker)
+
+Implicit requirements:
+- Computer token should not equal player token.
+- Computer should choose from a limited set of tokens.
+- Should player also be limited?
+
+# Example:
+=> Choose any single character as a token (for example "X"):
+"hi"
+=> Invalid token. Please enter a single character:
+"X"
+=> Player is X; Computer is O
+
+# Algorithm:
+- Set a const to an array of choices ("X", "O", "C", "2") (maybe...?)
+
+
+  ## Sub-problem: Choose computer token
+    - If user[:token] is alphanumeric
+      - Computer chooses "C"
+        - Unless player[:token] == "C"
+          - Then choose "X"
+    - If user chooses "X"
+      - Computer chooses "O" (or vice versa)
+      (These two need to be combined; second should go first)
+
+___
+# Problem: Improve gameplay loop
+Rather than checking the board after each piece, we could simplify the loop, running a method that chooses a piece for either player, based on a variable indicating who is the current player.
+
+# Algorithm
+- Display board
+- Current player place piece
+  - Check for current player (how?)
+  - Run method for human player or computer player
+    - If current_player[:name] == "Computer"
+      - Run computer_turn
+    - Else
+      - Run player_turn
+  - Change current player (how?)
+  - Check win && check tie
+    - Break if win or tie
+    - Else loop again
+
+  ## Sub-problem: place_piece! method
+    - see above
+    - need to combine current two methods under one unified method depending on the value of current_player
+
+  ## Sub-problem: how to set, determine, and change the current_player
+    - alternate_player method (I don't like this var name because "alternate" could be read two ways)
+
+
+# Problem: Decide which player goes first, initially based on coin toss, then based on who won the last round
+Coin toss could set a key first_turn to true, then subsequent games 
+
+Variable current_player should, on game initialization, be assigned to whichever player has the first_turn key set to true. Then current_player would alternate as described in the documentation. When a winner was determined, the winner's key would be set to true, and the other players reset. This seems like it would take a rather complicated method.
+
+  ## Sub-problem: Determine winner
+  Current method
+  Problem: Every time we call "determine winner" we add +1 to the winner's record. So the tallying of score will need to be its own method that only gets called once. Like increment_wins. But this is another good reason for "determine winner" to return the user object
+
+Game over?
+  If no game ending condition, keep looping
+  Check for tie
+  Check for winner
+    Check player token
+    Check computer token
+  If winner,
+    Increment winner
+    Change current player to winner
+    Break
+
+Check for grand champion
+  If none, continue game
+  If computer or user wins > 5, end game and declare grand champion
+
+
+
+___
+UNUSED FEATURES
+___
+
+___
+# Problem: Graphical display of open squares
+
+# Example:
+|1|2|3|
+|4|5|6|
+|7|8|9|
+
+|1|2|_|
+|_|5|6|
+|7|8|_|
