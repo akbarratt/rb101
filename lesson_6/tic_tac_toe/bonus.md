@@ -6,7 +6,7 @@ Design the following improvements to the computer AI and implement them in order
   - Choose winning square
   - Defend against opponent wins
   - Pick square 5 if available
-  - Choose a square at random
+  - Choose a square at random (default behavior)
 
   ## Sub-problem: choose winning square
   When any winning line consists of 2 computer tokens, the computer should place_piece in the third space.
@@ -18,8 +18,6 @@ Design the following improvements to the computer AI and implement them in order
 
   ## Sub-problem: pick square 5 if available
   If there are no imminent wins in any of the winning lines AND the center square is empty, the computer should place its piece in that square.
-
-
 
 
 
