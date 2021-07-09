@@ -1,10 +1,11 @@
 require 'pry'
-require 'pry-byebug'
+# require 'pry-byebug'
 
 WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # rows
                 [[1, 4, 7], [2, 5, 8], [3, 6, 9]] + # columns
                 [[1, 5, 9], [3, 5, 7]] # diagonals
-LINE_SCORE = 3
+WINNING_MARKERS = 3
+THREATENED_MARKERS = 2
 INITIAL_MARKER = ' '
 COIN = ['HEADS', 'TAILS']
 GRAND_CHAMPION_SCORE = 5
@@ -159,7 +160,7 @@ def place_piece!(current_player, brd, user, com)
   if current_player == user
     user_places_piece!(brd, user)
   else
-    computer_places_piece!(brd, com)
+    computer_places_piece!(brd, user, com)
   end
 end
 
@@ -174,9 +175,32 @@ def user_places_piece!(brd, user)
   brd[square] = user[:token]
 end
 
-def computer_places_piece!(brd, com)
-  square = empty_squares(brd).sample
+def computer_places_piece!(brd, user, com)
+  if square_threatened?(brd, user)
+    square = defend_square(brd, user)
+  elsif square_threatened?(brd, com)
+    square = defend_square(brd, com)
+  elsif brd[5] == ' '
+    square = 5
+  else
+    square = empty_squares(brd).sample
+  end
+  binding.pry
   brd[square] = com[:token]
+end
+
+def square_threatened?(brd, player)
+  !!defend_square(brd, player)
+end
+
+def defend_square(brd, player)
+  WINNING_LINES.each do |line|
+    # binding.pry
+    if brd.values_at(*line).count(player[:token]) == THREATENED_MARKERS
+      return brd.key(' ') # This is returning the first instance of ' ' in the whole hash regardless of current valueof line.
+    end
+  end
+  nil
 end
 
 def alternate_player(current_player, user, com)
@@ -209,9 +233,9 @@ end
 
 def detect_winner(brd, user, com)
   WINNING_LINES.each do |line|
-    if brd.values_at(*line).count(user[:token]) == LINE_SCORE
+    if brd.values_at(*line).count(user[:token]) == WINNING_MARKERS
       return user
-    elsif brd.values_at(*line).count(com[:token]) == LINE_SCORE
+    elsif brd.values_at(*line).count(com[:token]) == WINNING_MARKERS
       return com
     end
   end
