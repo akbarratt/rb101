@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 134: Thursday July 8, 2021
+
+**Pomodoros Completed**: 6
+
+**Today's Progress**: Working on computer AI for TTT.
+
+**My Feelings**: Glad I worked ahead this week because I felt crummy and we ended up losing power in the afternoon. Today's task was not as simple as anticipated, but I'm getting there.
+
 ### Day 133: Wednesday July 7, 2021
 
 **Pomodoros Completed**: 8
