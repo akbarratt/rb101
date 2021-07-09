@@ -1,9 +1,6 @@
-def press_enter_continue
-  puts "Press ENTER to continue."
-  gets.chomp
-end
+line = {1 => 'X', 2 => 'X', 3 => ' '}
 
-press_enter_continue
-puts "You have continued."
-press_any_key
-puts "You have continued, again."
+def square_threatened?(line)
+  return true if line.values_at(1, 2, 3).count('X') == THREATENED_MARKERS
+  false
+end
