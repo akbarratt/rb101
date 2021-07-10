@@ -176,15 +176,15 @@ def user_places_piece!(brd, user)
 end
 
 def computer_places_piece!(brd, user, com)
-  if square_threatened?(brd, com)
-    square = defend_square(brd, com)
-  elsif square_threatened?(brd, user)
-    square = defend_square(brd, user)
-  elsif brd[5] == ' '
-    square = 5
-  else
-    square = empty_squares(brd).sample
-  end
+  square = if square_threatened?(brd, com)
+             defend_square(brd, com)
+           elsif square_threatened?(brd, user)
+             defend_square(brd, user)
+           elsif brd[5] == ' '
+             5
+           else
+             empty_squares(brd).sample
+           end
   brd[square] = com[:token]
 end
 
