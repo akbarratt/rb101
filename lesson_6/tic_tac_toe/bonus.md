@@ -19,6 +19,9 @@ Design the following improvements to the computer AI and implement them in order
   ## Sub-problem: pick square 5 if available
   If there are no imminent wins in any of the winning lines AND the center square is empty, the computer should place its piece in that square.
 
+  ## Sub-problem: don't place in unwinnable square?
+  Not sure how to implement this or if it's possible.
+
 
 
 ___
