@@ -35,7 +35,7 @@ def set_user_name
   name = ''
   loop do
     prompt 'Please enter your name:'
-    name = gets.chomp
+    name = gets.chomp.lstrip
     break unless name.empty?
   end
   name
@@ -156,7 +156,7 @@ end
 def place_piece!(current_player, brd, user, com)
   if current_player == user
     user_places_piece!(brd, user)
-  elsif current_player == com # correct to use elsif here?
+  elsif current_player == com
     computer_places_piece!(brd, user, com)
   end
 end
@@ -166,6 +166,7 @@ def user_places_piece!(brd, user)
   loop do
     prompt "Choose a square: #{joinor(empty_squares(brd))}"
     square = gets.chomp.to_i
+    # Should not accept strings such as "2%"
     break if empty_squares(brd).include?(square)
     prompt "Sorry, that's not a valid choice."
   end
@@ -293,3 +294,11 @@ loop do
 end
 
 prompt "Thanks for playing Tic Tac Toe! Good bye!"
+
+=begin
+Bugs:
+- Better input validation for selecting squares. "2%" should not return 2.
+
+Improvements:
+- On tie, game should alternate currrent_player or do coin toss again.
+=end
