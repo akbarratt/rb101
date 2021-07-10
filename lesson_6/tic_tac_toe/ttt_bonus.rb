@@ -7,6 +7,7 @@ INITIAL_MARKER = ' '
 COIN = ['HEADS', 'TAILS']
 GRAND_CHAMPION_SCORE = 5
 PLAY_AGAIN_VALUES = ['YES', 'NO']
+CENTER_SQUARE = 5
 
 def prompt(msg)
   puts "=> #{msg}"
@@ -105,8 +106,11 @@ def gameplay_loop(current_player, user, com)
     board = initialize_board
     turn_loop(current_player, board, user, com)
     game_over(board, user, com)
-    current_player = detect_winner(board, user, com) if
-      someone_won?(board, user, com)
+    current_player = if someone_won?(board, user, com)
+                       detect_winner(board, user, com)
+                     else
+                       alternate_player(current_player, user, com)
+                     end
     break if grand_champion?(user, com)
     sleep(1) # Replace with press key to continue
   end
@@ -178,8 +182,8 @@ def computer_places_piece!(brd, user, com)
              defend_square(brd, com)
            elsif square_threatened?(brd, user)
              defend_square(brd, user)
-           elsif brd[5] == ' '
-             5
+           elsif brd[CENTER_SQUARE] == ' '
+             CENTER_SQUARE
            else
              empty_squares(brd).sample
            end
@@ -298,7 +302,4 @@ prompt "Thanks for playing Tic Tac Toe! Good bye!"
 =begin
 Bugs:
 - Better input validation for selecting squares. "2%" should not return 2.
-
-Improvements:
-- On tie, game should alternate currrent_player or do coin toss again.
 =end
