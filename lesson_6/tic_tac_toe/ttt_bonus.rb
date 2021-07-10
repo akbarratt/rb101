@@ -159,7 +159,7 @@ end
 def place_piece!(current_player, brd, user, com)
   if current_player == user
     user_places_piece!(brd, user)
-  else
+  elsif current_player == com # correct to use elsif here?
     computer_places_piece!(brd, user, com)
   end
 end
@@ -176,16 +176,15 @@ def user_places_piece!(brd, user)
 end
 
 def computer_places_piece!(brd, user, com)
-  if square_threatened?(brd, user)
-    square = defend_square(brd, user)
-  elsif square_threatened?(brd, com)
+  if square_threatened?(brd, com)
     square = defend_square(brd, com)
+  elsif square_threatened?(brd, user)
+    square = defend_square(brd, user)
   elsif brd[5] == ' '
     square = 5
   else
     square = empty_squares(brd).sample
   end
-  binding.pry
   brd[square] = com[:token]
 end
 
@@ -195,9 +194,13 @@ end
 
 def defend_square(brd, player)
   WINNING_LINES.each do |line|
-    # binding.pry
-    if brd.values_at(*line).count(player[:token]) == THREATENED_MARKERS
-      return brd.key(' ') # This is returning the first instance of ' ' in the whole hash regardless of current valueof line.
+    if brd.values_at(*line).count(player[:token]) == THREATENED_MARKERS &&
+       brd.values_at(*line).include?(INITIAL_MARKER)
+      brd.select do |k, v|
+        if line.include?(k) && v == INITIAL_MARKER
+          return k
+        end
+      end
     end
   end
   nil
