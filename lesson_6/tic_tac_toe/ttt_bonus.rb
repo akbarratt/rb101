@@ -8,7 +8,6 @@ COIN = ['HEADS', 'TAILS']
 GRAND_CHAMPION_SCORE = 5
 PLAY_AGAIN_VALUES = ['YES', 'NO']
 CENTER_SQUARE = 5
-KEY = ['|1|2|3|', '|4|5|6|', '|7|8|9|']
 
 def prompt(msg)
   puts "=> #{msg}"
@@ -170,8 +169,6 @@ def user_places_piece!(brd, user)
   square = ''
   loop do
     prompt "Choose a square: #{joinor(empty_squares(brd))}"
-    prompt "KEY:"
-    puts KEY
     square = gets.chomp
     # Should not accept strings such as "2%"
     break if empty_squares(brd).include?(square.to_i) &&
@@ -303,8 +300,3 @@ loop do
 end
 
 prompt "Thanks for playing Tic Tac Toe! Good bye!"
-
-=begin
-Improvements:
-- Graphical display of square layout
-=end
