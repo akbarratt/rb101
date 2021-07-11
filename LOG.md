@@ -4,6 +4,22 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 136: Saturday July 10, 2021
+
+**Pomodoros Completed**: 4
+
+**Today's Progress**: Wrap up computer AI, bug test, and submit TTT Bonus Features assignment.
+
+**My Feelings**: Another assignment in the bag! Feels good. A little concerned that some of my features are outside the scope of the assignment... Guess we're about to find out! Looking forward to feedback, my day off tomorrow, and starting 21 on Monday.
+
+### Day 135: Friday July 9, 2021
+
+**Pomodoros Completed**: 0
+
+**Today's Progress**: N/A
+
+**My Feelings**: Just a few Pomodoros left for the week so decided to take an off day to hang out with my family.
+
 ### Day 134: Thursday July 8, 2021
 
 **Pomodoros Completed**: 6
