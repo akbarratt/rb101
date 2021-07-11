@@ -112,7 +112,7 @@ def gameplay_loop(current_player, user, com)
                        alternate_player(current_player, user, com)
                      end
     break if grand_champion?(user, com)
-    sleep(1) # Replace with press key to continue
+    sleep(1)
   end
 end
 
