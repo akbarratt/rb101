@@ -169,11 +169,13 @@ def user_places_piece!(brd, user)
   square = ''
   loop do
     prompt "Choose a square: #{joinor(empty_squares(brd))}"
-    square = gets.chomp.to_i
+    square = gets.chomp
     # Should not accept strings such as "2%"
-    break if empty_squares(brd).include?(square)
+    break if empty_squares(brd).include?(square.to_i) &&
+             square.to_i.to_s == square
     prompt "Sorry, that's not a valid choice."
   end
+  square = square.to_i
   brd[square] = user[:token]
 end
 
@@ -300,6 +302,6 @@ end
 prompt "Thanks for playing Tic Tac Toe! Good bye!"
 
 =begin
-Bugs:
-- Better input validation for selecting squares. "2%" should not return 2.
+Improvements:
+- Graphical display of square layout
 =end
