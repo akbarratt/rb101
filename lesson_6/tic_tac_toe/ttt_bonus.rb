@@ -170,7 +170,6 @@ def user_places_piece!(brd, user)
   loop do
     prompt "Choose a square: #{joinor(empty_squares(brd))}"
     square = gets.chomp
-    # Should not accept strings such as "2%"
     break if empty_squares(brd).include?(square.to_i) &&
              square.to_i.to_s == square
     prompt "Sorry, that's not a valid choice."
