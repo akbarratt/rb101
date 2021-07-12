@@ -26,18 +26,19 @@ end
 def initialize_game(user, com)
   system 'clear'
   prompt 'Welcome to Tic Tac Toe!'
-  user[:name] = set_user_name
+  user[:name] = set_user_name(com)
   tokens = generate_tokens(user)
   choose_user_token(user, tokens)
   com[:token] = choose_com_token(user)
 end
 
-def set_user_name
+def set_user_name(com)
   name = ''
   loop do
     prompt 'Please enter your name:'
     name = gets.chomp.lstrip
-    break unless name.empty?
+    break unless name.empty? || name.capitalize == com[:name]
+    prompt "Sorry, that name can't be used!"
   end
   name
 end
@@ -308,6 +309,4 @@ prompt "Thanks for playing Tic Tac Toe! Good bye!"
 =begin
 Bugs:
 - Input validation on square input accepts blank spaces. Needs to be disallowed.
-- The user should not be able to use the name Computer.
-
 =end
