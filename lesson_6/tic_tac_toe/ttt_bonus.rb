@@ -134,9 +134,7 @@ end
 # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
 def display_board(brd, user, com)
   system 'clear'
-  prompt "#{user[:name]} is \"#{user[:token]}\" with #{user[:wins]} win(s)."
-  prompt "#{com[:name]} is \"#{com[:token]}\" with #{com[:wins]} win(s)."
-  prompt "First to 5 wins is the Grand Champion!"
+  display_game_status(user, com)
   puts ""
   puts "     |     |"
   puts "  #{brd[1]}  |  #{brd[2]}  |  #{brd[3]}"
@@ -152,6 +150,12 @@ def display_board(brd, user, com)
   puts ""
 end
 # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
+
+def display_game_status(user, com)
+  prompt "#{user[:name]} is \"#{user[:token]}\" with #{user[:wins]} win(s)."
+  prompt "#{com[:name]} is \"#{com[:token]}\" with #{com[:wins]} win(s)."
+  prompt "First to 5 wins is the Grand Champion!"
+end
 
 def empty_squares(brd)
   brd.keys.select { |num| brd[num] == INITIAL_MARKER }
