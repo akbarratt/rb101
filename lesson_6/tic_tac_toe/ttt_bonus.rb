@@ -60,9 +60,10 @@ def choose_user_token(user, tokens)
 end
 
 def choose_com_token(user)
-  if user[:token] == 'C' || user[:token] == 'O'
+  case user[:token]
+  when 'C', 'O'
     'X'
-  elsif user[:token] == 'X'
+  when 'X'
     'O'
   else
     'C'
@@ -309,7 +310,4 @@ Bugs:
 - Input validation on square input accepts blank spaces. Needs to be disallowed.
 - The user should not be able to use the name Computer.
 
-Improvements:
-- Extract the logic of the game related information to a separate method.
-- Refactor choose_com_token to use a case statement
 =end
