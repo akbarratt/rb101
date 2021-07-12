@@ -305,8 +305,3 @@ loop do
 end
 
 prompt "Thanks for playing Tic Tac Toe! Good bye!"
-
-=begin
-Bugs:
-- Input validation on square input accepts blank spaces. Needs to be disallowed.
-=end
