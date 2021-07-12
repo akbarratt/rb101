@@ -299,3 +299,13 @@ loop do
 end
 
 prompt "Thanks for playing Tic Tac Toe! Good bye!"
+
+=begin
+Bugs:
+- Input validation on square input accepts blank spaces. Needs to be disallowed.
+- The user should not be able to use the name Computer.
+
+Improvements:
+- Extract the logic of the game related information to a separate method.
+- Refactor choose_com_token to use a case statement
+=end
