@@ -175,7 +175,7 @@ def user_places_piece!(brd, user)
   square = ''
   loop do
     prompt "Choose a square: #{joinor(empty_squares(brd))}"
-    square = gets.chomp
+    square = gets.chomp.strip
     break if empty_squares(brd).include?(square.to_i) &&
              square.to_i.to_s == square
     prompt "Sorry, that's not a valid choice."
