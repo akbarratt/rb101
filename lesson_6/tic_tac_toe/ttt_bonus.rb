@@ -26,13 +26,13 @@ end
 def initialize_game(user, com)
   system 'clear'
   prompt 'Welcome to Tic Tac Toe!'
-  user[:name] = set_user_name(com)
+  user[:name] = user_name(com)
   tokens = generate_tokens(user)
   choose_user_token(user, tokens)
   com[:token] = choose_com_token(user)
 end
 
-def set_user_name(com)
+def user_name(com)
   name = ''
   loop do
     prompt 'Please enter your name:'
@@ -133,7 +133,7 @@ def turn_loop(current_player, brd, user, com)
   end
 end
 
-# rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+# rubocop:disable Metrics/AbcSize
 def display_board(brd, user, com)
   system 'clear'
   display_game_status(user, com)
@@ -151,7 +151,7 @@ def display_board(brd, user, com)
   puts "     |     |"
   puts ""
 end
-# rubocop:enable Metrics/MethodLength, Metrics/AbcSize
+# rubocop:enable Metrics/AbcSize
 
 def display_game_status(user, com)
   prompt "#{user[:name]} is \"#{user[:token]}\" with #{user[:wins]} win(s)."
