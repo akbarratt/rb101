@@ -49,3 +49,5 @@ n = 3 stack = [16, 5]
 `MOD`
 
 <!-- The issue is that for /, % and 1, the operants are in the wrong order. -->
+
+<!-- Do you have to feed the problem in backwards?? -->
