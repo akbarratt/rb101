@@ -4,6 +4,22 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 138: Monday July 12, 2021
+
+**Pomodoros Completed**: 7
+
+**Today's Progress**: Resubmitted corrections to TTT: Bonus, did some preliminary work on tomorrow's study group problem, started Twenty-One assignment, working on algorithms and data structurs.
+
+**My Feelings**: This was the kind of Monday I don't like to have starting my week, where there are a lot of appointments and distractions, but I managed to stay on top of my work by squeezing in a Pomodoro wherever I could. Encouraging to know that can be an effective strategy.
+
+### Day 137: Sunday July 11, 2021
+
+**Pomodoros Completed**: < 1
+
+**Today's Progress**: Reviewed Anki cards
+
+**My Feelings**: I finished my work for the week yesterday and so took a well deserved day off!
+
 ### Day 136: Saturday July 10, 2021
 
 **Pomodoros Completed**: 4
