@@ -1,5 +1,3 @@
-require 'pry'
-
 OPS = {
   '+' => 'ADD',
   '-' => 'SUB',
@@ -8,6 +6,7 @@ OPS = {
   '%' => 'MOD'
 }
 NUMS = ('0'..'9').to_a
+VALID_CHARS = NUMS + OPS.keys + ['(', ')', ' ']
 
 def minilang(string)
   stack = []
@@ -73,104 +72,28 @@ def pop(stack)
   stack.pop
 end
 
-# minilang('20 PUSH 7 SUB PRINT')
-# minilang('3 PUSH 5 MOD PRINT')
-# minilang('2 PUSH 16 DIV PRINT')
-# minilang('20 PUSH -7 ADD PRINT')
-#minilang('3 PUSH POP 6 PUSH 12 DIV PRINT')
-#minilang('PRINT')
-#minilang('5 PUSH 3 MULT PRINT')
-#minilang('5 PRINT PUSH 3 PRINT ADD PRINT')
-#minilang('5 PUSH POP PRINT')
-#minilang('3 PUSH 4 PUSH 5 PUSH PRINT ADD PRINT POP PRINT ADD PRINT')
-#minilang('3 PUSH PUSH 7 DIV MULT PRINT ')
-#minilang('4 PUSH PUSH 7 MOD MULT PRINT ')
-#minilang('-3 PUSH 5 SUB PRINT')
-#minilang('6 PUSH')
+minilang('20 PUSH 7 SUB PRINT')
+minilang('3 PUSH 5 MOD PRINT')
+minilang('2 PUSH 16 DIV PRINT')
+minilang('20 PUSH -7 ADD PRINT')
+minilang('3 PUSH POP 6 PUSH 12 DIV PRINT')
+minilang('PRINT')
+minilang('5 PUSH 3 MULT PRINT')
+minilang('5 PRINT PUSH 3 PRINT ADD PRINT')
+minilang('5 PUSH POP PRINT')
+minilang('3 PUSH 4 PUSH 5 PUSH PRINT ADD PRINT POP PRINT ADD PRINT')
+minilang('3 PUSH PUSH 7 DIV MULT PRINT ')
+minilang('4 PUSH PUSH 7 MOD MULT PRINT ')
+minilang('-3 PUSH 5 SUB PRINT')
+minilang('6 PUSH')
 
-
-# Further exploration
-
-def translate_to_minilang(str)
-  final_array = []
-    case str
-    when '%'
-      final_array << 'MOD'
-    when '+'
-      final_array << 'ADD'
-    when '*'
-      final_array << 'MULT'
-    when '-'
-      final_array << 'SUB'
-    when '/'
-      final_array << 'DIV'
-    else
-      final_array << str.to_i
-    end
-  final_array.join(' ')
-end
-
-
-
-=begin
-## Problem
-Taking in a string consisting of an equation, return a minilang program that can be passed through and return a result. 
-
-Input: string
-Output: minilang program (string)
-Return: nil (because it will print)
-
-## Examples
-minilang(equation_printer("(3 + (4 * 5) - 7) / (5 % 3)"))
-# => 8
-# nil
-
-minilang(equation_printer("4 * 5"))
-# => 20
-# nil
-
-minilang(equation_printer("(5 / 1) / 1 / 1"))
-# => 5
-# nil
-
-Think of more edge cases...
-Invalid input? Empty stack?
-
-## Data structures
-operators array
-.each_char
-case statement
-
-## Algorithm
-Given a string containing an equation.
-Process the string:
-  - Remove spaces
-  - Reverse string
-  - Reverse parentheticals
-  - Convert to array of characters and whole numbers
-  - If contains chars other than '0-9', or OPERATORS, return error
-Initialize an empty string 'output'
-Initialize empty array 'ops'
-Iterate through each character in the string.
-  For '(', skip to the next iteration
-  # Bug here: if we're iterating by character, how will we pull out numbers that are > 1 digit?
-  For integers push int.to_s to output string
-  For operators, output << 'PUSH' and ops << operator
-  For ')', output << ops.pop
-Until ops.empty?, output << ops.pop
-output << 'PRINT'
-return output string
-
-Thought: Rather than iterating through a string, I think we will have to convert the string to an array, filtering for numbers and separating them out. This will have to be yet another sub-method.
-
-=end
+# Further Exploration
 
 def equation_printer(equation_string)
   operators = []
   program = []
-  # Insert error handling
-  equation = chars_and_nums(reverse_paren(equation_processor(equation_string)))
-  p equation
+  return "invalid input" unless valid?(equation_string)
+  equation = equation_processor(equation_string)
   equation.each do |string|
     if string == '('
       next
@@ -186,6 +109,10 @@ def equation_printer(equation_string)
   program << operators.pop until operators.empty?
   program << 'PRINT' 
   program.join(' ')
+end
+
+def valid?(string)
+  string.chars.all? { |object| VALID_CHARS.include?(object) }
 end
 
 def chars_and_nums(string)
@@ -205,7 +132,10 @@ def chars_and_nums(string)
 end
 
 def equation_processor(string)
-  string.delete(' ').reverse!
+  string = string.delete(' ').reverse!
+  string = reverse_paren(string)
+  string = chars_and_nums(string)
+  string
 end
 
 def reverse_paren(string)
@@ -226,3 +156,4 @@ equation_printer("(3 + (4 * 5) - 7) / (5 % 3)")
 minilang(equation_printer("(3 + (4 * 5) - 7) / (5 % 3)"))
 minilang(equation_printer("(5 / 1) / 1 / 1"))
 minilang(equation_printer("4 * 5"))
+p equation_printer("MEH")
