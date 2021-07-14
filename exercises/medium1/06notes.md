@@ -54,6 +54,16 @@ n = 3 stack = [16, 5]
 
 ## Step by step in MINILANG, reversed
 
+# writing a new method to solve this problem
+# 4 push 5 mult
+# store the result in place of the parentheses
+# 5 push 3 mod
+# store the result in place of the parentheses
+# 3 push 20 ADD PUSH -7 ADD
+# 16 / 2
+# 16 push 2 DIV
+# => 8
+
 (3 + (4 * 5) - 7) / (5 % 3)
 Reversed: (3 % 5) / (7 - (4 * 5) + 3)
 `3`
