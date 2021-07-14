@@ -11,81 +11,36 @@ VALID_CHARS = NUMS + OPS.keys + ['(', ')', ' ']
 def minilang(string)
   stack = []
   register = 0
-  queue = string.split(' ')
-  queue.each do |element|
+  string.split.each do |element|
     register = element.to_i if element.to_i.to_s == element
     case element
-    when 'PRINT'
-      print(register)
-    when 'PUSH'
-      push(stack, register)
-    when 'ADD'
-      integer = stack.pop
-      register = add(register, integer)
-    when 'SUB'
-      integer = stack.pop
-      register = subtract(register, integer)
-    when 'MULT'
-      integer = stack.pop
-      register = multiply(register, integer)
-    when 'DIV'
-      integer = stack.pop
-      register = divide(register, integer)
-    when 'MOD'
-      integer = stack.pop
-      register = mod(register, integer)
-    when 'POP'
-      register = pop(stack)
+    when 'ADD'   then register += stack.pop
+    when 'DIV'   then register /= stack.pop
+    when 'MULT'  then register *= stack.pop
+    when 'MOD'   then register %= stack.pop
+    when 'SUB'   then register -= stack.pop
+    when 'PUSH'  then stack.push(register)
+    when 'POP'   then register = stack.pop
+    when 'PRINT' then puts register
+    else              register = element.to_i
     end
   end
 end
 
-def print(int)
-  puts int
-end
-
-def push(stack, register)
-  stack << register
-end
-
-def add(register, int)
-  int + register
-end
-
-def subtract(register, int)
-  register - int
-end
-
-def multiply(register, int)
-  register * int
-end
-
-def divide(register, int)
-  register / int
-end
-
-def mod(register, int)
-  register % int
-end
-
-def pop(stack)
-  stack.pop
-end
-
-minilang('20 PUSH 7 SUB PRINT')
-minilang('3 PUSH 5 MOD PRINT')
-minilang('2 PUSH 16 DIV PRINT')
-minilang('20 PUSH -7 ADD PRINT')
-minilang('3 PUSH POP 6 PUSH 12 DIV PRINT')
-minilang('PRINT')
-minilang('5 PUSH 3 MULT PRINT')
-minilang('5 PRINT PUSH 3 PRINT ADD PRINT')
-minilang('5 PUSH POP PRINT')
-minilang('3 PUSH 4 PUSH 5 PUSH PRINT ADD PRINT POP PRINT ADD PRINT')
-minilang('3 PUSH PUSH 7 DIV MULT PRINT ')
-minilang('4 PUSH PUSH 7 MOD MULT PRINT ')
-minilang('-3 PUSH 5 SUB PRINT')
-minilang('6 PUSH')
+# minilang('20 PUSH 7 SUB PRINT')
+# minilang('3 PUSH 5 MOD PRINT')
+# minilang('2 PUSH 16 DIV PRINT')
+# minilang('20 PUSH -7 ADD PRINT')
+# minilang('3 PUSH POP 6 PUSH 12 DIV PRINT')
+# minilang('PRINT')
+# minilang('5 PUSH 3 MULT PRINT')
+# minilang('5 PRINT PUSH 3 PRINT ADD PRINT')
+# minilang('5 PUSH POP PRINT')
+# minilang('3 PUSH 4 PUSH 5 PUSH PRINT ADD PRINT POP PRINT ADD PRINT')
+# minilang('3 PUSH PUSH 7 DIV MULT PRINT ')
+# minilang('4 PUSH PUSH 7 MOD MULT PRINT ')
+# minilang('-3 PUSH 5 SUB PRINT')
+# minilang('6 PUSH')
 
 # Further Exploration
 
@@ -107,7 +62,7 @@ def equation_printer(equation_string)
     end
   end
   program << operators.pop until operators.empty?
-  program << 'PRINT' 
+  program << 'PRINT'
   program.join(' ')
 end
 
@@ -152,8 +107,10 @@ def reverse_paren(string)
   output_string
 end
 
-equation_printer("(3 + (4 * 5) - 7) / (5 % 3)")
+p equation_printer("(3 + (4 * 5) - 7) / (5 % 3)")
 minilang(equation_printer("(3 + (4 * 5) - 7) / (5 % 3)"))
 minilang(equation_printer("(5 / 1) / 1 / 1"))
 minilang(equation_printer("4 * 5"))
-p equation_printer("MEH")
+minilang(equation_printer("MEH"))
+
+# Notes: Still need to add error handling and stack empty conditions.
