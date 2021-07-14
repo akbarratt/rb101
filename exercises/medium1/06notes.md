@@ -48,7 +48,7 @@ n = 5 stack = [16, 5]
 n = 3 stack = [16, 5]
 `MOD`
 
-<!-- The issue is that for /, % and 1, the operants are in the wrong order. -->
+<!-- The issue is that for /, % and 1, the operands are in the wrong order. -->
 
 <!-- Do you have to feed the problem in backwards?? -->
 
@@ -96,10 +96,70 @@ n = 3 stack = [2, 7, 20]
 n = 23 stack = [2, 7]
 `SUB`
 n = 16 stack = [2]
-`MOD`
+`DIV`
 n = 8 stack = []
 `PRINT`
 8
+Total: `3 PUSH 5 MOD PUSH 7 PUSH 4 PUSH 5 MULT PUSH 3 ADD SUB DIV PRINT`
+
+Reversed: (3 % 5) / (7 - (4 * 5) + 3)
+'('
+next
+n = stack = [] ops = []
+'3'
+3
+n = 3 stack = [] ops = []
+'%'
+PUSH, store op
+n = 3 stack = [3] ops = ['%'] 
+'5'
+5
+n = 5 stack = [3] ops = ['%']
+')'
+ops.pop MOD
+n = 2 stack = [] ops = []
+'/'
+PUSH, store op
+n = 2 stack = [2] ops = ['/']
+'('
+next
+n = 2 stack = [2] ops = ['/']
+'7'
+7
+n = 7 stack = [2] ops = ['/']
+'-'
+PUSH, store op
+n = 7 stack = [2, 7] ops = ['/', '-']
+'('
+next
+n = 7 stack = [2, 7] ops = ['/', '-']
+'4'
+4
+n = 4 stack = [2, 7] ops = ['/', '-']
+'*'
+PUSH, store op
+n = 4 stack = [2, 7, 4] ops = ['/', '-', '*']
+'5'
+5
+n = 5 stack = [2, 7, 4] ops = ['/', '-', '*']
+')'
+ops.pop MULT
+n = 20 stack = [2, 7] ops = ['/', '-']
+'+'
+PUSH, store op
+n = 20 stack = [2, 7, 20] ops = ['/', '-', '+']
+'3'
+3
+n = 3 stack = [2, 7, 20] ops = ['/', '-', '+']
+')'
+ops.pop ADD
+n = 23 stack = [2, 7] ops = ['/', '-']
+until ops.empty?
+  ops pop
+SUB DIV
+string << PUSH
+
+Total: `3 PUSH 5 MOD PUSH 7 PUSH 4 PUSH 5 MULT PUSH 3 ADD SUB DIV PRINT`
 
 ### Notes:
 It seems like we may need to keep track of
