@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 139: Tuesday July 13, 2021
+
+**Pomodoros Completed**: 8
+
+**Today's Progress**: Final corrections on TTT, made a chat post about burnout (a good check-in with myself), worked on Medium 6.6 in a study group.
+
+**My Feelings**: I managed to get my work done in the midst of a personal life explosion, so I take some pride in that, but moreso in quitting when I was done and taking time to rest.
+
 ### Day 138: Monday July 12, 2021
 
 **Pomodoros Completed**: 7
