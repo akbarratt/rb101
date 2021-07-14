@@ -1,10 +1,13 @@
-OPERATORS = {
+require 'pry'
+
+OPS = {
   '+' => 'ADD',
   '-' => 'SUB',
   '*' => 'MULT',
   '/' => 'DIV',
   '%' => 'MOD'
 }
+NUMS = ('0'..'9').to_a
 
 def minilang(string)
   stack = []
@@ -144,6 +147,7 @@ Process the string:
   - Remove spaces
   - Reverse string
   - Reverse parentheticals
+  - Convert to array of characters and whole numbers
   - If contains chars other than '0-9', or OPERATORS, return error
 Initialize an empty string 'output'
 Initialize empty array 'ops'
@@ -159,29 +163,30 @@ return output string
 
 Thought: Rather than iterating through a string, I think we will have to convert the string to an array, filtering for numbers and separating them out. This will have to be yet another sub-method.
 
-  ### Sub-problem
-  Given a string, convert to an array of strings, but will all integer groups separated as one integer of 1 or more characters.
-
-  Example
-  chars_and_nums('abc123') == ['a', 'b', 'c', '123']
-
-  Algorithm
-  Given a string...
-  Initialize empty array 'output_array'
-  Initialize empty string 'current_string'
-  Iterate through each char
-    if current_string.include?(0..9) && char is an int
-      current_string << char
-    else
-      output_array << current_string
-      current_string = char
-    end
-  output_array << current_string
-  output_array
-
 =end
 
-NUMS = ('0'..'9').to_a
+def equation_printer(equation_string)
+  operators = []
+  program = []
+  # Insert error handling
+  equation = chars_and_nums(reverse_paren(equation_processor(equation_string)))
+  p equation
+  equation.each do |string|
+    if string == '('
+      next
+    elsif OPS.keys.include?(string)
+      program << 'PUSH'
+      operators << OPS[string]
+    elsif string == ')'
+      program << operators.pop
+    else
+      program << string
+    end
+  end
+  program << operators.pop until operators.empty?
+  program << 'PRINT' 
+  program.join(' ')
+end
 
 def chars_and_nums(string)
   output_array = []
@@ -197,13 +202,6 @@ def chars_and_nums(string)
   end
   output_array << current_string
   output_array
-end
-
-
-def equation_printer(equation_string)
-  operators = []
-  equation = reverse_paren(equation_processor(equation_string))
-  p equation
 end
 
 def equation_processor(string)
@@ -225,3 +223,6 @@ def reverse_paren(string)
 end
 
 equation_printer("(3 + (4 * 5) - 7) / (5 % 3)")
+minilang(equation_printer("(3 + (4 * 5) - 7) / (5 % 3)"))
+minilang(equation_printer("(5 / 1) / 1 / 1"))
+minilang(equation_printer("4 * 5"))
