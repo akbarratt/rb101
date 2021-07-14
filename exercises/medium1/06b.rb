@@ -1,3 +1,11 @@
+OPERATORS = {
+  '+' => 'ADD',
+  '-' => 'SUB',
+  '*' => 'MULT',
+  '/' => 'DIV',
+  '%' => 'MOD'
+}
+
 def minilang(string)
   stack = []
   register = 0
@@ -99,6 +107,99 @@ def translate_to_minilang(str)
   final_array.join(' ')
 end
 
+
+
+=begin
+## Problem
+Taking in a string consisting of an equation, return a minilang program that can be passed through and return a result. 
+
+Input: string
+Output: minilang program (string)
+Return: nil (because it will print)
+
+## Examples
+minilang(equation_printer("(3 + (4 * 5) - 7) / (5 % 3)"))
+# => 8
+# nil
+
+minilang(equation_printer("4 * 5"))
+# => 20
+# nil
+
+minilang(equation_printer("(5 / 1) / 1 / 1"))
+# => 5
+# nil
+
+Think of more edge cases...
+Invalid input? Empty stack?
+
+## Data structures
+operators array
+.each_char
+case statement
+
+## Algorithm
+Given a string containing an equation.
+Process the string:
+  - Remove spaces
+  - Reverse string
+  - Reverse parentheticals
+  - If contains chars other than '0-9', or OPERATORS, return error
+Initialize an empty string 'output'
+Initialize empty array 'ops'
+Iterate through each character in the string.
+  For '(', skip to the next iteration
+  # Bug here: if we're iterating by character, how will we pull out numbers that are > 1 digit?
+  For integers push int.to_s to output string
+  For operators, output << 'PUSH' and ops << operator
+  For ')', output << ops.pop
+Until ops.empty?, output << ops.pop
+output << 'PRINT'
+return output string
+
+Thought: Rather than iterating through a string, I think we will have to convert the string to an array, filtering for numbers and separating them out. This will have to be yet another sub-method.
+
+  ### Sub-problem
+  Given a string, convert to an array of strings, but will all integer groups separated as one integer of 1 or more characters.
+
+  Example
+  chars_and_nums('abc123') == ['a', 'b', 'c', '123']
+
+  Algorithm
+  Given a string...
+  Initialize empty array 'output_array'
+  Initialize empty string 'current_string'
+  Iterate through each char
+    if current_string.include?(0..9) && char is an int
+      current_string << char
+    else
+      output_array << current_string
+      current_string = char
+    end
+  output_array << current_string
+  output_array
+
+=end
+
+NUMS = ('0'..'9').to_a
+
+def chars_and_nums(string)
+  output_array = []
+  current_string = ''
+  string.each_char do |char|
+    if current_string.to_i.to_s == current_string &&
+       NUMS.include?(char)
+      current_string << char
+    else
+      output_array << current_string unless current_string.empty?
+      current_string = char
+    end
+  end
+  output_array << current_string
+  output_array
+end
+
+
 def equation_printer(equation_string)
   operators = []
   equation = reverse_paren(equation_processor(equation_string))
@@ -124,40 +225,3 @@ def reverse_paren(string)
 end
 
 equation_printer("(3 + (4 * 5) - 7) / (5 % 3)")
-
-
-# if miniquation includes %, -, or /
-# case miniquation
-# reverse
-# translate to minilang
-
-
-
-# (3 + (4 * 5) - 7) / (5 % 3) = 8 turn this into string
-# algorithm
-# put everything into parentheses
-  # convert problem to a string
-  # append/prepend parentheses
-# loop: turn each nested parentheses into a string of commands
-  # iterate through string 
-  #(3 +, 
-  #(4 * 5), 4 PUSH 5 MULT
-  # - 7) /, 
-  #(5 % 3) => 5 PUSH 3 MOD
- #===>
-  #(3 +,
-  #4 PUSH 5 MULT => 4 PUSH 5 MULT ... 3 PUSH ADD .. PUSH 7 SUB
-  # - 7) /, 
-  #5 PUSH 3 MOD
- #====>
-  # 
-
-
-  #  loop if () present in problem
-    # solve everything in parentheses 
-    # append everything back together
-    # break if no parenthese
-      #solve problem
-    
-    # pass into array
-# loop pass commands to minilang
