@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 140: Wednesday July 14, 2021
+
+**Pomodoros Completed**: 7
+
+**Today's Progress**: Finished Medium 6.1 further exploration.
+
+**My Feelings**: Got a little bit side-tracked today with a bonus project I probably didn't need to finish but I wanted to see if I could implement the algorithm I came up with. Needs some refactoring and testing but happy with the results so far. It was confidence boost. Back to the main assignment tomorrow.
+
 ### Day 139: Tuesday July 13, 2021
 
 **Pomodoros Completed**: 8
