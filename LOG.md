@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 142: Friday July 16, 2021
+
+**Pomodoros Completed**: 8
+
+**Today's Progress**: Starting Twenty-One project and finishing most of the basic game structure.
+
+**My Feelings**: Happy with my progress today, though I made a late start of things. I like it when I get some momentum going on a project because then I'm less anxious about filling my quota. Work moves quickly.
+
 ### Day 141: Thursday July 15, 2021
 
 **Pomodoros Completed**: 0
