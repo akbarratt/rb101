@@ -84,12 +84,32 @@ def player_choice
 end
 
 def dealer_turn(hand, deck)
+  p hand
+  p hand_value(hand)
   until hand_value(hand) >= DEALER_STAY || bust?(hand_value(hand))
     hand.concat(hit(deck))
+    p hand
+    p hand_value(hand)
   end
 end
 
-deck = generate_deck(SUITS, VALUES)
-player_hand = deal_cards(deck, 2)
-player_turn(player_hand, deck)
-p hand_value(player_hand)
+def play_game
+  deck = generate_deck(SUITS, VALUES)
+  player_hand = deal_cards(deck, 2)
+  dealer_hand = deal_cards(deck, 2)
+  player_turn(player_hand, deck)
+  if bust?(hand_value(player_hand))
+    prompt "Player busts."
+  else
+    dealer_turn(dealer_hand, deck)
+    if bust?(hand_value(dealer_hand))
+      prompt "Dealer busts."
+    end
+  end
+  prompt "Determine winner here."
+end
+
+play_game
+
+# Notes
+# Refactor bust? to be more universally useable
