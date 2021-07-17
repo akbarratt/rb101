@@ -1,32 +1,3 @@
-## Game structure
-Create deck
-Deal player
-Deal dealer
-Display hands
-Player turn loop
-Player bust?
-Dealer turn loop
-Check for winner
-Dealer bust?
-Determine winner
-
-## Problem: Player turn loop
-If player has 21
-  break
-else
-  loop
-    loop
-      get input
-      validate input
-    end
-  if input == 'hit'
-    player deck << hit
-  else
-    stay
-    break
-end
-
-
 ## Problem: Determining winner
 unless either player bust
 if dealer > winner
@@ -35,9 +6,7 @@ elsif player > dealer
   player win
 else
   tie
-
-
-## Problem: Calculating Aces
+end
 
 
 ___
@@ -73,3 +42,33 @@ unless hand >= dealer_stay || busted?(hand)
 end
 
   ### Sub-problem: hit
+
+## Problem: Player turn loop
+If player has 21
+  break
+else
+  loop
+    loop
+      get input
+      validate input
+    end
+  if input == 'hit'
+    player deck << hit
+  else
+    stay
+    break
+end
+
+## Problem: Calculating Aces
+
+## Game structure
+Create deck
+Deal player
+Deal dealer
+Display hands
+Player turn loop
+Player bust?
+Dealer turn loop
+Check for winner
+Dealer bust?
+Determine winner
