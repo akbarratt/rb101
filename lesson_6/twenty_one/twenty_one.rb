@@ -2,6 +2,10 @@ SUITS = ['S', 'H', 'C', 'D']
 VALUES = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2']
 DEALER_STAY = 17
 
+def prompt(msg)
+  puts "=> #{msg}"
+end
+
 def generate_deck(suits, values)
   deck = values.map do |value|
           suits.map do |suit|
@@ -44,8 +48,39 @@ def hand_value(hand)
   total
 end
 
-def bust?(total)
-  total > 21
+def bust?(num)
+  num > 21
+end
+
+def player_turn(hand, deck)
+  if hand_value(hand) == 21
+    p hand
+    prompt "You have 21!"
+  else
+    until bust?(hand_value(hand))
+      p hand
+      p hand_value(hand)
+      answer = player_choice
+      if answer == 'hit'
+        prompt "You've chosen to hit."
+        hand.concat(hit(deck))
+      elsif answer == 'stay'
+        prompt "You've chosen to stay."
+        break
+      end
+    end
+  end
+end
+
+def player_choice
+  answer = ''
+  loop do
+    prompt "Hit or stay?"
+    answer = gets.chomp
+    break if answer == 'hit' || answer == 'stay'
+    prompt "Sorry, that's an invalid answer!"
+  end
+  answer
 end
 
 def dealer_turn(hand, deck)
@@ -56,12 +91,5 @@ end
 
 deck = generate_deck(SUITS, VALUES)
 player_hand = deal_cards(deck, 2)
-p player_hand
-dealer_turn(player_hand, deck)
-p player_hand
+player_turn(player_hand, deck)
 p hand_value(player_hand)
-dealer_hand = deal_cards(deck, 2)
-p dealer_hand
-dealer_turn(dealer_hand, deck)
-p dealer_hand
-p hand_value(dealer_hand)
