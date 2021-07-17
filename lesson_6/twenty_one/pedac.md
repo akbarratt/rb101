@@ -1,15 +1,41 @@
+## Game structure
+Create deck
+Deal player
+Deal dealer
+Display hands
+Player turn loop
+Player bust?
+Dealer turn loop
+Check for winner
+Dealer bust?
+Determine winner
+
 ## Problem: Player turn loop
-
-## Problem: Dealer turn loop
-unless hand >= dealer_stay || busted?(hand)
-  hand += hit
+If player has 21
+  break
+else
+  loop
+    loop
+      get input
+      validate input
+    end
+  if input == 'hit'
+    player deck << hit
+  else
+    stay
+    break
 end
-
-  ### Sub-problem: hit
-  When 
 
 
 ## Problem: Determining winner
+unless either player bust
+if dealer > winner
+  dealer win
+elsif player > dealer
+  player win
+else
+  tie
+
 
 ## Problem: Calculating Aces
 
@@ -40,3 +66,10 @@ case card[0]
 when 'A' then 11
 when 'K', 'Q', 'J' then 10
 when card[0].to_int.to_s == card[0] then card[0].to_int
+
+## Problem: Dealer turn loop
+unless hand >= dealer_stay || busted?(hand)
+  hand += hit
+end
+
+  ### Sub-problem: hit
