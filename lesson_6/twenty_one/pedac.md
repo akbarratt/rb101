@@ -1,12 +1,15 @@
-## Problem: Determining winner
-unless either player bust
-if dealer > winner
-  dealer win
-elsif player > dealer
-  player win
+## Problem: Determining outcome
+if player bust
+  :dealer_win
+elsif dealer bust
+  :player_win
+elsif dealer_hand > player_hand
+  :dealer_win
+elsif dealer_hand < player_hand
+  :player_win
 else
-  tie
-end
+  :tie
+
 
 
 ___

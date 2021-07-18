@@ -95,7 +95,7 @@ end
 
 def game_over(player_hand, dealer_hand)
   if bust?(hand_value(player_hand))
-    prompt "Dealer wins!"
+    prompt "Dealer win!"
   elsif bust?(hand_value(dealer_hand))
     prompt "You win!"
   else
@@ -115,11 +115,17 @@ def determine_winner(player_hand, dealer_hand)
   end
 end
 
+def display_hands(player_hand, dealer_hand)
+  prompt "Your hand: #{player_hand.each{|card| puts card}}"
+  prompt "Dealer hand: #{dealer_hand[0]}, ??"
+end
+
 def play_game
   loop do
     deck = generate_deck(SUITS, VALUES)
     player_hand = deal_cards(deck, 2)
     dealer_hand = deal_cards(deck, 2)
+    display_hands(player_hand, dealer_hand)
     player_turn(player_hand, deck)
     if bust?(hand_value(player_hand))
       puts "Player busted."
