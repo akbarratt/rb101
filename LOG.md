@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 143: Saturday July 17, 2021
+
+**Pomodoros Completed**: 4
+
+**Today's Progress**: Finishing up Twenty-One and checking my work, creating new Anki cards.
+
+**My Feelings**: Today was unexpectedly frustrating. Having a hard time wrapping my mind around the logic for the assignment, though reading the solution helped. Also got a late start today which always makes me cranky.
+
 ### Day 142: Friday July 16, 2021
 
 **Pomodoros Completed**: 8
