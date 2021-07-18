@@ -93,23 +93,52 @@ def dealer_turn(hand, deck)
   end
 end
 
-def play_game
-  deck = generate_deck(SUITS, VALUES)
-  player_hand = deal_cards(deck, 2)
-  dealer_hand = deal_cards(deck, 2)
-  player_turn(player_hand, deck)
+def game_over(player_hand, dealer_hand)
   if bust?(hand_value(player_hand))
-    prompt "Player busts."
+    prompt "Dealer wins!"
+  elsif bust?(hand_value(dealer_hand))
+    prompt "You win!"
   else
-    dealer_turn(dealer_hand, deck)
-    if bust?(hand_value(dealer_hand))
-      prompt "Dealer busts."
-    end
+    winner = determine_winner(player_hand, dealer_hand)
+    prompt "#{winner} win!" unless winner == 'tie' 
+    prompt "It's a tie!" if winner == 'tie'
   end
-  prompt "Determine winner here."
+end
+
+def determine_winner(player_hand, dealer_hand)
+  if hand_value(player_hand) > hand_value(dealer_hand)
+    'You'
+  elsif hand_value(dealer_hand) > hand_value(player_hand)
+    'Dealer'
+  else
+    'tie'
+  end
+end
+
+def play_game
+  loop do
+    deck = generate_deck(SUITS, VALUES)
+    player_hand = deal_cards(deck, 2)
+    dealer_hand = deal_cards(deck, 2)
+    player_turn(player_hand, deck)
+    if bust?(hand_value(player_hand))
+      puts "Player busted."
+    else
+      dealer_turn(dealer_hand, deck)
+      if bust?(hand_value(dealer_hand))
+        puts "Dealer busted."
+      end
+    end
+    game_over(player_hand, dealer_hand)
+    prompt "Play again?"
+    answer = gets.chomp
+    break if answer == 'no'
+  end
 end
 
 play_game
 
 # Notes
 # Refactor bust? to be more universally useable
+# Player shouldn't be allowed to hit on 21
+# Need to display the cards.
