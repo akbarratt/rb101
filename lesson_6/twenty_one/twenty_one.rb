@@ -121,21 +121,6 @@ def determine_winner(player_hand, dealer_hand)
   end
 end
 
-=begin
-Method should take two inputs, a hand and a boolean=false to obscure the first card.
-
-Initialize an empty string output ''
-Iterate through the array.
-  if card == hand[0] && boolean == true
-    output << 'XX' + ' '
-  elsif card == hand[-1]
-    output << card
-  else
-    output << card + ' '
-  end
-end
-=end
-
 def display_hand(hand, obscure=false)
   display = ''
   hand.each do |card|
