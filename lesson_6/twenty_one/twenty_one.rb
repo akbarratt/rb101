@@ -34,9 +34,7 @@ def hand_value(hand)
   end
 
   if bust?(total)
-    aces = hand.select do |card|
-            card[0] == 'A'
-           end
+    aces = hand.select { |card| card[0] == 'A' }
     until aces.empty? || !bust?(total)
       total -= 10
       aces.pop
@@ -51,6 +49,7 @@ end
 
 def player_turn(hand, deck)
   loop do
+    prompt "Dealer hand: #{display_hand(dealer_hand, true)}"
     prompt "Your hand: #{display_hand(hand)}"
     prompt "Your points: #{hand_value(hand)}"
     if hand_value(hand) == 21
@@ -137,10 +136,8 @@ def play_game
     deck = generate_deck(SUITS, VALUES)
     prompt "Dealing..."
     sleep(1)
-    binding.pry
     player_hand = deal_cards(deck, 2)
     dealer_hand = deal_cards(deck, 2)
-    prompt "Dealer hand: #{display_hand(dealer_hand, true)}"
     player_turn(player_hand, deck)
     if bust?(hand_value(player_hand))
       puts "Player busted."
