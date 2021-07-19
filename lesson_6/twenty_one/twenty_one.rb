@@ -29,7 +29,7 @@ def hand_value(hand)
     case card[0]
     when 'A'
       total += 11
-    when 'K', 'Q', 'J', '1' # '1' is for for 10, the only possible 3-digit string
+    when 'K', 'Q', 'J', '1' # '1' is for 10, the only possible 3-digit string
       total += 10
     else
       total += card[0].to_i
@@ -53,13 +53,17 @@ def bust?(num)
 end
 
 def player_turn(hand, deck)
-  if hand_value(hand) == 21
-    p hand
-    prompt "You have 21!"
-  else
-    until bust?(hand_value(hand))
-      p hand
-      p hand_value(hand)
+  loop do
+    prompt "Your hand: #{display_hand(hand)}"
+    prompt "Your points: #{hand_value(hand)}"
+    if hand_value(hand) == 21
+      prompt "You have 21!"
+      break
+    elsif bust?(hand_value(hand))
+      # Bust condition here
+      puts "You busted!"
+      break
+    else
       answer = player_choice
       if answer == 'hit'
         prompt "You've chosen to hit."
@@ -67,6 +71,8 @@ def player_turn(hand, deck)
       elsif answer == 'stay'
         prompt "You've chosen to stay."
         break
+      else
+        prompt "Invalid input."
       end
     end
   end
@@ -76,7 +82,7 @@ def player_choice
   answer = ''
   loop do
     prompt "Hit or stay?"
-    answer = gets.chomp
+    answer = gets.chomp.downcase.strip
     break if answer == 'hit' || answer == 'stay'
     prompt "Sorry, that's an invalid answer!"
   end
@@ -115,17 +121,43 @@ def determine_winner(player_hand, dealer_hand)
   end
 end
 
-def display_hands(player_hand, dealer_hand)
-  prompt "Your hand: #{player_hand.each{|card| puts card}}"
-  prompt "Dealer hand: #{dealer_hand[0]}, ??"
+=begin
+Method should take two inputs, a hand and a boolean=false to obscure the first card.
+
+Initialize an empty string output ''
+Iterate through the array.
+  if card == hand[0] && boolean == true
+    output << 'XX' + ' '
+  elsif card == hand[-1]
+    output << card
+  else
+    output << card + ' '
+  end
+end
+=end
+
+def display_hand(hand, obscure=false)
+  display = ''
+  hand.each do |card|
+    if card == hand [0] && obscure == true
+      display << '??' + ' '
+    elsif card == hand[-1]
+      display << card
+    else
+      display << card + ' '
+    end
+  end
+  display
 end
 
 def play_game
   loop do
     deck = generate_deck(SUITS, VALUES)
+    prompt "Dealing..."
+    sleep(1)
     player_hand = deal_cards(deck, 2)
     dealer_hand = deal_cards(deck, 2)
-    display_hands(player_hand, dealer_hand)
+    prompt "Dealer hand: #{display_hand(dealer_hand, true)}"
     player_turn(player_hand, deck)
     if bust?(hand_value(player_hand))
       puts "Player busted."
@@ -146,5 +178,3 @@ play_game
 
 # Notes
 # Refactor bust? to be more universally useable
-# Player shouldn't be allowed to hit on 21
-# Need to display the cards.
