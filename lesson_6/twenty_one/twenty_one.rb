@@ -1,3 +1,5 @@
+require 'pry'
+
 SUITS = ['S', 'H', 'C', 'D']
 VALUES = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2']
 DEALER_STAY = 17
@@ -7,12 +9,7 @@ def prompt(msg)
 end
 
 def generate_deck(suits, values)
-  deck = values.map do |value|
-          suits.map do |suit|
-            value + suit
-          end
-        end
-  deck.flatten.shuffle
+  values.product(suits).map(&:join).shuffle
 end
 
 def deal_cards(deck, num_cards)
@@ -140,6 +137,7 @@ def play_game
     deck = generate_deck(SUITS, VALUES)
     prompt "Dealing..."
     sleep(1)
+    binding.pry
     player_hand = deal_cards(deck, 2)
     dealer_hand = deal_cards(deck, 2)
     prompt "Dealer hand: #{display_hand(dealer_hand, true)}"
