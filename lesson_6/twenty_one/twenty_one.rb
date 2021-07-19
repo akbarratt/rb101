@@ -47,15 +47,14 @@ def bust?(num)
   num > 21
 end
 
-def player_turn(hand, deck)
+def player_turn(player_hand, dealer_hand, deck)
   loop do
-    prompt "Dealer hand: #{display_hand(dealer_hand, true)}"
-    prompt "Your hand: #{display_hand(hand)}"
-    prompt "Your points: #{hand_value(hand)}"
-    if hand_value(hand) == 21
+    game_status(player_hand, dealer_hand)
+    # Once game_over is corrected, refactor 54-60 as: break if hand_value(player_hand) == 21 || bust?(hand_value(player_hand))
+    if hand_value(player_hand) == 21
       prompt "You have 21!"
       break
-    elsif bust?(hand_value(hand))
+    elsif bust?(hand_value(player_hand))
       # Bust condition here
       puts "You busted!"
       break
@@ -63,7 +62,7 @@ def player_turn(hand, deck)
       answer = player_choice
       if answer == 'hit'
         prompt "You've chosen to hit."
-        hand.concat(hit(deck))
+        player_hand.concat(hit(deck))
       elsif answer == 'stay'
         prompt "You've chosen to stay."
         break
@@ -72,6 +71,12 @@ def player_turn(hand, deck)
       end
     end
   end
+end
+
+def game_status(player_hand, dealer_hand)
+  prompt "Dealer hand: #{display_hand(dealer_hand, true)}"
+  prompt "Your hand: #{display_hand(player_hand)}"
+  prompt "Your points: #{hand_value(player_hand)}"
 end
 
 def player_choice
@@ -86,12 +91,8 @@ def player_choice
 end
 
 def dealer_turn(hand, deck)
-  p hand
-  p hand_value(hand)
   until hand_value(hand) >= DEALER_STAY || bust?(hand_value(hand))
     hand.concat(hit(deck))
-    p hand
-    p hand_value(hand)
   end
 end
 
@@ -138,7 +139,7 @@ def play_game
     sleep(1)
     player_hand = deal_cards(deck, 2)
     dealer_hand = deal_cards(deck, 2)
-    player_turn(player_hand, deck)
+    player_turn(player_hand, dealer_hand, deck)
     if bust?(hand_value(player_hand))
       puts "Player busted."
     else
