@@ -55,8 +55,6 @@ def player_turn(player_hand, dealer_hand, deck)
       prompt "You have 21!"
       break
     elsif bust?(hand_value(player_hand))
-      # Bust condition here
-      puts "You busted!"
       break
     else
       answer = player_choice
@@ -97,24 +95,23 @@ def dealer_turn(hand, deck)
 end
 
 def game_over(player_hand, dealer_hand)
-  if bust?(hand_value(player_hand))
+  game_status(player_hand, dealer_hand)
+  if determine_winner == :dealer_win
     prompt "Dealer win!"
-  elsif bust?(hand_value(dealer_hand))
+  elsif determine_winner == :player_win
     prompt "You win!"
-  else
-    winner = determine_winner(player_hand, dealer_hand)
-    prompt "#{winner} win!" unless winner == 'tie' 
-    prompt "It's a tie!" if winner == 'tie'
+  elsif determine_winner == :tie
+    prompt "It's a tie!"
   end
 end
 
 def determine_winner(player_hand, dealer_hand)
-  if hand_value(player_hand) > hand_value(dealer_hand)
-    'You'
-  elsif hand_value(dealer_hand) > hand_value(player_hand)
-    'Dealer'
+  if bust?(hand_value(player_hand)) || hand_value(dealer_hand) > hand_value(player_hand)
+    :dealer_win
+  elsif bust?(hand_value(dealer_hand)) || hand_value(dealer_hand) < hand_value(player_hand)
+    :player_win
   else
-    'tie'
+    :tie
   end
 end
 
@@ -141,11 +138,11 @@ def play_game
     dealer_hand = deal_cards(deck, 2)
     player_turn(player_hand, dealer_hand, deck)
     if bust?(hand_value(player_hand))
-      puts "Player busted."
+      prompt "You busted!"
     else
       dealer_turn(dealer_hand, deck)
       if bust?(hand_value(dealer_hand))
-        puts "Dealer busted."
+        prompt "Dealer busted!"
       end
     end
     game_over(player_hand, dealer_hand)
