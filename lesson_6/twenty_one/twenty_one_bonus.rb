@@ -64,7 +64,6 @@ def player_turn(player, dealer, deck)
 end
 
 def game_status(player, dealer, obscure=false, dealer_point=false)
-  binding.pry
   prompt "**********"
   prompt "Dealer hand: #{display_hand(dealer[:hand], obscure)}"
   prompt "Dealer points: #{dealer[:total]}" if dealer_point == true
@@ -88,7 +87,6 @@ def display_hand(hand, obscure=false)
 end
 
 def calculate_hand_value(player)
-  binding.pry
   player[:hand].each do |card|
     case card[0]
     when 'A'
@@ -99,7 +97,6 @@ def calculate_hand_value(player)
       player[:total] += card[0].to_i
     end
   end
-  binding.pry
   if bust?(player[:total])
     aces = player[:hand].select { |card| card[0] == 'A' }
     until aces.empty? || !bust?(player[:total])
@@ -107,7 +104,6 @@ def calculate_hand_value(player)
       aces.pop
     end
   end
-  binding.pry
   player[:total]
 end
 
@@ -140,13 +136,13 @@ def dealer_turn(dealer, deck)
 end
 
 def determine_winner(player, dealer)
-  if bust?(player[:hand])
+  if bust?(player[:total])
     :dealer_win
-  elsif bust?(dealer[:hand])
+  elsif bust?(dealer[:total])
     :player_win
-  elsif dealer[:hand] > player[:hand]
+  elsif dealer[:total] > player[:total]
     :dealer_win
-  elsif dealer[:hand] < player[:hand]
+  elsif dealer[:total] < player[:total]
     :player_win
   else
     :tie
