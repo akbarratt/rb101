@@ -15,10 +15,7 @@ def play_game(player, dealer)
     deck = generate_deck(SUITS, VALUES)
     prompt "Dealing..."
     sleep(1)
-    player[:hand] = deal_cards(deck, 2)
-    player[:total] = calculate_hand_value(player)
-    dealer[:hand] = deal_cards(deck, 2)
-    dealer[:total] = calculate_hand_value(dealer)
+    initialize_game(player, dealer, deck)
     player_turn(player, dealer, deck)
     if bust?(player[:total])
       prompt "You busted!"
@@ -35,6 +32,13 @@ def play_game(player, dealer)
     answer = gets.chomp
     break if answer == 'no'
   end
+end
+
+def initialize_game(player, dealer, deck)
+  player[:hand] = deal_cards(deck, 2)
+  player[:total] = calculate_hand_value(player)
+  dealer[:hand] = deal_cards(deck, 2)
+  dealer[:total] = calculate_hand_value(dealer)
 end
 
 def generate_deck(suits, values)
