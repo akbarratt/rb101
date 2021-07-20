@@ -2,7 +2,8 @@ require 'pry'
 
 SUITS = ['S', 'H', 'C', 'D']
 VALUES = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2']
-DEALER_STAY = 17
+WINNING_LIMIT = 21
+DEALER_STAY = WINNING_LIMIT - 4
 
 def prompt(msg)
   puts "=> #{msg}"
@@ -44,13 +45,13 @@ def hand_value(hand)
 end
 
 def bust?(num)
-  num > 21
+  num > WINNING_LIMIT
 end
 
 def player_turn(player_hand, dealer_hand, deck)
   loop do
     game_status(player_hand, dealer_hand, true)
-    break if hand_value(player_hand) == 21 || bust?(hand_value(player_hand))
+    break if hand_value(player_hand) == WINNING_LIMIT || bust?(hand_value(player_hand))
     answer = player_choice
     if answer == 'hit'
       prompt "Drawing a card..."
