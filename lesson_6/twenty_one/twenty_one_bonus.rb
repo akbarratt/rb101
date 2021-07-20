@@ -25,6 +25,8 @@ def play_game(player, dealer)
       dealer_turn(dealer, deck)
       if bust?(dealer[:total])
         prompt "Dealer busted!"
+      else
+        prompt "Dealer chooses to stay."
       end
     end
     game_over(player, dealer, false, true)
@@ -52,7 +54,7 @@ end
 def player_turn(player, dealer, deck)
   loop do
     game_status(player, dealer, true)
-    break if player[:hand] == WINNING_LIMIT || bust?(player[:total])
+    break if player[:total] == WINNING_LIMIT || bust?(player[:total])
     answer = player_choice
     if answer == 'hit'
       prompt "Drawing a card..."
