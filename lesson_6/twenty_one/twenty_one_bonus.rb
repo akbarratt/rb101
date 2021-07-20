@@ -17,19 +17,20 @@ def play_game(player, dealer)
     sleep(1)
     player[:hand] = deal_cards(deck, 2)
     player[:total] = calculate_hand_value(player)
-    dealer_hand = deal_cards(deck, 2)
-    player_turn(player, dealer_hand, deck)
-    if bust?(player[points])
+    dealer[:hand] = deal_cards(deck, 2)
+    dealer[:total] = calculate_hand_value(dealer)
+    player_turn(player, dealer, deck)
+    if bust?(player[:points])
       prompt "You busted!"
     else
       prompt "Dealer is thinking..."
       sleep(1)
-      dealer_turn(dealer_hand, deck)
-      if bust?(hand_value(dealer_hand))
+      dealer_turn(dealer, deck)
+      if bust?(dealer[:points])
         prompt "Dealer busted!"
       end
     end
-    game_over(player_hand, dealer_hand, false, true)
+    game_over(player, dealer, false, true)
     prompt "Play again?"
     answer = gets.chomp
     break if answer == 'no'
@@ -62,10 +63,10 @@ def player_turn(player, dealer_hand, deck)
   end
 end
 
-def game_status(player, dealer_hand, obscure=false, dealer_point=false)
+def game_status(player, dealer, obscure=false, dealer_point=false)
   prompt "**********"
-  prompt "Dealer hand: #{display_hand(dealer_hand, obscure)}"
-  prompt "Dealer points: #{hand_value(dealer_hand)}" if dealer_point == true
+  prompt "Dealer hand: #{display_hand(dealer[:hand], obscure)}"
+  prompt "Dealer points: #{dealer[:points]}" if dealer_point == true
   prompt "Your hand: #{display_hand(player[:hand])}"
   prompt "Your points: #{player[:points]}"
   prompt "**********"
@@ -125,35 +126,36 @@ def hit(player, deck)
   unless deck.empty?
     player[:hand] = deal_cards(deck, 1)
     player[:total] = calculate_hand_value(player)
+  end
 end
 
-def dealer_turn(hand, deck)
-  until hand_value(hand) >= DEALER_STAY || bust?(hand_value(hand))
-    hand.concat(hit(deck))
+def dealer_turn(dealer, deck)
+  until dealer[:total] >= DEALER_STAY || bust?(dealer[:total])
+    hit(dealer, deck)
   end
 end
 
 def determine_winner(player, dealer)
   if bust?(player[:hand])
     :dealer_win
-  elsif bust?(hand_value(dealer_hand))
+  elsif bust?(dealer[:hand])
     :player_win
-  elsif hand_value(dealer_hand) > hand_value(player_hand)
+  elsif dealer[:hand] > player[:hand]
     :dealer_win
-  elsif hand_value(dealer_hand) < hand_value(player_hand)
+  elsif dealer[:hand] < player[:hand]
     :player_win
   else
     :tie
   end
 end
 
-def game_over(player_hand, dealer_hand, obscure, dealer_point)
-  game_status(player_hand, dealer_hand, obscure, dealer_point)
-  if determine_winner(player_hand, dealer_hand) == :dealer_win
+def game_over(player, dealer, obscure, dealer_point)
+  game_status(player, dealer, obscure, dealer_point)
+  if determine_winner(player, dealer) == :dealer_win
     prompt "Dealer wins!"
-  elsif determine_winner(player_hand, dealer_hand) == :player_win
+  elsif determine_winner(player, dealer) == :player_win
     prompt "You win!"
-  elsif determine_winner(player_hand, dealer_hand) == :tie
+  elsif determine_winner(player, dealer) == :tie
     prompt "It's a tie!"
   end
 end
