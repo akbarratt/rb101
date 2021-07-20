@@ -4,6 +4,22 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 145: Monday July 19, 2021
+
+**Pomodoros Completed**: 7
+
+**Today's Progress**: Complete first revision of Twenty-One and refactor. Now beginning bonus features.
+
+**My Feelings**: MAN... Some days are harder than others and this one was brutal. Not because of the material but pain level and plain bad luck. Pushed through anyway and glad I did. It's important to me to get a good start early in the week.
+
+### Day 144: Sunday July 18, 2021
+
+**Pomodoros Completed**: < 1
+
+**Today's Progress**: Review Anki deck.
+
+**My Feelings**: Finished my goals and took a day off.
+
 ### Day 143: Saturday July 17, 2021
 
 **Pomodoros Completed**: 4
