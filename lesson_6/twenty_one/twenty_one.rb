@@ -66,10 +66,12 @@ def player_turn(player_hand, dealer_hand, deck)
 end
 
 def game_status(player_hand, dealer_hand, obscure=false, dealer_point=false)
+  prompt "**********"
   prompt "Dealer hand: #{display_hand(dealer_hand, obscure)}"
   prompt "Dealer points: #{hand_value(dealer_hand)}" if dealer_point == true
   prompt "Your hand: #{display_hand(player_hand)}"
   prompt "Your points: #{hand_value(player_hand)}"
+  prompt "**********"
 end
 
 def player_choice
@@ -153,4 +155,6 @@ def play_game
   end
 end
 
+prompt "Welcome to Twenty-One!"
 play_game
+prompt "Thank you for playing Twenty-One!"
