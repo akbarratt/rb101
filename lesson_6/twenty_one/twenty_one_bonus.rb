@@ -20,13 +20,13 @@ def play_game(player, dealer)
     dealer[:hand] = deal_cards(deck, 2)
     dealer[:total] = calculate_hand_value(dealer)
     player_turn(player, dealer, deck)
-    if bust?(player[:points])
+    if bust?(player[:total])
       prompt "You busted!"
     else
       prompt "Dealer is thinking..."
       sleep(1)
       dealer_turn(dealer, deck)
-      if bust?(dealer[:points])
+      if bust?(dealer[:total])
         prompt "Dealer busted!"
       end
     end
@@ -45,9 +45,9 @@ def deal_cards(deck, num_cards)
   deck.pop(num_cards)
 end
 
-def player_turn(player, dealer_hand, deck)
+def player_turn(player, dealer, deck)
   loop do
-    game_status(player, dealer_hand, true)
+    game_status(player, dealer, true)
     break if player[:hand] == WINNING_LIMIT || bust?(player[:total])
     answer = player_choice
     if answer == 'hit'
@@ -64,18 +64,19 @@ def player_turn(player, dealer_hand, deck)
 end
 
 def game_status(player, dealer, obscure=false, dealer_point=false)
+  binding.pry
   prompt "**********"
   prompt "Dealer hand: #{display_hand(dealer[:hand], obscure)}"
-  prompt "Dealer points: #{dealer[:points]}" if dealer_point == true
+  prompt "Dealer points: #{dealer[:total]}" if dealer_point == true
   prompt "Your hand: #{display_hand(player[:hand])}"
-  prompt "Your points: #{player[:points]}"
+  prompt "Your points: #{player[:total]}"
   prompt "**********"
 end
 
 def display_hand(hand, obscure=false)
   display = ''
   hand.each do |card|
-    if card == hand [0] && obscure == true
+    if card == hand[0] && obscure == true
       display << '??' + ' '
     elsif card == hand[-1]
       display << card
@@ -87,6 +88,7 @@ def display_hand(hand, obscure=false)
 end
 
 def calculate_hand_value(player)
+  binding.pry
   player[:hand].each do |card|
     case card[0]
     when 'A'
@@ -97,6 +99,7 @@ def calculate_hand_value(player)
       player[:total] += card[0].to_i
     end
   end
+  binding.pry
   if bust?(player[:total])
     aces = player[:hand].select { |card| card[0] == 'A' }
     until aces.empty? || !bust?(player[:total])
@@ -104,6 +107,7 @@ def calculate_hand_value(player)
       aces.pop
     end
   end
+  binding.pry
   player[:total]
 end
 
