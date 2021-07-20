@@ -1,17 +1,3 @@
-## Problem: Determining outcome
-if player bust
-  :dealer_win
-elsif dealer bust
-  :player_win
-elsif dealer_hand > player_hand
-  :dealer_win
-elsif dealer_hand < player_hand
-  :player_win
-else
-  :tie
-
-
-
 ___
 DONE
 ___
@@ -75,3 +61,68 @@ Dealer turn loop
 Check for winner
 Dealer bust?
 Determine winner
+
+
+## Problem: Display Hands
+Given an array of strings that varies in length, print out those strings, separated by a space, on a single line.
+
+For the dealer, the first card should be obscured.
+
+Example:
+=> Your hand: AH, 10C
+=> Your hand total: 21
+=> Dealer hand: 2H, AC, 5D
+=> Dealer hand total: 18
+
+Algorithm:
+Method should take two inputs, a hand and a boolean=false to obscure the first card.
+
+Initialize an empty string output ''
+Iterate through the array.
+  if card == hand[0] && boolean = true
+    output << 'XX' + ' '
+  elsif card == hand[-1]
+    output << card
+  else
+    output << card + ' '
+  end
+end
+
+## Problem: Determining outcome
+if player bust || player_hand < dealer_hand
+  :dealer_win
+elsif dealer bust || player_hand > dealer_hand
+  :player_win
+else
+  :tie
+
+  ## Problem: Display Result
+if :dealer_win
+"The dealer wins!"
+elsif :player_win
+"You win!"
+else
+"It's a tie!"
+
+Create deck
+Deal player
+Deal dealer
+Player turn loop
+  determine outcome?
+  The reason this won't work is because if the player doesn't bust, we're not done with the game.
+  If the player doesn't bust, we don't want to show results yet.
+  So IF the player busts, we do want to run the game_over...
+Player bust?
+Dealer turn loop
+Check for winner
+Dealer bust?
+Determine winner
+
+## Problem: Game Status
+During player turn, each loop should display the players' cards and point total, as well as the dealer's cards with the first card obscured.
+
+During game_over, the player's cards and point total should be displayed and so should the dealer's, with no obfuscation.
+
+
+## Other Things
+If neither busts, we need to display the dealer's entire hand. In fact, we need to display the player hand and points and the dealer hand and points. Maybe modify the game status to make this reusable.
