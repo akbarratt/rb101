@@ -154,6 +154,3 @@ def play_game
 end
 
 play_game
-
-# Notes
-# Refactor bust? to be more universally useable
