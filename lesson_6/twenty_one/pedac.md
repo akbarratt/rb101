@@ -1,3 +1,14 @@
+## Problem: Store the card totals in a local variable.
+"If we cache each player's total like this, will it continue to update correctly throughout the game? If not, at what point do we need to update each player's total?"
+
+## Question: Why is the last call to play_again? a little different from the previous two? (from the sample solution)
+
+## Problem: Ending the round. As mentioned above, there are 3 places where the round can end and we call play_again? each time. But another improvement we'd like to make is to give it a consistent end-of-round output. Right now, we get a grand output only after comparing cards. Can we extract this to a method and use it in the other two end-of-round areas? (Not sure I understand this)
+
+## Problem: Keep score and declare whoever reaches 5 points first as the winner.
+
+## Problem: Store 21 in a hash so that the goal of the game is to reach whichever number is stored. (Should DEALER_STAY = WINNING_LIMIT - 4?)
+
 ___
 DONE
 ___
