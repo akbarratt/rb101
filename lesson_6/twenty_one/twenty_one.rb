@@ -49,30 +49,25 @@ end
 
 def player_turn(player_hand, dealer_hand, deck)
   loop do
-    game_status(player_hand, dealer_hand)
-    # Once game_over is corrected, refactor 54-60 as: break if hand_value(player_hand) == 21 || bust?(hand_value(player_hand))
-    if hand_value(player_hand) == 21
-      prompt "You have 21!"
-      break
-    elsif bust?(hand_value(player_hand))
+    game_status(player_hand, dealer_hand, true)
+    break if hand_value(player_hand) == 21 || bust?(hand_value(player_hand))
+    answer = player_choice
+    if answer == 'hit'
+      prompt "Drawing a card..."
+      sleep(1)
+      player_hand.concat(hit(deck))
+    elsif answer == 'stay'
+      prompt "You've chosen to stay."
       break
     else
-      answer = player_choice
-      if answer == 'hit'
-        prompt "You've chosen to hit."
-        player_hand.concat(hit(deck))
-      elsif answer == 'stay'
-        prompt "You've chosen to stay."
-        break
-      else
-        prompt "Invalid input."
-      end
+      prompt "Invalid input."
     end
   end
 end
 
-def game_status(player_hand, dealer_hand)
-  prompt "Dealer hand: #{display_hand(dealer_hand, true)}"
+def game_status(player_hand, dealer_hand, obscure=false, dealer_point=false)
+  prompt "Dealer hand: #{display_hand(dealer_hand, obscure)}"
+  prompt "Dealer points: #{hand_value(dealer_hand)}" if dealer_point == true
   prompt "Your hand: #{display_hand(player_hand)}"
   prompt "Your points: #{hand_value(player_hand)}"
 end
@@ -94,21 +89,25 @@ def dealer_turn(hand, deck)
   end
 end
 
-def game_over(player_hand, dealer_hand)
-  game_status(player_hand, dealer_hand)
-  if determine_winner == :dealer_win
-    prompt "Dealer win!"
-  elsif determine_winner == :player_win
+def game_over(player_hand, dealer_hand, obscure, dealer_point)
+  game_status(player_hand, dealer_hand, obscure, dealer_point)
+  if determine_winner(player_hand, dealer_hand) == :dealer_win
+    prompt "Dealer wins!"
+  elsif determine_winner(player_hand, dealer_hand) == :player_win
     prompt "You win!"
-  elsif determine_winner == :tie
+  elsif determine_winner(player_hand, dealer_hand) == :tie
     prompt "It's a tie!"
   end
 end
 
 def determine_winner(player_hand, dealer_hand)
-  if bust?(hand_value(player_hand)) || hand_value(dealer_hand) > hand_value(player_hand)
+  if bust?(hand_value(player_hand))
     :dealer_win
-  elsif bust?(hand_value(dealer_hand)) || hand_value(dealer_hand) < hand_value(player_hand)
+  elsif bust?(hand_value(dealer_hand))
+    :player_win
+  elsif hand_value(dealer_hand) > hand_value(player_hand)
+    :dealer_win
+  elsif hand_value(dealer_hand) < hand_value(player_hand)
     :player_win
   else
     :tie
@@ -140,12 +139,14 @@ def play_game
     if bust?(hand_value(player_hand))
       prompt "You busted!"
     else
+      prompt "Dealer is thinking..."
+      sleep(1)
       dealer_turn(dealer_hand, deck)
       if bust?(hand_value(dealer_hand))
         prompt "Dealer busted!"
       end
     end
-    game_over(player_hand, dealer_hand)
+    game_over(player_hand, dealer_hand, false, true)
     prompt "Play again?"
     answer = gets.chomp
     break if answer == 'no'
