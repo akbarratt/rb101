@@ -16,10 +16,10 @@ def play_game(player, dealer)
     prompt "Dealing..."
     sleep(1)
     player[:hand] = deal_cards(deck, 2)
-    player[:total] = hand_value(player[:hand])
+    player[:total] = calculate_hand_value(player)
     dealer_hand = deal_cards(deck, 2)
     player_turn(player, dealer_hand, deck)
-    if bust?(hand_value(player_hand))
+    if bust?(player[points])
       prompt "You busted!"
     else
       prompt "Dealer is thinking..."
@@ -52,7 +52,7 @@ def player_turn(player, dealer_hand, deck)
     if answer == 'hit'
       prompt "Drawing a card..."
       sleep(1)
-      player_hand.concat(hit(deck))
+      hit(player, deck)
     elsif answer == 'stay'
       prompt "You've chosen to stay."
       break
@@ -66,9 +66,8 @@ def game_status(player, dealer_hand, obscure=false, dealer_point=false)
   prompt "**********"
   prompt "Dealer hand: #{display_hand(dealer_hand, obscure)}"
   prompt "Dealer points: #{hand_value(dealer_hand)}" if dealer_point == true
-  # binding.pry
   prompt "Your hand: #{display_hand(player[:hand])}"
-  prompt "Your points: #{hand_value(player[:total])}"
+  prompt "Your points: #{player[:points]}"
   prompt "**********"
 end
 
@@ -86,8 +85,7 @@ def display_hand(hand, obscure=false)
   display
 end
 
-def hand_value(player)
-  # Refactor using hash
+def calculate_hand_value(player)
   player[:hand].each do |card|
     case card[0]
     when 'A'
@@ -98,7 +96,6 @@ def hand_value(player)
       player[:total] += card[0].to_i
     end
   end
-
   if bust?(player[:total])
     aces = player[:hand].select { |card| card[0] == 'A' }
     until aces.empty? || !bust?(player[:total])
@@ -124,8 +121,10 @@ def player_choice
   answer
 end
 
-def hit(deck)
-  deal_cards(deck, 1) unless deck.empty?
+def hit(player, deck)
+  unless deck.empty?
+    player[:hand] = deal_cards(deck, 1)
+    player[:total] = calculate_hand_value(player)
 end
 
 def dealer_turn(hand, deck)
@@ -134,8 +133,8 @@ def dealer_turn(hand, deck)
   end
 end
 
-def determine_winner(player_hand, dealer_hand)
-  if bust?(hand_value(player_hand))
+def determine_winner(player, dealer)
+  if bust?(player[:hand])
     :dealer_win
   elsif bust?(hand_value(dealer_hand))
     :player_win
