@@ -1,5 +1,3 @@
-require 'pry'
-
 SUITS = ['S', 'H', 'C', 'D']
 VALUES = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2']
 WINNING_LIMIT = 21
