@@ -87,6 +87,7 @@ def display_hand(hand, obscure=false)
 end
 
 def calculate_hand_value(player)
+  player[:total] = 0
   player[:hand].each do |card|
     case card[0]
     when 'A'
@@ -124,7 +125,7 @@ end
 
 def hit(player, deck)
   unless deck.empty?
-    player[:hand] = deal_cards(deck, 1)
+    player[:hand].concat(deal_cards(deck, 1))
     player[:total] = calculate_hand_value(player)
   end
 end
@@ -132,6 +133,8 @@ end
 def dealer_turn(dealer, deck)
   until dealer[:total] >= DEALER_STAY || bust?(dealer[:total])
     hit(dealer, deck)
+    prompt "Dealer draws a card: #{dealer[:hand].last}"
+    sleep(1)
   end
 end
 
