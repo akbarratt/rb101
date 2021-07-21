@@ -31,9 +31,7 @@ def play_game(player, dealer)
     end
     sleep(1)
     game_over(player, dealer, false, true)
-    prompt "Play again?"
-    answer = gets.chomp
-    break if answer == 'no'
+    break unless play_again?
   end
 end
 
@@ -171,6 +169,17 @@ def game_over(player, dealer, obscure, dealer_point)
   elsif determine_winner(player, dealer) == :tie
     prompt "It's a tie!"
   end
+end
+
+def play_again?
+  answer = ''
+  loop do
+    prompt "Play again?"
+    answer = gets.chomp.downcase.strip
+    break if ['yes', 'no'].include?(answer)
+    prompt "You must select 'yes' or 'no'."
+  end
+  answer == 'yes' ? true : false
 end
 
 player = {
