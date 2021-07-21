@@ -1,5 +1,4 @@
-## Problem: Store the card totals in a local variable.
-"If we cache each player's total like this, will it continue to update correctly throughout the game? If not, at what point do we need to update each player's total?"
+
 
 ## Question: Why is the last call to play_again? a little different from the previous two?
 (from the sample solution)
@@ -12,8 +11,12 @@
 ## Problem: Store 21 in a hash so that the goal of the game is to reach whichever number is stored.
 (Should DEALER_STAY = WINNING_LIMIT - 4?)
 
-## Problem: Could I improve the way Aces are calculated?
+## Idea: Could I improve the way Aces are calculated?
 (see store card totals problem above)
+
+## Idea: Could improve visualization on dealer turn instead of making it instant. Right now there's only a delay
+
+## Idea: How can we let the player know when the dealer choses to stay vs when it busts?
 
 ___
 DONE
@@ -143,3 +146,9 @@ During game_over, the player's cards and point total should be displayed and so 
 
 ## Other Things
 If neither busts, we need to display the dealer's entire hand. In fact, we need to display the player hand and points and the dealer hand and points. Maybe modify the game status to make this reusable.
+
+## Problem: Store the card totals in a local variable.
+"If we cache each player's total like this, will it continue to update correctly throughout the game? If not, at what point do we need to update each player's total?"
+
+Let's try storing all the player information into a hash.
+The total will be set as the result of hand_value upon dealing and hitting. Otherwise it should remain unchanged. We also need to see if we can break out the Aces correction.
