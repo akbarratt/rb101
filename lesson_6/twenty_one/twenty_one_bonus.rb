@@ -29,6 +29,7 @@ def play_game(player, dealer)
         prompt "Dealer chooses to stay."
       end
     end
+    sleep(1)
     game_over(player, dealer, false, true)
     prompt "Play again?"
     answer = gets.chomp
@@ -57,9 +58,7 @@ def player_turn(player, dealer, deck)
     break if player[:total] == WINNING_LIMIT || bust?(player[:total])
     answer = player_choice
     if answer == 'hit'
-      prompt "Drawing a card..."
-      sleep(1)
-      hit(player, deck)
+      player_hit(player, deck)
     elsif answer == 'stay'
       prompt "You've chosen to stay."
       break
@@ -129,17 +128,22 @@ def player_choice
   answer
 end
 
-def hit(player, deck)
+def player_hit(player, deck)
   unless deck.empty?
+    prompt "Drawing a card..."
+    sleep(1)
     player[:hand].concat(deal_cards(deck, 1))
     player[:total] = calculate_hand_value(player)
+    prompt "You drew: #{player[:hand].last}"
+    sleep(1)
   end
 end
 
 def dealer_turn(dealer, deck)
   until dealer[:total] >= DEALER_STAY || bust?(dealer[:total])
-    hit(dealer, deck)
+    dealer[:hand].concat(deal_cards(deck, 1))
     prompt "Dealer draws a card: #{dealer[:hand].last}"
+    dealer[:total] = calculate_hand_value(dealer)
     sleep(1)
   end
 end
