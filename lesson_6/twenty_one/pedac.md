@@ -8,9 +8,6 @@
 
 ## Problem: Keep score and declare whoever reaches 5 points first as the winner.
 
-## Problem: Store 21 in a hash so that the goal of the game is to reach whichever number is stored.
-(Should DEALER_STAY = WINNING_LIMIT - 4?)
-
 ## Idea: Could I improve the way Aces are calculated?
 (see store card totals problem above)
 
@@ -152,3 +149,6 @@ If neither busts, we need to display the dealer's entire hand. In fact, we need 
 
 Let's try storing all the player information into a hash.
 The total will be set as the result of hand_value upon dealing and hitting. Otherwise it should remain unchanged. We also need to see if we can break out the Aces correction.
+
+## Problem: Store 21 in a const so that the goal of the game is to reach whichever number is stored.
+(Should DEALER_STAY = WINNING_LIMIT - 4?)
