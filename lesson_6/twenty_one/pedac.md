@@ -1,5 +1,3 @@
-
-
 ## Question: Why is the last call to play_again? a little different from the previous two?
 (from the sample solution)
 
@@ -11,9 +9,6 @@
 ## Idea: Could I improve the way Aces are calculated?
 (see store card totals problem above)
 
-## Idea: Could improve visualization on dealer turn instead of making it instant. Right now there's only a delay
-
-## Idea: How can we let the player know when the dealer choses to stay vs when it busts?
 
 ___
 DONE
@@ -152,3 +147,7 @@ The total will be set as the result of hand_value upon dealing and hitting. Othe
 
 ## Problem: Store 21 in a const so that the goal of the game is to reach whichever number is stored.
 (Should DEALER_STAY = WINNING_LIMIT - 4?)
+
+## Idea: Could improve visualization on dealer turn instead of making it instant. Right now there's only a delay
+
+## Idea: How can we let the player know when the dealer choses to stay vs when it busts?
