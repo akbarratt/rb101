@@ -5,6 +5,7 @@ SUITS = ['S', 'H', 'C', 'D']
 VALUES = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2']
 WINNING_LIMIT = 21
 DEALER_STAY = WINNING_LIMIT - 4
+CHAMPION_WINS = 5
 
 def prompt(msg)
   puts "=> #{msg}"
@@ -54,8 +55,6 @@ def player_turn(player, dealer, deck)
     elsif answer == 'stay'
       prompt "You've chosen to stay."
       break
-    else
-      prompt "Invalid input."
     end
   end
 end
@@ -163,8 +162,10 @@ def game_over(player, dealer, obscure, dealer_point)
   game_status(player, dealer, obscure, dealer_point)
   if determine_winner(player, dealer) == :dealer_win
     prompt "Dealer wins!"
+    dealer[:wins] += 1
   elsif determine_winner(player, dealer) == :player_win
     prompt "You win!"
+    player[:wins] += 1
   elsif determine_winner(player, dealer) == :tie
     prompt "It's a tie!"
   end
