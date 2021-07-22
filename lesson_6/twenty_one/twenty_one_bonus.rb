@@ -20,14 +20,8 @@ def play_game(player, dealer)
     if bust?(player[:total])
       prompt "You busted!"
     else
-      prompt "Dealer is thinking..."
-      sleep(1)
       dealer_turn(dealer, deck)
-      if bust?(dealer[:total])
-        prompt "Dealer busted!"
-      else
-        prompt "Dealer chooses to stay."
-      end
+      prompt bust?(dealer[:total]) ? "Dealer busted!" : "Dealer chooses to stay."
     end
     sleep(1)
     game_over(player, dealer, false, true)
@@ -141,6 +135,8 @@ def player_hit(player, deck)
 end
 
 def dealer_turn(dealer, deck)
+  prompt "Dealer is thinking..."
+  sleep(1)
   until dealer[:total] >= DEALER_STAY || bust?(dealer[:total])
     dealer[:hand].concat(deal_cards(deck, 1))
     prompt "Dealer draws a card: #{dealer[:hand].last}"
