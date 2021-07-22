@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 147: Wednesday July 21, 2021
+
+**Pomodoros Completed**: 5
+
+**Today's Progress**: Working on Twenty-One bonus features and refactoring.
+
+**My Feelings**: Had to tap out early today because I was feeling bad. Also had some family stuff going on so it was a little difficult to focus.
+
 ### Day 146: Tuesday July 20, 2021
 
 **Pomodoros Completed**: 6
