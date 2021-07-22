@@ -101,12 +101,15 @@ def calculate_hand_value(player)
       player[:total] += card[0].to_i
     end
   end
-  if bust?(player[:total])
-    aces = player[:hand].select { |card| card[0] == 'A' }
-    until aces.empty? || !bust?(player[:total])
-      player[:total] -= 10
-      aces.pop
-    end
+  adjust_aces(player) if bust?(player[:total])
+  player[:total]
+end
+
+def adjust_aces(player)
+  aces = player[:hand].select { |card| card[0] == 'A' }
+  until aces.empty? || !bust?(player[:total])
+    player[:total] -= 10
+    aces.pop
   end
   player[:total]
 end
@@ -196,6 +199,7 @@ dealer = {
   wins: 0
 }
 
+system 'clear'
 prompt "Welcome to Twenty-One!"
 play_game(player, dealer)
 prompt "Thank you for playing Twenty-One!"
