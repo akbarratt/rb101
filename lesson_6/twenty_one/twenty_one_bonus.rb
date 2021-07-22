@@ -13,19 +13,23 @@ end
 
 def play_game(player, dealer)
   loop do
-    deck = generate_deck(SUITS, VALUES)
-    prompt "Dealing..."
-    sleep(1)
-    initialize_game(player, dealer, deck)
-    player_turn(player, dealer, deck)
-    if bust?(player[:total])
-      prompt "You busted!"
-    else
-      dealer_turn(dealer, deck)
-      prompt bust?(dealer[:total]) ? "Dealer busted!" : "Dealer chooses to stay."
+    loop do
+      deck = generate_deck(SUITS, VALUES)
+      prompt "Dealing..."
+      sleep(1)
+      initialize_game(player, dealer, deck)
+      player_turn(player, dealer, deck)
+      if bust?(player[:total])
+        prompt "You busted!"
+      else
+        dealer_turn(dealer, deck)
+        prompt bust?(dealer[:total]) ? "Dealer busted!" : "Dealer chooses to stay."
+      end
+      sleep(1)
+      game_over(player, dealer, false, true)
+      break if champion?(player, dealer)
     end
-    sleep(1)
-    game_over(player, dealer, false, true)
+    prompt "#{determine_champion(player, dealer)}"
     break unless play_again?
   end
 end
@@ -59,13 +63,18 @@ def player_turn(player, dealer, deck)
   end
 end
 
-def game_status(player, dealer, obscure=false, dealer_point=false)
+def game_status(player, dealer, obscure=true, round_end=false)
   prompt "**********"
   prompt "Dealer hand: #{display_hand(dealer[:hand], obscure)}"
-  prompt "Dealer points: #{dealer[:total]}" if dealer_point == true
+  prompt "Dealer points: #{dealer[:total]}" if round_end == false
   prompt "Your hand: #{display_hand(player[:hand])}"
   prompt "Your points: #{player[:total]}"
   prompt "**********"
+  if round_end == true
+    prompt "The dealer has #{dealer[:wins]} wins."
+    prompt "You have #{player[:wins]} wins."
+    prompt "The first player to 5 wins becomes the Champion."
+  end
 end
 
 def display_hand(hand, obscure=false)
@@ -158,8 +167,8 @@ def determine_winner(player, dealer)
   end
 end
 
-def game_over(player, dealer, obscure, dealer_point)
-  game_status(player, dealer, obscure, dealer_point)
+def game_over(player, dealer, obscure, round_end)
+  game_status(player, dealer, obscure, round_end)
   if determine_winner(player, dealer) == :dealer_win
     prompt "Dealer wins!"
     dealer[:wins] += 1
@@ -180,6 +189,16 @@ def play_again?
     prompt "You must select 'yes' or 'no'."
   end
   answer == 'yes' ? true : false
+end
+
+def determine_champion(player, dealer)
+  return "You're the champion!" if player[:wins] == 5
+  return "The dealer is the champion!" if dealer[:wins ==5]
+  nil
+end
+
+def champion?(player, dealer)
+  !!determine_champion(player, dealer)
 end
 
 player = {
