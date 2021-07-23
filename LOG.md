@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 148: Thursday July 22, 2021
+
+**Pomodoros Completed**: 0
+
+**Today's Progress**: N/A
+
+**My Feelings**: Rough pain day. Just couldn't put any time in. Frustrating because I was hoping to wrap up 101 this week. Out of my control for now.
+
 ### Day 147: Wednesday July 21, 2021
 
 **Pomodoros Completed**: 5
