@@ -1,6 +1,8 @@
 ## Question: Why is the last call to play_again? a little different from the previous two?
 (from the sample solution)
 
+When play_again? is invoked after a player busts, breaking would end the entire loop. Instead, a 'yes' answer should begin the next iteration. The last call, however, comes at the end of the program. If we choose to continue the program, it would naturally loop. So we only need a binary conditional rather than a ternary operation.
+
 ## Problem: Ending the round.
 "As mentioned above, there are 3 places where the round can end and we call play_again? each time. But another improvement we'd like to make is to give it a consistent end-of-round output. Right now, we get a grand output only after comparing cards. Can we extract this to a method and use it in the other two end-of-round areas?" (Not sure I understand this)
 
