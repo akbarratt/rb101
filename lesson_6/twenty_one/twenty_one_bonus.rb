@@ -10,7 +10,7 @@ end
 
 def enter_to_continue
   prompt "Press enter to continue."
-  answer = gets.chomp
+  gets.chomp
   system 'clear'
 end
 
@@ -18,8 +18,7 @@ def play_game(player, dealer)
   system 'clear'
   prompt "Welcome to Twenty-One!"
   loop do
-    player[:wins] = 0
-    dealer[:wins] = 0
+    reset_wins(player, dealer)
     loop do
       deck = generate_deck(SUITS, VALUES)
       prompt "Dealing..."
@@ -30,7 +29,11 @@ def play_game(player, dealer)
         prompt "#{player[:name]} busted!"
       else
         dealer_turn(dealer, deck)
-        prompt bust?(dealer[:total]) ? "#{dealer[:name]} busted!" : "#{dealer[:name]} chooses to stay."
+        if prompt bust?(dealer[:total])
+          prompt "#{dealer[:name]} busted!"
+        else
+          prompt"#{dealer[:name]} chooses to stay."
+        end
       end
       game_over(player, dealer, false, true)
       break if champion?(player, dealer)
@@ -40,6 +43,11 @@ def play_game(player, dealer)
     break unless play_again?
     system 'clear'
   end
+end
+
+def reset_wins(player, dealer)
+  player[:wins] = 0
+  dealer[:wins] = 0
 end
 
 def initialize_game(player, dealer, deck)
@@ -197,7 +205,7 @@ def play_again?
     break if ['yes', 'no'].include?(answer)
     prompt "You must select 'yes' or 'no'."
   end
-  answer == 'yes' ? true : false
+  true if answer == 'yes'
 end
 
 def determine_champion(player, dealer)
@@ -214,14 +222,14 @@ player = {
   name: "Player",
   hand: [],
   total: 0,
-  wins: 4
+  wins: 0
 }
 
 dealer = {
   name: "Dealer",
   hand: [],
   total: 0,
-  wins: 4
+  wins: 0
 }
 
 system 'clear'
