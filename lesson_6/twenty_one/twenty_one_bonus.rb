@@ -1,6 +1,3 @@
-require 'pry'
-require 'pry-byebug'
-
 SUITS = ['S', 'H', 'C', 'D']
 VALUES = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2']
 WINNING_LIMIT = 21
@@ -19,8 +16,10 @@ end
 
 def play_game(player, dealer)
   system 'clear'
-  prompt "Welcome to Twenty One!"
+  prompt "Welcome to Twenty-One!"
   loop do
+    player[:wins] = 0
+    dealer[:wins] = 0
     loop do
       deck = generate_deck(SUITS, VALUES)
       prompt "Dealing..."
@@ -61,6 +60,7 @@ end
 def player_turn(player, dealer, deck)
   loop do
     game_status(player, dealer, true)
+    prompt "#{player[:name]} has 21!" if player[:total] == WINNING_LIMIT
     break if player[:total] == WINNING_LIMIT || bust?(player[:total])
     answer = player_choice
     if answer == 'hit'
@@ -81,7 +81,7 @@ def game_status(player, dealer, obscure=true, round_end=false)
   prompt "******************************"
   if round_end == true
     prompt "#{dealer[:name]} has #{dealer[:wins]} wins."
-    prompt "#{dealer[:name]} has #{player[:wins]} wins."
+    prompt "#{player[:name]} has #{player[:wins]} wins."
     prompt "The first player to 5 wins becomes the Champion."
     prompt "******************************"
   end
