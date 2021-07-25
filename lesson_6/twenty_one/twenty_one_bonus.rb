@@ -90,8 +90,9 @@ def game_status(player, dealer, obscure=true, round_end=false)
 end
 
 def game_end_status(player, dealer)
-  prompt "#{dealer[:name]} has #{dealer[:wins]} wins."
-  prompt "#{player[:name]} has #{player[:wins]} wins."
+  sleep(1)
+  prompt "#{dealer[:name]} has #{dealer[:wins]} win(s)."
+  prompt "#{player[:name]} has #{player[:wins]} win(s)."
   prompt "The first player to 5 wins becomes the Champion."
   prompt "******************************"
 end
@@ -116,7 +117,7 @@ def calculate_hand_value(current_p)
     case card[0]
     when 'A'
       current_p[:total] += 11
-    when 'K', 'Q', 'J', '1' # '1' is for 10, the only possible 3-digit string
+    when 'K', 'Q', 'J', '1'
       current_p[:total] += 10
     else
       current_p[:total] += card[0].to_i
