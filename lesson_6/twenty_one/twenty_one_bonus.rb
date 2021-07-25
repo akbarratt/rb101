@@ -29,11 +29,7 @@ def play_game(player, dealer)
         prompt "#{player[:name]} busted!"
       else
         dealer_turn(dealer, deck)
-        if prompt bust?(dealer[:total])
-          prompt "#{dealer[:name]} busted!"
-        else
-          prompt"#{dealer[:name]} chooses to stay."
-        end
+        dealer_turn_end(dealer)
       end
       game_over(player, dealer, false, true)
       break if champion?(player, dealer)
@@ -165,6 +161,14 @@ def dealer_turn(dealer, deck)
   sleep(1)
   until dealer[:total] >= DEALER_STAY || bust?(dealer[:total])
     hit(dealer, deck)
+  end
+end
+
+def dealer_turn_end(dealer)
+  if prompt bust?(dealer[:total])
+    prompt "#{dealer[:name]} busted!"
+  else
+    prompt"#{dealer[:name]} chooses to stay."
   end
 end
 
