@@ -11,7 +11,15 @@ def prompt(msg)
   puts "=> #{msg}"
 end
 
+def enter_to_continue
+  prompt "Press enter to continue."
+  answer = gets.chomp
+  system 'clear'
+end
+
 def play_game(player, dealer)
+  system 'clear'
+  prompt "Welcome to Tic Tac Toe!"
   loop do
     loop do
       deck = generate_deck(SUITS, VALUES)
@@ -25,9 +33,9 @@ def play_game(player, dealer)
         dealer_turn(dealer, deck)
         prompt bust?(dealer[:total]) ? "Dealer busted!" : "Dealer chooses to stay."
       end
-      sleep(1)
       game_over(player, dealer, false, true)
       break if champion?(player, dealer)
+      enter_to_continue
     end
     prompt "#{determine_champion(player, dealer)}"
     break unless play_again?
@@ -64,16 +72,17 @@ def player_turn(player, dealer, deck)
 end
 
 def game_status(player, dealer, obscure=true, round_end=false)
-  prompt "**********"
+  prompt "******************************"
   prompt "Dealer hand: #{display_hand(dealer[:hand], obscure)}"
-  prompt "Dealer points: #{dealer[:total]}" if round_end == false
+  prompt "Dealer points: #{dealer[:total]}" if round_end == true
   prompt "Your hand: #{display_hand(player[:hand])}"
   prompt "Your points: #{player[:total]}"
-  prompt "**********"
+  prompt "******************************"
   if round_end == true
     prompt "The dealer has #{dealer[:wins]} wins."
     prompt "You have #{player[:wins]} wins."
     prompt "The first player to 5 wins becomes the Champion."
+    prompt "******************************"
   end
 end
 
@@ -125,7 +134,7 @@ def player_choice
   loop do
     prompt "Hit or stay?"
     answer = gets.chomp.downcase.strip
-    break if answer == 'hit' || answer == 'stay'
+    break if ['hit', 'stay'].include?(answer)
     prompt "Sorry, that's an invalid answer!"
   end
   answer
@@ -168,7 +177,7 @@ def determine_winner(player, dealer)
 end
 
 def game_over(player, dealer, obscure, round_end)
-  game_status(player, dealer, obscure, round_end)
+  sleep(1)
   if determine_winner(player, dealer) == :dealer_win
     prompt "Dealer wins!"
     dealer[:wins] += 1
@@ -178,6 +187,8 @@ def game_over(player, dealer, obscure, round_end)
   elsif determine_winner(player, dealer) == :tie
     prompt "It's a tie!"
   end
+  sleep(1)
+  game_status(player, dealer, obscure, round_end)
 end
 
 def play_again?
@@ -193,7 +204,7 @@ end
 
 def determine_champion(player, dealer)
   return "You're the champion!" if player[:wins] == 5
-  return "The dealer is the champion!" if dealer[:wins ==5]
+  return "The dealer is the champion!" if dealer[:wins] == 5
   nil
 end
 
@@ -216,6 +227,5 @@ dealer = {
 }
 
 system 'clear'
-prompt "Welcome to Twenty-One!"
 play_game(player, dealer)
 prompt "Thank you for playing Twenty-One!"
