@@ -28,10 +28,10 @@ def play_game(player, dealer)
       initialize_game(player, dealer, deck)
       player_turn(player, dealer, deck)
       if bust?(player[:total])
-        prompt "You busted!"
+        prompt "#{player[:name]} busted!"
       else
         dealer_turn(dealer, deck)
-        prompt bust?(dealer[:total]) ? "Dealer busted!" : "Dealer chooses to stay."
+        prompt bust?(dealer[:total]) ? "#{dealer[:name]} busted!" : "#{dealer[:name]} chooses to stay."
       end
       game_over(player, dealer, false, true)
       break if champion?(player, dealer)
@@ -39,6 +39,7 @@ def play_game(player, dealer)
     end
     prompt "#{determine_champion(player, dealer)}"
     break unless play_again?
+    system 'clear'
   end
 end
 
@@ -63,9 +64,9 @@ def player_turn(player, dealer, deck)
     break if player[:total] == WINNING_LIMIT || bust?(player[:total])
     answer = player_choice
     if answer == 'hit'
-      player_hit(player, deck)
+      hit(player, deck)
     elsif answer == 'stay'
-      prompt "You've chosen to stay."
+      prompt "#{player[:name]} have chosen to stay."
       break
     end
   end
@@ -73,13 +74,13 @@ end
 
 def game_status(player, dealer, obscure=true, round_end=false)
   prompt "******************************"
-  prompt "Dealer hand: #{display_hand(dealer[:hand], obscure)}"
-  prompt "Dealer points: #{dealer[:total]}" if round_end == true
+  prompt "#{dealer[:name]} hand: #{display_hand(dealer[:hand], obscure)}"
+  prompt "#{dealer[:name]} points: #{dealer[:total]}" if round_end == true
   prompt "Your hand: #{display_hand(player[:hand])}"
   prompt "Your points: #{player[:total]}"
   prompt "******************************"
   if round_end == true
-    prompt "The dealer has #{dealer[:wins]} wins."
+    prompt "#{dealer[:name]} has #{dealer[:wins]} wins."
     prompt "You have #{player[:wins]} wins."
     prompt "The first player to 5 wins becomes the Champion."
     prompt "******************************"
@@ -100,29 +101,29 @@ def display_hand(hand, obscure=false)
   display
 end
 
-def calculate_hand_value(player)
-  player[:total] = 0
-  player[:hand].each do |card|
+def calculate_hand_value(current_player)
+  current_player[:total] = 0
+  current_player[:hand].each do |card|
     case card[0]
     when 'A'
-      player[:total] += 11
+      current_player[:total] += 11
     when 'K', 'Q', 'J', '1' # '1' is for 10, the only possible 3-digit string
-      player[:total] += 10
+      current_player[:total] += 10
     else
-      player[:total] += card[0].to_i
+      current_player[:total] += card[0].to_i
     end
   end
-  adjust_aces(player) if bust?(player[:total])
-  player[:total]
+  adjust_aces(current_player) if bust?(current_player[:total])
+  current_player[:total]
 end
 
-def adjust_aces(player)
-  aces = player[:hand].select { |card| card[0] == 'A' }
-  until aces.empty? || !bust?(player[:total])
-    player[:total] -= 10
+def adjust_aces(current_player)
+  aces = current_player[:hand].select { |card| card[0] == 'A' }
+  until aces.empty? || !bust?(current_player[:total])
+    current_player[:total] -= 10
     aces.pop
   end
-  player[:total]
+  current_player[:total]
 end
 
 def bust?(num)
@@ -140,23 +141,23 @@ def player_choice
   answer
 end
 
-def player_hit(player, deck)
+def hit(current_player, deck)
   unless deck.empty?
     prompt "Drawing a card..."
     sleep(1)
-    player[:hand].concat(deal_cards(deck, 1))
-    player[:total] = calculate_hand_value(player)
-    prompt "You drew: #{player[:hand].last}"
+    current_player[:hand].concat(deal_cards(deck, 1))
+    current_player[:total] = calculate_hand_value(current_player)
+    prompt "#{current_player[:name]} drew: #{current_player[:hand].last}"
     sleep(1)
   end
 end
 
 def dealer_turn(dealer, deck)
-  prompt "Dealer is thinking..."
+  prompt "#{dealer[:name]} is thinking..."
   sleep(1)
   until dealer[:total] >= DEALER_STAY || bust?(dealer[:total])
     dealer[:hand].concat(deal_cards(deck, 1))
-    prompt "Dealer draws a card: #{dealer[:hand].last}"
+    prompt "#{dealer[:name]} draws a card: #{dealer[:hand].last}"
     dealer[:total] = calculate_hand_value(dealer)
     sleep(1)
   end
@@ -179,10 +180,10 @@ end
 def game_over(player, dealer, obscure, round_end)
   sleep(1)
   if determine_winner(player, dealer) == :dealer_win
-    prompt "Dealer wins!"
+    prompt "#{dealer[:name]} wins!"
     dealer[:wins] += 1
   elsif determine_winner(player, dealer) == :player_win
-    prompt "You win!"
+    prompt "#{player[:name]} win!"
     player[:wins] += 1
   elsif determine_winner(player, dealer) == :tie
     prompt "It's a tie!"
@@ -203,8 +204,8 @@ def play_again?
 end
 
 def determine_champion(player, dealer)
-  return "You're the champion!" if player[:wins] == 5
-  return "The dealer is the champion!" if dealer[:wins] == 5
+  return "#{player[:name]} are the champion!" if player[:wins] == 5
+  return "#{dealer[:name]} is the champion!" if dealer[:wins] == 5
   nil
 end
 
@@ -216,14 +217,14 @@ player = {
   name: "You",
   hand: [],
   total: 0,
-  wins: 0
+  wins: 4
 }
 
 dealer = {
   name: "Dealer",
   hand: [],
   total: 0,
-  wins: 0
+  wins: 4
 }
 
 system 'clear'
