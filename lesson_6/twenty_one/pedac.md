@@ -1,13 +1,5 @@
-## Problem: We need to indicate when the player gets 21 and therefore isn't allowed to hit.
-
- Problem: Ending the round.
-"As mentioned above, there are 3 places where the round can end and we call play_again? each time. But another improvement we'd like to make is to give it a consistent end-of-round output. Right now, we get a grand output only after comparing cards. Can we extract this to a method and use it in the other two end-of-round areas?" (Not sure I understand this)
-
-## Problem: Keep score and declare whoever reaches 5 points first as the winner.
-
-## Bug: need to generalize 'player' in places where it can refer to either player
-
-## Future-proofing: String interpolate user and dealer names from hash[:name]
+## Problem: Ending the round.
+"As mentioned above, there are 3 places where the round can end and we call play_again? each time. But another improvement we'd like to make is to give it a consistent end-of-round output. Right now, we get a grand output only after comparing cards. Can we extract this to a method and use it in the other two end-of-round areas?" (I think this is irrelevant given how I solved the problem.)
 
 ___
 DONE
@@ -134,6 +126,11 @@ During player turn, each loop should display the players' cards and point total,
 
 During game_over, the player's cards and point total should be displayed and so should the dealer's, with no obfuscation.
 
+## Bug: need to generalize 'player' in places where it can refer to either player (current_player)
+
+## Problem: We need to indicate when the player gets 21 and therefore isn't allowed to hit.
+
+## Bug: wins should reset on play_again?
 
 ## Other Things
 If neither busts, we need to display the dealer's entire hand. In fact, we need to display the player hand and points and the dealer hand and points. Maybe modify the game status to make this reusable.
@@ -153,6 +150,12 @@ The total will be set as the result of hand_value upon dealing and hitting. Othe
 
 ## Idea: Could I improve the way Aces are calculated?
 (see store card totals problem above)
+
+## Problem: Keep score and declare whoever reaches 5 points first as the winner.
+## Future-proofing: String interpolate user and dealer names from hash[:name]
+
+## Improvement: Can I generalize hit and remove the redundancy on the dealer_turn?
+
 
 ## Question: Why is the last call to play_again? a little different from the previous two?
 (from the sample solution)
