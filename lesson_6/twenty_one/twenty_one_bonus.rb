@@ -19,7 +19,7 @@ end
 
 def play_game(player, dealer)
   system 'clear'
-  prompt "Welcome to Tic Tac Toe!"
+  prompt "Welcome to Twenty One!"
   loop do
     loop do
       deck = generate_deck(SUITS, VALUES)
@@ -66,7 +66,7 @@ def player_turn(player, dealer, deck)
     if answer == 'hit'
       hit(player, deck)
     elsif answer == 'stay'
-      prompt "#{player[:name]} have chosen to stay."
+      prompt "#{player[:name]} has chosen to stay."
       break
     end
   end
@@ -76,12 +76,12 @@ def game_status(player, dealer, obscure=true, round_end=false)
   prompt "******************************"
   prompt "#{dealer[:name]} hand: #{display_hand(dealer[:hand], obscure)}"
   prompt "#{dealer[:name]} points: #{dealer[:total]}" if round_end == true
-  prompt "Your hand: #{display_hand(player[:hand])}"
-  prompt "Your points: #{player[:total]}"
+  prompt "#{player[:name]} hand: #{display_hand(player[:hand])}"
+  prompt "#{player[:name]} points: #{player[:total]}"
   prompt "******************************"
   if round_end == true
     prompt "#{dealer[:name]} has #{dealer[:wins]} wins."
-    prompt "You have #{player[:wins]} wins."
+    prompt "#{dealer[:name]} has #{player[:wins]} wins."
     prompt "The first player to 5 wins becomes the Champion."
     prompt "******************************"
   end
@@ -147,7 +147,7 @@ def hit(current_player, deck)
     sleep(1)
     current_player[:hand].concat(deal_cards(deck, 1))
     current_player[:total] = calculate_hand_value(current_player)
-    prompt "#{current_player[:name]} drew: #{current_player[:hand].last}"
+    prompt "#{current_player[:name]} draws a card: #{current_player[:hand].last}"
     sleep(1)
   end
 end
@@ -156,10 +156,7 @@ def dealer_turn(dealer, deck)
   prompt "#{dealer[:name]} is thinking..."
   sleep(1)
   until dealer[:total] >= DEALER_STAY || bust?(dealer[:total])
-    dealer[:hand].concat(deal_cards(deck, 1))
-    prompt "#{dealer[:name]} draws a card: #{dealer[:hand].last}"
-    dealer[:total] = calculate_hand_value(dealer)
-    sleep(1)
+    hit(dealer, deck)
   end
 end
 
@@ -183,7 +180,7 @@ def game_over(player, dealer, obscure, round_end)
     prompt "#{dealer[:name]} wins!"
     dealer[:wins] += 1
   elsif determine_winner(player, dealer) == :player_win
-    prompt "#{player[:name]} win!"
+    prompt "#{player[:name]} wins!"
     player[:wins] += 1
   elsif determine_winner(player, dealer) == :tie
     prompt "It's a tie!"
@@ -204,7 +201,7 @@ def play_again?
 end
 
 def determine_champion(player, dealer)
-  return "#{player[:name]} are the champion!" if player[:wins] == 5
+  return "#{player[:name]} is the champion!" if player[:wins] == 5
   return "#{dealer[:name]} is the champion!" if dealer[:wins] == 5
   nil
 end
@@ -214,7 +211,7 @@ def champion?(player, dealer)
 end
 
 player = {
-  name: "You",
+  name: "Player",
   hand: [],
   total: 0,
   wins: 4
