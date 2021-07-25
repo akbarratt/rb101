@@ -26,6 +26,11 @@ def play_game(player, dealer)
   end
 end
 
+def reset_wins(player, dealer)
+  player[:wins] = 0
+  dealer[:wins] = 0
+end
+
 def game_loop(player, dealer)
   loop do
     deck = generate_deck(SUITS, VALUES)
@@ -42,11 +47,6 @@ def game_loop(player, dealer)
     break if champion?(player, dealer)
     enter_to_continue
   end
-end
-
-def reset_wins(player, dealer)
-  player[:wins] = 0
-  dealer[:wins] = 0
 end
 
 def initialize_game(player, dealer, deck)
@@ -99,13 +99,13 @@ end
 def display_hand(hand, obscure=false)
   display = ''
   hand.each do |card|
-    if card == hand[0] && obscure == true
-      display << '??' + ' '
-    elsif card == hand[-1]
-      display << card
-    else
-      display << card + ' '
-    end
+    display << if (card == hand[0]) && (obscure == true)
+                 '??' + ' '
+               elsif card == hand[-1]
+                 card
+               else
+                 card + ' '
+               end
   end
   display
 end
