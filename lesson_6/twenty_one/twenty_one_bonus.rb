@@ -20,28 +20,28 @@ def play_game(player, dealer)
   loop do
     reset_wins(player, dealer)
     game_loop(player, dealer)
-    prompt "#{determine_champion(player, dealer)}"
+    prompt determine_champion(player, dealer)
     break unless play_again?
     system 'clear'
   end
 end
 
 def game_loop(player, dealer)
-loop do
-      deck = generate_deck(SUITS, VALUES)
-      prompt "Dealing..."
-      sleep(1)
-      initialize_game(player, dealer, deck)
-      player_turn(player, dealer, deck)
-      if bust?(player[:total])
-        prompt "#{player[:name]} busted!"
-      else
-        dealer_turn(dealer, deck)
-      end
-      game_over(player, dealer, false, true)
-      break if champion?(player, dealer)
-      enter_to_continue
+  loop do
+    deck = generate_deck(SUITS, VALUES)
+    prompt "Dealing..."
+    sleep(1)
+    initialize_game(player, dealer, deck)
+    player_turn(player, dealer, deck)
+    if bust?(player[:total])
+      prompt "#{player[:name]} busted!"
+    else
+      dealer_turn(dealer, deck)
     end
+    game_over(player, dealer, false, true)
+    break if champion?(player, dealer)
+    enter_to_continue
+  end
 end
 
 def reset_wins(player, dealer)
@@ -86,12 +86,14 @@ def game_status(player, dealer, obscure=true, round_end=false)
   prompt "#{player[:name]} hand: #{display_hand(player[:hand])}"
   prompt "#{player[:name]} points: #{player[:total]}"
   prompt "******************************"
-  if round_end == true
-    prompt "#{dealer[:name]} has #{dealer[:wins]} wins."
-    prompt "#{player[:name]} has #{player[:wins]} wins."
-    prompt "The first player to 5 wins becomes the Champion."
-    prompt "******************************"
-  end
+  game_end_status(player, dealer) if round_end == true
+end
+
+def game_end_status(player, dealer)
+  prompt "#{dealer[:name]} has #{dealer[:wins]} wins."
+  prompt "#{player[:name]} has #{player[:wins]} wins."
+  prompt "The first player to 5 wins becomes the Champion."
+  prompt "******************************"
 end
 
 def display_hand(hand, obscure=false)
@@ -108,29 +110,29 @@ def display_hand(hand, obscure=false)
   display
 end
 
-def calculate_hand_value(current_player)
-  current_player[:total] = 0
-  current_player[:hand].each do |card|
+def calculate_hand_value(current_p)
+  current_p[:total] = 0
+  current_p[:hand].each do |card|
     case card[0]
     when 'A'
-      current_player[:total] += 11
+      current_p[:total] += 11
     when 'K', 'Q', 'J', '1' # '1' is for 10, the only possible 3-digit string
-      current_player[:total] += 10
+      current_p[:total] += 10
     else
-      current_player[:total] += card[0].to_i
+      current_p[:total] += card[0].to_i
     end
   end
-  adjust_aces(current_player) if bust?(current_player[:total])
-  current_player[:total]
+  adjust_aces(current_p) if bust?(current_p[:total])
+  current_p[:total]
 end
 
-def adjust_aces(current_player)
-  aces = current_player[:hand].select { |card| card[0] == 'A' }
-  until aces.empty? || !bust?(current_player[:total])
-    current_player[:total] -= 10
+def adjust_aces(current_p)
+  aces = current_p[:hand].select { |card| card[0] == 'A' }
+  until aces.empty? || !bust?(current_p[:total])
+    current_p[:total] -= 10
     aces.pop
   end
-  current_player[:total]
+  current_p[:total]
 end
 
 def bust?(num)
@@ -148,11 +150,11 @@ def player_choice
   answer
 end
 
-def hit(current_player, deck)
+def hit(current_p, deck)
   unless deck.empty?
-    current_player[:hand].concat(deal_cards(deck, 1))
-    current_player[:total] = calculate_hand_value(current_player)
-    prompt "#{current_player[:name]} draws a card: #{current_player[:hand].last}"
+    current_p[:hand].concat(deal_cards(deck, 1))
+    current_p[:total] = calculate_hand_value(current_p)
+    prompt "#{current_p[:name]} draws a card: #{current_p[:hand].last}"
     sleep(1)
   end
 end
@@ -166,7 +168,7 @@ def dealer_turn(dealer, deck)
   if bust?(dealer[:total])
     prompt "#{dealer[:name]} busted!"
   else
-    prompt"#{dealer[:name]} chooses to stay."
+    prompt "#{dealer[:name]} chooses to stay."
   end
 end
 
@@ -237,6 +239,3 @@ dealer = {
 system 'clear'
 play_game(player, dealer)
 prompt "Thank you for playing Twenty-One!"
-
-# Bug: Where is the "false" coming from during dealer turn?
-# Dealer is thinking... False, then stay
