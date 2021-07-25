@@ -19,7 +19,15 @@ def play_game(player, dealer)
   prompt "Welcome to Twenty-One!"
   loop do
     reset_wins(player, dealer)
-    loop do
+    game_loop(player, dealer)
+    prompt "#{determine_champion(player, dealer)}"
+    break unless play_again?
+    system 'clear'
+  end
+end
+
+def game_loop(player, dealer)
+loop do
       deck = generate_deck(SUITS, VALUES)
       prompt "Dealing..."
       sleep(1)
@@ -29,16 +37,11 @@ def play_game(player, dealer)
         prompt "#{player[:name]} busted!"
       else
         dealer_turn(dealer, deck)
-        dealer_turn_end(dealer)
       end
       game_over(player, dealer, false, true)
       break if champion?(player, dealer)
       enter_to_continue
     end
-    prompt "#{determine_champion(player, dealer)}"
-    break unless play_again?
-    system 'clear'
-  end
 end
 
 def reset_wins(player, dealer)
@@ -147,8 +150,6 @@ end
 
 def hit(current_player, deck)
   unless deck.empty?
-    prompt "Drawing a card..."
-    sleep(1)
     current_player[:hand].concat(deal_cards(deck, 1))
     current_player[:total] = calculate_hand_value(current_player)
     prompt "#{current_player[:name]} draws a card: #{current_player[:hand].last}"
@@ -162,10 +163,7 @@ def dealer_turn(dealer, deck)
   until dealer[:total] >= DEALER_STAY || bust?(dealer[:total])
     hit(dealer, deck)
   end
-end
-
-def dealer_turn_end(dealer)
-  if prompt bust?(dealer[:total])
+  if bust?(dealer[:total])
     prompt "#{dealer[:name]} busted!"
   else
     prompt"#{dealer[:name]} chooses to stay."
@@ -239,3 +237,6 @@ dealer = {
 system 'clear'
 play_game(player, dealer)
 prompt "Thank you for playing Twenty-One!"
+
+# Bug: Where is the "false" coming from during dealer turn?
+# Dealer is thinking... False, then stay
