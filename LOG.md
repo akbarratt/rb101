@@ -4,6 +4,14 @@ Logging my progress so I can see my overall output and have something to commit 
 
 I started this progress log partway through RB101. Newest entries first.
 
+### Day 151: Sunday July 25, 2021
+
+**Pomodoros Completed**: 5
+
+**Today's Progress**: Bug test and submit Twenty-One, write blog post, Lesson 6 quiz.
+
+**My Feelings**: Pending the results of my code review on Twenty-One, I'm officially done with 101! Kind of excited and kind of nervous for assessment prep.
+
 ### Day 150: Saturday July 24, 2021
 
 **Pomodoros Completed**: 7
