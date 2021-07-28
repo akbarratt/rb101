@@ -27,8 +27,8 @@ def play_game(player, dealer)
 end
 
 def reset_wins(player, dealer)
-  player[:wins] = 4
-  dealer[:wins] = 4
+  player[:wins] = 0
+  dealer[:wins] = 0
 end
 
 def game_loop(player, dealer)
