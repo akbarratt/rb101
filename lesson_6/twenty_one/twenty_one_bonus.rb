@@ -27,8 +27,8 @@ def play_game(player, dealer)
 end
 
 def reset_wins(player, dealer)
-  player[:wins] = 0
-  dealer[:wins] = 0
+  player[:wins] = 4
+  dealer[:wins] = 4
 end
 
 def game_loop(player, dealer)
@@ -208,7 +208,7 @@ def play_again?
     prompt "Play again? (y/n)"
     answer = gets.chomp.downcase.strip
     break if ['y', 'yes', 'n', 'no'].include?(answer)
-    prompt "You must select 'yes' or 'no'."
+    prompt "You must select (y)es or (n)o."
   end
   true if answer[0] == 'y'
 end
