@@ -70,9 +70,9 @@ def player_turn(player, dealer, deck)
     prompt "#{player[:name]} has 21!" if player[:total] == WINNING_LIMIT
     break if player[:total] == WINNING_LIMIT || bust?(player[:total])
     answer = player_choice
-    if answer == 'hit'
+    if answer[0] == 'h'
       hit(player, deck)
-    elsif answer == 'stay'
+    elsif answer[0] == 's'
       prompt "#{player[:name]} has chosen to stay."
       break
     end
@@ -143,9 +143,9 @@ end
 def player_choice
   answer = ''
   loop do
-    prompt "Hit or stay?"
+    prompt "Will you (h)it or (s)tay?"
     answer = gets.chomp.downcase.strip
-    break if ['hit', 'stay'].include?(answer)
+    break if ['h', 'hit', 's', 'stay'].include?(answer)
     prompt "Sorry, that's an invalid answer!"
   end
   answer
@@ -205,12 +205,12 @@ end
 def play_again?
   answer = ''
   loop do
-    prompt "Play again?"
+    prompt "Play again? (y/n)"
     answer = gets.chomp.downcase.strip
-    break if ['yes', 'no'].include?(answer)
+    break if ['y', 'yes', 'n', 'no'].include?(answer)
     prompt "You must select 'yes' or 'no'."
   end
-  true if answer == 'yes'
+  true if answer[0] == 'y'
 end
 
 def determine_champion(player, dealer)
