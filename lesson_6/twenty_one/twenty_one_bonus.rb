@@ -1,4 +1,4 @@
-SUITS = ['S', 'H', 'C', 'D']
+SUITS = ['♠', '♥', '♣', '♦']
 VALUES = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2']
 WINNING_LIMIT = 21
 DEALER_STAY = WINNING_LIMIT - 4
@@ -93,7 +93,7 @@ def game_end_status(player, dealer)
   sleep(1)
   prompt "#{dealer[:name]} has #{dealer[:wins]} win(s)."
   prompt "#{player[:name]} has #{player[:wins]} win(s)."
-  prompt "The first player to 5 wins becomes the Champion."
+  prompt "The first player to #{CHAMPION_WINS} wins becomes the Champion."
   prompt "******************************"
 end
 
@@ -214,8 +214,8 @@ def play_again?
 end
 
 def determine_champion(player, dealer)
-  return "#{player[:name]} is the champion!" if player[:wins] == 5
-  return "#{dealer[:name]} is the champion!" if dealer[:wins] == 5
+  return "#{player[:name]} is the champion!" if player[:wins] == CHAMPION_WINS
+  return "#{dealer[:name]} is the champion!" if dealer[:wins] == CHAMPION_WINS
   nil
 end
 
